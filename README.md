@@ -31,6 +31,8 @@ The displayed model is `assets/skull-ct/surface.glb`, restored from [surface.glb
 
 **Find a bone** sits above **Find a landmark**; each search filters its own list independently. **Landmarks** remains a catalogue category, organised into expandable types and then bones; shared landmarks appear once under **Multiple bones**. Searching opens matching branches and clearing that search restores their previous expansion. The bone search’s show/hide actions affect matching bones. Selecting a bone or landmark preserves bone visibility. Landmark checkboxes retain highlights and **Clear highlights** clears them. **About this model** collects anatomy coverage, sources, mesh resolution, landmark methods and accuracy limits, viewing instructions, credits and download information. The landmark search and its display settings sit below the bone groups, directly above the Landmarks category. Other display controls and the anatomical source selector sit at the bottom of the sidebar.
 
+Landmark search text filters the catalogue only. Physical surface regions and nearby point guides remain hoverable and selectable on the model, including when the search has no results. Display settings, hidden bones, section cuts, occlusion and the point-guide hit radius still govern model interaction.
+
 ## Anatomy coverage
 
 | Group | CT skull |
@@ -56,6 +58,8 @@ Pterygopalatine wall transfers repair enclosed native faces that the angle filte
 The CT viewer loads **precomputed highlights** before enabling its controls. The package contains all 735 catalogue records, including the 150 with supported surface geometry; location guides remain unpainted. It preserves the existing builder's exact positions, normals, native face IDs, picking lookup and provenance. Input SHA-256 identities cover the skull, supplementary bones, catalogue, source regions and generation code; the binary also has its own checksum. Missing, stale or damaged packages fall back to the existing module Web Worker. The original bone buffers remain intact. Pending fallback results obey the current hover, selection, estimate mode and reset state. Browsers without module-worker support retain the local builder.
 
 Opaque highlights are batched by owning bone, with independent visibility, colour and exact native-face picking. Jaw motion, explosion and sections follow the same owner transforms. Transparent bones retain individual highlight rendering to preserve blending, and browsers without `WEBGL_multi_draw` use the individual path. Preparing the batch buffers during loading avoids a first-use upload when all regions are enabled. These changes preserve the current region boundaries and do not establish anatomical accuracy.
+
+The active see-through preview blends its colour once per covered screen sample, retaining the original 0.5 opacity. Hidden triangles, front/back surfaces and different bone walls share a stencil mask, preventing overlapping layers from becoming a solid colour. The colour pass clears this mask each frame; normal depth testing, clipping and bone visibility still apply. `uv run --group dev python scripts/test_xray_blending.py` checks independent single-blend pixel values, overlapping meshes, closed surfaces and repeated frames, then verifies duplicate hidden surfaces leave real hovered sella, PPF and suture previews unchanged. Its `--mutant` replay must fail the same oracle.
 
 The shipped binary archives also provide lossless **Zstandard level 19/window 23** HTTP delivery. Browsers without Zstandard support receive the restored native bytes. The optional compression script additionally generates **Brotli quality 11 and gzip level 6**, and compresses boundary data, JSON and viewer code. Originals remain available; compressed copies are verified against them. Content-versioned asset URLs receive one-year immutable browser caching. The HTML is revalidated, file edits immediately change the asset version, stale compressed copies are ignored, and ETags support conditional requests. Browser disk caching survives reloads and restarts unless cleared or evicted. Only generating the extra Brotli/gzip copies needs the optional `delivery` dependency group.
 
@@ -171,6 +175,7 @@ anatomy/
 │   ├── landmark-verification.json # Requirements, independent oracles, tolerances and remaining coverage gaps
 │   ├── test_landmark_policy.py  # Production guide and isolated fake-region mutant → audit-guard verification
 │   ├── test_landmark_location.py # Broad sphenoid hover, guide locators, covered surfaces and mobile callouts
+│   ├── test_xray_blending.py    # Hidden-layer pixel oracle, real region overlap invariance and frame-mask clearing
 │   └── test_region_evidence.py  # Source identity, terminology separation, corruption and incomplete-coverage gate
 ├── data/source/                 # Ignored source PDF, decoded caches, decoder and Blender atlas
 ├── artifacts/verification/      # Ignored test report and current QA screenshots

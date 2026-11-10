@@ -13,6 +13,12 @@ function regionMaterials(colour, roughness) {
   }), new THREE.MeshBasicMaterial({
     color: colour, side: THREE.DoubleSide, transparent: true, opacity: 0.5,
     depthWrite: false, depthFunc: THREE.GreaterDepth,
+    // All walls of the active preview share one stencil bit. Once a hidden
+    // sample is tinted, deeper faces cannot blend the colour into it again.
+    stencilWrite: true, stencilWriteMask: 1, stencilFuncMask: 1,
+    stencilRef: 1, stencilFunc: THREE.NotEqualStencilFunc,
+    stencilFail: THREE.KeepStencilOp, stencilZFail: THREE.KeepStencilOp,
+    stencilZPass: THREE.ReplaceStencilOp, forceSinglePass: true,
     polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4,
   })];
 }

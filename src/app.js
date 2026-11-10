@@ -674,7 +674,7 @@ async function init() {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.info.autoReset = false;
-  composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 }));
+  composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4, stencilBuffer: true }));
   composer.addPass(new RenderPass(scene, camera));
   ambientOcclusion = new BoneOcclusionPass(scene, camera, 1, 1, undefined, { radius: 5, thickness: 2, samples: 16, screenSpaceRadius: false, scale: 1 });
   ambientOcclusion.normalMaterial.side = THREE.DoubleSide;

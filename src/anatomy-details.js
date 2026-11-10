@@ -27,6 +27,7 @@ export class AnatomyDetails {
     this.hovered = null;
     this.hoverSource = null;
     this.hoverOverlaps = [];
+    this.hoverLandmarks = [];
     this.locationState = null;
     this.compact = window.matchMedia('(max-width: 700px)');
     $('anatomy-information').open = !this.compact.matches;
@@ -238,8 +239,8 @@ export class AnatomyDetails {
     this.prepareFiltered();
   }
 
-  filtered() {
-    const words = $('landmark-search').value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+  filtered({ includeSearch = true } = {}) {
+    const words = includeSearch ? $('landmark-search').value.toLowerCase().trim().split(/\s+/).filter(Boolean) : [];
     return [...this.landmarks.values()].filter((entry) => {
       if (!this.canHighlight(entry.id)) return false;
       if ($('landmark-mapped-only').checked && !this.regions.hasRegisteredBoundary(entry.id) && !this.regions.pointFits.has(entry.id)) return false;
@@ -266,6 +267,9 @@ export class AnatomyDetails {
   }
 
   filter(notify = true) {
+    // Text narrows the catalogue. Model hover still discovers all landmarks
+    // allowed by the display settings, even when the catalogue has no matches.
+    this.hoverLandmarks = this.filtered({ includeSearch: false });
     this.filteredLandmarks = this.filtered();
     const matches = new Set(this.filteredLandmarks.map((entry) => entry.id));
     this.rows.forEach(({ row }, id) => { row.hidden = !matches.has(id); });
@@ -288,7 +292,7 @@ export class AnatomyDetails {
       group.node.hidden = group.matches.length === 0;
       expandForSearch(group.node);
     }
-    if (this.hovered && !matches.has(this.hovered)) this.setRegionHover(null);
+    if (this.hovered && this.hoverSource !== 'canvas' && !matches.has(this.hovered)) this.setRegionHover(null);
     this.updateControls();
     this.prepareFiltered();
     this.context.invalidate(true);
@@ -461,7 +465,7 @@ export class AnatomyDetails {
     // Prepare supported candidates on the hit bone, even with a broad list.
     // All exact surface hits participate, smallest first; guides have no area.
     const owner = hit.object.userData.entryId;
-    const candidates = (this.filteredLandmarks ?? this.filtered()).filter((entry) => entry.owners.includes(owner) && this.hasSurface(entry));
+    const candidates = this.hoverLandmarks.filter((entry) => entry.owners.includes(owner) && this.hasSurface(entry));
     for (const entry of candidates) { ids.add(entry.id); this.previewQueue.add(entry.id); }
     this.prepareQueue();
     return this.regions.matching(hit, [...ids].filter((id) => this.canHighlight(id)));
@@ -475,7 +479,7 @@ export class AnatomyDetails {
     if ($('bone-studies').hidden) return null;
     const { canvas, entries, sectionPlane } = this.context, rect = canvas.getBoundingClientRect();
     const x = pointer.x - rect.left, y = pointer.y - rect.top;
-    const candidates = new Set([...(this.filteredLandmarks ?? this.filtered()).map((entry) => entry.id), ...this.enabled]);
+    const candidates = new Set([...this.hoverLandmarks.map((entry) => entry.id), ...this.enabled]);
     const nearby = [];
     for (const id of candidates) {
       const entry = this.landmarks.get(id);

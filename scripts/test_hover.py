@@ -75,18 +75,32 @@ def point_check(page, url, dataset):
         if inside:
             beside_pointer(page, pointer)
             assert page.locator('#hover-label').get_attribute('data-hover-id') == identity
-            assert page.locator('#hover-overlaps li').all_text_contents() == ['Frontal bone'], 'Guide hover lost its parent-bone context'
+            overlaps = page.locator('#hover-overlaps li').evaluate_all('rows => rows.map(row => row.dataset.hoverId)')
+            assert overlaps[-1] == 'frontal-bone', 'Guide hover lost its parent-bone context'
+            surface = page.evaluate('p => window.skullAtlas.regionAt(p.x, p.y)', pointer)
+            if surface:
+                assert overlaps[0] == surface, 'Guide hover omitted the physical region under the pointer'
+            else:
+                assert overlaps == ['frontal-bone']
+            assert identity not in overlaps and len(overlaps) == len(set(overlaps))
             assert page.locator('#landmark-location-caption').is_hidden(), 'Duplicate landmark and pointer tooltips'
     assert not page.locator('#landmark-markers').is_checked() and not page.locator('#landmark-labels').is_checked()
     audit = page.evaluate('id=>window.skullAtlas.regionGeometry(id)', identity)
     assert not audit['parts'] and not audit['area'], 'Hovering a point guide fabricated a painted region'
     assert identity not in snapshot(page)['anatomy']['enabledRegions']
     capture(page, f'hover-{dataset}-point')
-    page.locator('#landmark-search').fill('no-matching-hover-guide')
-    page.mouse.move(point['x'] + 1, point['y'])
-    settle(page)
-    assert snapshot(page)['anatomy']['hoveredRegion'] != identity, 'Filtered-out guide retained its hover target'
-    page.locator('#landmark-search').fill('External surface of squamous part of frontal bone')
+    for query in ('mandible', 'no-matching-hover-guide'):
+        retained = page.locator('#landmark-search').evaluate('''(input, query) => {
+            input.value = query; input.dispatchEvent(new Event('input', {bubbles: true}));
+            return window.skullAtlas.snapshot().anatomy.hoveredRegion;
+        }''', query)
+        assert retained == identity, f'{dataset}: search text cleared the stationary canvas hover'
+        assert page.locator(f'.landmark-row[data-landmark="{identity}"]').is_hidden()
+        page.mouse.move(point['x'] + 1, point['y'])
+        settle(page)
+        assert snapshot(page)['anatomy']['hoveredRegion'] == identity, f'{dataset}: search {query!r} removed an unrelated physical point-guide target'
+        beside_pointer(page, point)
+    assert page.locator('#landmark-no-results').is_visible()
     page.mouse.click(point['x'], point['y'])
     assert snapshot(page)['anatomy']['selected'] == {'id': identity, 'kind': 'landmark'}
     # Moving the camera changes the projection, not the CSS-pixel hit radius.
@@ -121,7 +135,7 @@ def point_check(page, url, dataset):
     page.mouse.move(point['x'], point['y'])
     settle(page)
     assert snapshot(page)['anatomy']['hoveredRegion'] != identity, 'Supplied-only mode retained a guide target'
-    return f'{dataset}: guides obey a 14 CSS-pixel radius at two zoom levels, occlusion, hidden bones and sections; click selects without inventing a surface'
+    return f'{dataset}: point guides remain hoverable/selectable with unrelated or empty searches, obey their 14 CSS-pixel radius, occlusion, hidden bones, sections and estimate policy, and paint no invented surface'
 
 
 def overlap_check(page, url, dataset):

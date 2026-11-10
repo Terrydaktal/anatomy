@@ -202,6 +202,21 @@
       "failure": "Corner-pinned or off-canvas tooltip, stale or duplicate caption/list, broad point-guide picking, ghost guides on hidden/clipped bones, picking through opaque cortex, invented guide surfaces or renewed pointer stalls"
     },
     {
+      "id": "LM-XRAY-SINGLE-BLEND",
+      "owner": "surface-regions",
+      "contract": "The active hidden-region preview retains 0.5 single-layer opacity and contributes at most one blend per screen sample, across multiple triangles, owner meshes and front/back surfaces. The mask resets each frame; foreground faces remain excluded by depth testing.",
+      "checks": ["test_xray_blending.py:check", "test_landmark_location.py:check"],
+      "regression": "Eight occluded layers previously changed linear red over grey from the intended [153,26,26] to [254,1,1], despite unchanged material opacity.",
+      "mutation": "test_xray_blending.py --mutant disables the per-sample mask and restores double-pass rendering; the independent pixel oracle must fail."
+    },
+    {
+      "id": "LM-SEARCH-INDEPENDENT-HOVER",
+      "owner": "landmark-viewer",
+      "contract": "Landmark search text filters catalogue rows only. Unselected and unchecked physical surface regions and point guides remain discoverable and selectable under unrelated and zero-result queries. Estimate/display policy, owner visibility, clipping, occlusion and the 14 CSS-pixel point radius continue to apply.",
+      "checks": ["test_hover.py:point_check", "test_landmark_location.py:check"],
+      "regression": "Searching for mandible previously removed an unrelated frontal point-guide target because both model pickers reused the text-filtered catalogue."
+    },
+    {
       "id": "LM-HOVER-LOCATION",
       "owner": "landmark-viewer",
       "contract": "Supported inactive surfaces remain discoverable with broad lists. Hovered and selected landmarks get an optional labelled locator; guides remain approximate and unpainted. A depth-tested see-through preview identifies covered supported surfaces without changing bone appearance, visibility, camera or anatomy.",

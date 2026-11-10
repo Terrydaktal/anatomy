@@ -48,6 +48,22 @@ def check(page, url, dataset, checks):
     capture(page, f'location-{dataset}-broad-sphenoid-hover')
     checks.append(f'{dataset}: inactive greater wing discovered with the full sphenoid list, without enabling it or colouring the whole bone')
 
+    before = snapshot(page)
+    assert not before['anatomy']['selected'] and identity not in before['anatomy']['enabledRegions']
+    for query in ('mental foramen', 'no-matching-surface-landmark'):
+        page.mouse.move(0, 0)
+        page.locator('#landmark-search').fill(query)
+        assert page.locator(f'.landmark-row[data-landmark="{identity}"]').is_hidden()
+        page.mouse.move(point['x'], point['y'])
+        settle(page)
+        current = snapshot(page)
+        assert current['anatomy']['hoveredRegion'] == identity, f'{dataset}: search {query!r} blocked an unrelated physical surface hover'
+        assert page.locator('#hover-label').get_attribute('data-hover-id') == identity
+        assert current['anatomy']['enabledRegions'] == before['anatomy']['enabledRegions']
+        assert current['structures'] == before['structures']
+    assert page.locator('#landmark-no-results').is_visible()
+    checks.append(f'{dataset}: inactive surface hover ignores catalogue text, including zero-result searches, while list filtering and bone visibility stay intact')
+
     page.mouse.move(0, 0)
     page.locator('#landmark-search').fill('Left pterygoid fossa')
     settle(page)
@@ -138,8 +154,8 @@ def main():
                 if args.mutant:
                     name = 'anatomy-details.js' if args.mutant == 'broad-hover' else 'surface-regions.js'
                     module = (ROOT / 'src' / name).read_text()
-                    before, after = (('const candidates = this.filtered().filter((entry) => entry.owners.includes(owner) && this.hasSurface(entry));',
-                                      'const candidates = this.filtered().length <= 24 ? this.filtered().filter((entry) => entry.owners.includes(owner) && this.hasSurface(entry)) : [];')
+                    before, after = (('const candidates = this.hoverLandmarks.filter((entry) => entry.owners.includes(owner) && this.hasSurface(entry));',
+                                      'const candidates = this.hoverLandmarks.length <= 24 ? this.hoverLandmarks.filter((entry) => entry.owners.includes(owner) && this.hasSurface(entry)) : [];')
                                      if args.mutant == 'broad-hover' else ('depthFunc: THREE.GreaterDepth', 'depthFunc: THREE.LessEqualDepth'))
                     assert module.count(before) == 1
                     module = module.replace(before, after)

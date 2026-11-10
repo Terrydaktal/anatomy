@@ -24,7 +24,7 @@ def check(page, url, dataset, checks):
     for part in geometry['parts']:
         assert_on_triangle(part['anchor'], SourceTriangles(dataset).triangle(part['owner'], part['anchorFace']))
     point = visible_point(page, geometry)
-    page.locator(f'.landmark-row[data-landmark="{identity}"] input').uncheck()
+    page.locator('#anatomy-close').click()
     page.locator('#landmark-search').fill('')
     page.locator('#landmark-search').fill('sphenoid')
     assert page.locator('.landmark-row:visible').count() > 24

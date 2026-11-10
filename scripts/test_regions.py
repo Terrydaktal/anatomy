@@ -152,7 +152,8 @@ def feature_checks(page, url, dataset, name, checks, reveal=False):
     coloured = canvas_image(page)
     capture(page, f"region-{dataset}-{identity}")
     row = page.locator(f'.landmark-row[data-landmark="{identity}"]')
-    row.locator('input[type="checkbox"]').uncheck()
+    assert not row.locator('input[type="checkbox"]').is_checked()
+    page.locator('#anatomy-close').click()
     settle(page)
     plain = canvas_image(page)
     pixels = changed_pixels(coloured, plain)
@@ -267,6 +268,7 @@ def source_mode_checks(page, url, checks):
     assert page.locator(".landmark-row:not([hidden])").count() == 10
     supplied = select_feature(page, "Left base of stapes")
     assert page.evaluate("id => window.skullAtlas.regionGeometry(id).methods", supplied) == ["source-authored-faces"]
+    page.locator(f'.landmark-row[data-landmark="{supplied}"] input[type="checkbox"]').check()
     page.locator("#landmark-estimates").check()
     select_feature(page, "Left pterygopalatine fossa")
     page.locator("#landmark-estimates").uncheck()

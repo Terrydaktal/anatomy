@@ -547,7 +547,7 @@ export class SurfaceRegions {
     const ordered = [...this.cache.values()].sort((a, b) => b.area - a.area || b.id.localeCompare(a.id));
     for (const [rank, region] of ordered.entries()) for (const part of region.parts) {
       const owner = this.context.entries.get(part.ownerId);
-      const visible = enabled.has(region.id) || this.hovered === region.id;
+      const visible = enabled.has(region.id) || selected === region.id || this.hovered === region.id;
       part.mesh.matrix.copy(owner.mesh.matrixWorld); part.mesh.matrixWorldNeedsUpdate = true;
       part.mesh.renderOrder = 10 + rank;
       part.mesh.visible = visible && owner.mesh.visible;

@@ -12,8 +12,8 @@ from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
 
 from test_anatomy import load
-from test_regions import assert_on_triangle, select_feature
-from test_viewer import ARTIFACTS, ROOT, QuietHandler, capture, local_server, settle, snapshot
+from test_regions import assert_on_triangle, changed_pixels, select_feature, visible_point
+from test_viewer import ARTIFACTS, ROOT, QuietHandler, canvas_image, capture, local_server, settle, snapshot
 
 
 def beside_pointer(page, point):
@@ -206,6 +206,81 @@ def overlap_check(page, url, dataset):
     return f'{dataset}: the smallest exact hit leads; larger exact overlaps and the parent bone form a smaller vertical list in one tooltip'
 
 
+def selection_check(page, url, dataset):
+    load(page, url, f'?dataset={dataset}')
+    page.locator('#landmark-panel').evaluate('e=>e.open=true')
+    page.locator('[data-view="anterior"]').click()
+    page.mouse.move(0, 0)
+    settle(page)
+    plain = canvas_image(page)
+    bones = snapshot(page)['structures']
+    first, second = 'right-canine-fossa', 'left-canine-fossa'
+
+    def choose(identity):
+        name = identity.replace('-', ' ').capitalize()
+        page.locator('#landmark-search').fill(name)
+        page.get_by_role('button', name=name, exact=True).click()
+        page.mouse.move(0, 0)
+        settle(page)
+
+    def assert_highlights(expected, persistent=()):
+        state = snapshot(page)
+        rendered = {region['id'] for region in state['anatomy']['regions'] if region['rendered']}
+        assert rendered == set(expected), f'{dataset}: selection left stale highlights: {rendered}, expected {set(expected)}'
+        assert set(state['anatomy']['enabledRegions']) == set(persistent), 'Selecting a landmark changed the persistent checkbox highlights'
+        assert state['structures'] == bones, 'Selecting a landmark changed the bones'
+
+    choose(first)
+    choose(second)
+    assert snapshot(page)['anatomy']['selected'] == {'id': second, 'kind': 'landmark'}
+    assert_highlights([second])
+    assert changed_pixels(plain, canvas_image(page)) > 100, 'The selected surface was not actually painted'
+    page.locator('#anatomy-close').click()
+    page.mouse.move(0, 0)
+    settle(page)
+    assert_highlights([])
+    assert changed_pixels(plain, canvas_image(page)) == 0, 'Closing selection left colour on the canvas'
+
+    # Exercise the real canvas click path as well as catalogue buttons. The
+    # hit points come from native region triangles, rather than fixed pixels.
+    for identity in (first, second, first):
+        geometry = page.evaluate('id=>window.skullAtlas.regionGeometry(id)', identity)
+        point = visible_point(page, geometry)
+        page.mouse.move(point['x'], point['y'])
+        page.wait_for_function('id=>window.skullAtlas.snapshot().anatomy.hoveredRegion===id', arg=identity)
+        page.mouse.click(point['x'], point['y'])
+        page.mouse.move(0, 0)
+        settle(page)
+        assert snapshot(page)['anatomy']['selected'] == {'id': identity, 'kind': 'landmark'}
+        assert_highlights([identity])
+    canvas = page.locator('#skull-canvas').bounding_box()
+    page.mouse.click(canvas['x'] + 15, canvas['y'] + canvas['height'] - 60)
+    page.mouse.move(0, 0)
+    settle(page)
+    assert snapshot(page)['anatomy']['selected'] is None
+    assert_highlights([])
+
+    # An explicit checkbox is independent: changing or closing selection must
+    # preserve it, and unchecking it must remove its paint.
+    page.locator('#landmark-search').fill('Right canine fossa')
+    checkbox = page.locator(f'.landmark-row[data-landmark="{first}"] input')
+    checkbox.check()
+    choose(second)
+    assert_highlights([first, second], [first])
+    page.locator('#anatomy-close').click()
+    page.mouse.move(0, 0)
+    settle(page)
+    assert_highlights([first], [first])
+    page.locator('#landmark-search').fill('Right canine fossa')
+    checkbox.uncheck()
+    page.mouse.move(0, 0)
+    settle(page)
+    assert_highlights([])
+    assert changed_pixels(plain, canvas_image(page)) == 0
+    capture(page, f'hover-{dataset}-selection-cleared')
+    return f'{dataset}: catalogue and canvas clicks replace the selected highlight; close/empty-canvas clicks clear it; explicitly checked regions remain independent'
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--snapshot', type=Path, help='Read viewer sources from a preserved directory; assets remain native')
@@ -252,6 +327,7 @@ def main():
                 page = browser.new_page(viewport={'width': 1500, 'height': 1000})
                 page.on('pageerror', lambda error: result['errors'].append(str(error)))
                 for dataset in ['ct']:
+                    result['checks'].append(selection_check(page, url, dataset))
                     result['checks'].append(bone_check(page, url, dataset))
                     result['checks'].append(point_check(page, url, dataset))
                     result['checks'].append(overlap_check(page, url, dataset))

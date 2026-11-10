@@ -33,6 +33,8 @@ The displayed model is `assets/skull-ct/surface.glb`, restored from [surface.glb
 
 Landmark search text filters the catalogue only. Physical surface regions and nearby point guides remain hoverable and selectable on the model, including when the search has no results. Display settings, hidden bones, section cuts, occlusion and the point-guide hit radius still govern model interaction.
 
+Clicking a landmark selects its highlight until another selection replaces it or the selection is closed. Only the landmark checkboxes retain multiple highlights independently of selection. `test_hover.py` verifies both catalogue and canvas clicks, clearing selection, retained checkbox highlights and the resulting canvas pixels.
+
 ## Anatomy coverage
 
 | Group | CT skull |

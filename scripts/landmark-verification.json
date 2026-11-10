@@ -44,6 +44,13 @@
   ],
   "requirements": [
     {
+      "id": "LM-SELECTION-REPLACEMENT",
+      "owner": "landmark-viewer",
+      "contract": "Catalogue and canvas clicks replace the single selected landmark highlight without checking or retaining it. Closing selection or clicking empty canvas removes its highlight; explicitly checked regions persist independently. Bone visibility and appearance remain unchanged.",
+      "checks": ["test_hover.py:selection_check"],
+      "regression": "Clicking two canine fossae previously left both painted because selecting a region also added it to the persistent checkbox set. The regression checks actual canvas paint and restoration as well as selection and rendering state."
+    },
+    {
       "id": "PKG-CLEAN-CHECKOUT",
       "owner": "viewer-resources",
       "contract": "A clean Git tree, without source caches, fitting inputs, native binary caches or a virtual environment, starts through the documented uv command and displays the same 31 structures, 735 landmarks and 150 supported surface highlights.",

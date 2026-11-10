@@ -399,7 +399,6 @@ export class AnatomyDetails {
   selectLandmark(id) {
     const entry = this.landmarks.get(id);
     if (!entry || !this.canHighlight(id)) return;
-    this.enabled.add(id);
     this.showCard(entry, 'landmark');
     this.prepareQueue();
   }

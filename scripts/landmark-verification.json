@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "scope": "Every skull catalogue placement, exported landmark surface and landmark UI workflow. Anatomical ground truth is a separate, currently incomplete requirement.",
+  "artifact": "Production viewer served by scripts/serve_viewer.py, including versioned lossless native assets and prepared landmark surfaces; source fitting inputs remain optional for viewing",
+  "matrix": {
+    "models": [
+      "ct",
+      "reference",
+      "microct"
+    ],
+    "browser": "Chrome/Chromium with Three.js WebGL; local verification uses ANGLE Vulkan on NVIDIA",
+    "units": {
+      "reference": "millimetres",
+      "ct": "uncalibrated display units"
+    }
+  },
+  "controls": [
+    "landmark search",
+    "category filter",
+    "bone filter",
+    "estimate-enabled default",
+    "estimated regions and guides",
+    "mapped-only filter",
+    "regions",
+    "pins",
+    "names",
+    "hover",
+    "selection",
+    "locate highlight",
+    "see through bone",
+    "mobile details and source",
+    "focus",
+    "reveal",
+    "hide",
+    "clear",
+    "reset",
+    "bone visibility",
+    "jaw",
+    "explosion",
+    "opacity",
+    "sections",
+    "combined catalogue",
+    "right-click Hide bone"
+  ],
+  "requirements": [
+    {
+      "id": "PKG-CLEAN-CHECKOUT",
+      "owner": "viewer-resources",
+      "contract": "A clean Git tree, without source caches, fitting inputs, native binary caches or a virtual environment, starts through the documented uv command and displays the same 31 structures, 735 landmarks and 150 supported surface highlights.",
+      "checks": ["test_portable_viewer.py:browser_checks", "test_portable_viewer.py:main"],
+      "environment": "Executed on Linux with Chrome/NVIDIA Vulkan; other operating systems and browsers require their own acceptance runs.",
+      "failure": "Missing regions, live fitting instead of prepared surfaces, outside anatomy requests, changed versioned files or a missing micro-CT fragment"
+    },
+    {
+      "id": "PKG-PULL-AND-RESTART",
+      "owner": "viewer-resources",
+      "contract": "Restored resources and environments remain ignored. Restart reuses current bytes, and a newer package replaces a previously managed native copy without modifying versioned files or overwriting custom geometry.",
+      "checks": ["test_portable_viewer.py:cache_checks", "test_portable_viewer.py:main"],
+      "failure": "Dirty tracked files, repeated extraction, stale managed data or overwritten local changes"
+    },
+    {
+      "id": "PKG-INTEGRITY",
+      "owner": "viewer-resources",
+      "contract": "Archives and expanded binaries must match recorded lengths and SHA-256 identities. A truncated archive or wrong expanded payload publishes no target or partial file.",
+      "checks": ["test_portable_viewer.py:cache_checks"],
+      "failure": "Damaged archive accepted or incomplete/unverified geometry made visible"
+    },
+    {
+      "id": "LM-NATIVE-SURFACE",
+      "owner": "surface-regions",
+      "contract": "Every exported highlight vertex lies inside its recorded original GLB triangle on its owning bone.",
+      "tolerances": {
+        "plane_error": 5e-05,
+        "minimum_barycentric_coordinate": -0.003
+      },
+      "checks": [
+        "audit_landmarks.py:geometry_checks",
+        "test_regions.py:audit_geometry"
+      ],
+      "failure": "Off-surface geometry, changed face IDs, a different owning bone, NaN or invalid indices"
+    },
+    {
+      "id": "LM-SURFACE-SIDE",
+      "owner": "source-registration",
+      "contract": "An inner or outer cranial source surface must not migrate onto the opposite cortex. Native smooth normals choose correspondence; source and native vault signatures provide a separate gate.",
+      "tolerances": {
+        "maximum_opposite_surface_area_fraction": 0.01
+      },
+      "checks": [
+        "audit_landmarks.py:geometry_checks",
+        "audit_landmarks.py:browser_checks"
+      ],
+      "regression": "Internal occipital crest on CT: the preserved package paints approximately 36% of its area on the outer surface.",
+      "definition_source": "https://api.pageplace.de/preview/DT0400.9780192664341_A42890947/preview-9780192664341_A42890947.pdf#page=37"
+    },
+    {
+      "id": "LM-CORTICAL-EXPOSURE",
+      "owner": "source-registration",
+      "contract": "An inner or outer vault transfer must land on the expected exposed cortical wall, rather than buried faces with superficially compatible normals.",
+      "tolerances": {
+        "minimum_exposed_area_fraction": 0.95,
+        "depth_tolerance_relative_to_bone_span": 0.0002,
+        "cavity_viewpoints": 7,
+        "samples_per_region": 500
+      },
+      "checks": [
+        "audit_landmarks.py:cortical_exposure",
+        "test_registered_regions.py:asset_checks"
+      ],
+      "regression": "The post-orientation CT crest still has approximately 97% of its area buried beneath the inner cortical surface. The transfer must be withheld; the reference crest remains accepted.",
+      "independence": "The producer uses Blender BVH; the audit uses independently decoded GLB triangles, Embree and different samples. Containment and depth calculations use float64; ray geometry retains original GLB float32 precision."
+    },
+    {
+      "id": "LM-SOURCE-PROXIMITY",
+      "owner": "source-registration",
+      "contract": "Forward and inverse transfers agree near the projected author selection. Region residuals cannot inherit a relaxed whole-bone tolerance.",
+      "tolerances": {
+        "forward_inverse_agreement_distance": 1.8,
+        "region_source_p95_distance": 4.5
+      },
+      "checks": [
+        "test_registered_regions.py:asset_checks",
+        "audit_landmarks.py:geometry_checks"
+      ],
+      "failure": "Remote source labels paint unrelated cortex or a whole-bone error allowance admits a bad region"
+    },
+    {
+      "id": "LM-NO-INVENTED-BOUNDARIES",
+      "owner": "surface-regions",
+      "contract": "A label coordinate without a source boundary or supported geometry fit remains a location guide and paints no anatomical area, even with estimates enabled.",
+      "checks": [
+        "audit_landmarks.py:browser_checks",
+        "test_region_evidence.py:test_names_do_not_supply_boundaries",
+        "test_landmark_policy.py:main"
+      ],
+      "mutation": "A test-only module response reinstates a generic pterygoid-fossa patch; the same catalogue oracle must reject it.",
+      "failure": "Generic spheres, ellipsoids or strips appear as named anatomical regions"
+    },
+    {
+      "id": "LM-POINTS",
+      "owner": "native-point-fitting",
+      "contract": "A point landmark is not a source area. Supported native bone junctions and midline contour extrema use compact point cues; unfitted point labels remain guides. Atlas orientation is recorded and never represented as Frankfort calibration.",
+      "checks": [
+        "test_annotation_shapes.py:check",
+        "test_label_positions.py:asset_checks",
+        "audit_landmarks.py:browser_checks"
+      ],
+      "failure": "Large per-bone point patches, detached junction cues or an unverified label coordinate treated as a fitted point"
+    },
+    {
+      "id": "LM-CONTINUITY",
+      "owner": "source-registration",
+      "contract": "The accepted maxillary example has no artificial enclosed paint holes; source-outline pieces and occlusion are reported without inventing connecting anatomy.",
+      "checks": [
+        "test_region_continuity.py:main"
+      ],
+      "regression": "Archived pre-continuity package has multiple enclosed triangular holes on both CT maxillae. The earlier red reports and images are retained."
+    },
+    {
+      "id": "LM-INTEGRITY-AND-DEFAULTS",
+      "owner": "landmark-viewer",
+      "contract": "Source/model hashes and transfer protocol match. Obsolete unchecked transfers and failed fits stay unpainted. Source-only mode remains available. Reset restores all bones and includes estimates while leaving pins off.",
+      "checks": [
+        "test_registered_regions.py:browser_checks",
+        "test_regions.py:source_mode_checks",
+        "test_viewer.py:main"
+      ],
+      "failure": "Stale source assets, false supplied-boundary coverage or enabled estimates after reset"
+    },
+    {
+      "id": "LM-INTERACTION",
+      "owner": "landmark-viewer",
+      "contract": "Drawn regions pick correctly and follow bone visibility, jaw motion, explosion, opacity and sections. Hover colour is temporary.",
+      "checks": [
+        "test_regions.py:main",
+        "test_anatomy.py:main",
+        "test_viewer.py:main"
+      ]
+    },
+    {
+      "id": "LM-POINTER-TOOLTIP",
+      "owner": "landmark-viewer",
+      "contract": "A single pointer-adjacent tooltip shows the most specific exact surface hit or nearby point guide. Larger exact surface hits appear underneath in increasing area order, followed by the hit bone, in smaller vertical text. Pointer previews retain the locator ring without duplicating its caption. Catalogue and selected locators remain available. Point guides paint no area and only pick inside 14 CSS pixels, respecting filters, estimates, owner visibility, occlusion and sections.",
+      "tolerances": {
+        "point_hover_radius_css_px": 14,
+        "tooltip_maximum_pointer_distance_css_px": 35,
+        "pointer_frame_p95_ms": 33.5,
+        "maximum_frame_gap_ms": 100
+      },
+      "matrix": "Both native skulls at desktop size; mobile bone tooltip; desktop and 4K broad-catalogue pointer performance",
+      "checks": [
+        "test_hover.py:bone_check",
+        "test_hover.py:point_check",
+        "test_hover.py:overlap_check",
+        "test_responsiveness.py:move_pointer",
+        "test_landmark_location.py:check",
+        "test_regions.py:main"
+      ],
+      "regression": "The preserved hover-original viewer leaves bone names in the lower-left corner, drops larger overlapping hits and cannot pick location-only guides from the canvas.",
+      "mutation": "test_hover.py --mutant fixed-corner, global-points and drop-overlaps must each fail the same pointer geometry, radius and overlap assertions. --snapshot replays the preserved original without altering the working viewer.",
+      "independence": "Point-radius boundaries are checked at 13 and 15 CSS pixels at two zoom levels. An independent float64 triangle-containment check selects a real bregma/suture overlap; the DOM must list its larger region and parent bone. Bounds, movement, font size and vertical order are measured from rendered browser geometry.",
+      "failure": "Corner-pinned or off-canvas tooltip, stale or duplicate caption/list, broad point-guide picking, ghost guides on hidden/clipped bones, picking through opaque cortex, invented guide surfaces or renewed pointer stalls"
+    },
+    {
+      "id": "LM-HOVER-LOCATION",
+      "owner": "landmark-viewer",
+      "contract": "Supported inactive surfaces remain discoverable with broad lists. Hovered and selected landmarks get an optional labelled locator; guides remain approximate and unpainted. A depth-tested see-through preview identifies covered supported surfaces without changing bone appearance, visibility, camera or anatomy.",
+      "checks": [
+        "test_landmark_location.py:check",
+        "test_regions.py:main",
+        "audit_landmarks.py:browser_checks"
+      ],
+      "regression": "The original viewer stops discovering inactive surface regions when more than 24 landmarks are listed. The preserved red test times out on the full sphenoid catalogue.",
+      "mutation": "--mutant broad-hover reinstates the 24-item limit; --mutant xray-depth uses ordinary front-surface depth testing. Both must fail the same browser regressions through isolated HTTP responses.",
+      "controls": [
+        "Locate highlight",
+        "See through bone",
+        "Focus",
+        "Reveal"
+      ],
+      "failure": "Silent hover, invented guide areas, displaced location cue, previews surviving hidden bones/reset or a callout outside a mobile canvas"
+    },
+    {
+      "id": "LM-MOTION-SHADING",
+      "owner": "bone-occlusion-pass",
+      "contract": "Rotation and panning use correctly aligned shading in every held-button frame and restore full shading on release. Full-size and reduced-size targets never share depth texture image storage.",
+      "tolerances": {"fresh_upstream_pixel_error": 0},
+      "matrix": "Both skulls, repeated left/right drags and releases, exploded pan, 4K and display scaling",
+      "checks": ["test_motion_shading.py:check", "test_motion_shading.py:compare"],
+      "independence": "The reference is the unmodified upstream GTAOPass with newly allocated targets at the same camera pose and resolution. Only deterministic noise inputs are shared; the viewer's cached pass, target switching and depth texture allocation are bypassed.",
+      "regression": "RenderTarget.clone isolates colour storage, but DepthTexture.clone shares its Source. Different buffer sizes then reuse depth storage, producing a displaced dark skull silhouette during drags. The preserved pre-fix run differs by up to 112 colour levels on its first held-button rotation frame.",
+      "mutation": "test_motion_shading.py --snapshot artifacts/verification/rotation-original --datasets ct must reject the preserved shared-depth implementation through the same pixel oracle.",
+      "failure": "A detached shadow or dark silhouette during rotation/panning, shared depth storage, mismatched shading pixels or failure to restore full shading on release"
+    },
+    {
+      "id": "LM-MOTION-RESPONSIVENESS",
+      "owner": "bone-occlusion-pass",
+      "contract": "Wheel scrolling keeps previews under the pointer without rebuilding unchanged depth shading or moving rows when highlights prepare. Highlight shaders prepare during loading. Exploded panning retains source geometry and canvas resolution, uses lighter soft shading during the drag, and restores full shading on release. Camera, section, bone visibility and transform changes invalidate cached shading.",
+      "tolerances": {
+        "frame_p95_ms": 25,
+        "maximum_frame_gap_ms": 100,
+        "bone_dimension_error": 0.00001,
+        "fresh_render_pixel_error": 0,
+        "motion_shading_pixel_scale": 0.5
+      },
+      "matrix": "Both skulls at 1500x1000 and 3840x2160, sequential hardware WebGL captures, real wheel scrolling and right-button panning",
+      "checks": ["test_motion_responsiveness.py:check", "test_motion_responsiveness.py:fresh_matches", "test_responsiveness.py:check", "test_hover.py:main"],
+      "regression": "The preserved original rebuilds unchanged depth shading during every catalogue preview. A 4K scroll capture has median GPU work of 21 ms, plus repeated label layout; full-resolution drag shading reaches a 7.7 ms p95 before browser compositing.",
+      "mutation": "test_motion_responsiveness.py --snapshot artifacts/verification/motion-original --widths 1500 must reject repeated static depth rendering. Independent forced fresh renders reject stale shading after camera or geometry changes.",
+      "failure": "Missing or stale wheel previews, renewed scroll/pan stalls, obsolete shading after a cut or pose change, failure to restore full shading, reduced native triangles, changed bone dimensions or canvas resolution"
+    },
+    {
+      "id": "LM-RESPONSIVENESS",
+      "owner": "surface-region-worker",
+      "contract": "Cold catalogue hovers and background highlight preparation do not block the UI thread. Complete CT geometry rotates at desktop and 4K resolution with labels enabled. Worker positions, normals, native face IDs, areas and anchors exactly match the local builder. Late responses cannot restore disabled estimates, survive reset, override a newer hover or move the camera for an obsolete Focus action.",
+      "tolerances": {
+        "hover_handler_ms": 16,
+        "maximum_frame_gap_ms": 100,
+        "rotation_p95_ms": 33.5,
+        "highlight_ready_timeout_ms": 5000,
+        "enabled_labels": 20
+      },
+      "matrix": "1500x1000 and 3840x2160, hardware WebGL, measured sequentially on NVIDIA ANGLE/Vulkan; geometry parity on both skulls",
+      "checks": [
+        "test_responsiveness.py:check",
+        "test_responsiveness.py:parity",
+        "test_responsiveness.py:pending_state_checks",
+        "test_regions.py:main",
+        "test_landmark_location.py:check"
+      ],
+      "regression": "Preserved CPU profiles show approximately 650 ms in a cold coronal-suture hover and 160 ms for a mapped greater-wing region. Contact clipping and geometry construction block input and animation.",
+      "mutation": "test_responsiveness.py --mutant main-build reinstates synchronous catalogue construction through an isolated module response; the unchanged 16 ms input budget must reject it.",
+      "failure": "Main-thread geometry construction, a responsive handler that never paints its region, changed anatomy, reduced source mesh detail, inactive camera during a frame probe, stale async state or software-renderer performance presented as hardware results"
+    },
+    {
+      "id": "LM-LABEL-POSITIONS",
+      "owner": "label-refinement",
+      "contract": "Every skull placement retains its original coordinates and specimen identity. Bounding-box transfer is replaced by bone-shape registration, source/native anchors or direct geometry fits. Internal/outer vault guides use exposed cortex; empty-space guides remain unsnapped. Failed projection/round-trip checks remain explicitly uncertain. Saved anchors must reach the rendered viewer without another blind nearest-bone projection.",
+      "tolerances": {
+        "junction_maximum_bone_gap": 0.8,
+        "label_projection_limit": 4.5,
+        "label_round_trip_limit": 4.5,
+        "viewer_coordinate_error": 0.0001,
+        "maximum_held_out_median_ratio": 0.75,
+        "maximum_held_out_p95_ratio": 0.9,
+        "minimum_held_out_improvement_fraction": 0.7
+      },
+      "checks": [
+        "test_label_positions.py:asset_checks",
+        "test_label_positions.py:browser_checks"
+      ],
+      "regression": "The original 1431 skull placements contain no label-fit evidence; most CT guides use owner-bounds-map. The preserved catalogue fails the new checks.",
+      "mutation": "test_label_positions.py --mutant resnap restores blind projection in an isolated HTTP response; preserved empty-space/junction anchors must detect the resulting displacement.",
+      "remaining_gap": "Curated source seeds and cross-specimen shape matches are estimates. Agreement with separately transferred source anchors is a diagnostic comparison, not an anatomical accuracy percentage."
+    },
+    {
+      "id": "LM-ANATOMICAL-COVERAGE",
+      "owner": "source-evidence",
+      "contract": "Every catalogue placement has an explicit support status. Geometry tests, terminology matches and source-transfer percentages never become anatomical-accuracy claims.",
+      "checks": [
+        "audit_landmarks.py:main",
+        "test_region_evidence.py:test_no_fabricated_accuracy_percentage"
+      ],
+      "strict_gate": "audit_landmarks.py --require-supplied-boundaries exits 2 while exact source boundaries are missing",
+      "remaining_gap": "No complete specimen-specific annotated boundary set or independent anatomical validation exists for this catalogue."
+    },
+    {
+      "id": "LM-MAIN-CATALOGUE",
+      "owner": "skull-viewer",
+      "contract": "Both skull views display 29 independently toggleable bones and 735 landmarks on one page, with estimates enabled initially and after Reset. Associated bones retain source triangles and intact chain relationships, reference coordinates remain unaltered, and CT placements retain explicit estimated provenance. Explosion translates bones without changing their dimensions, camera zoom or target. Right-click Hide affects only the underlying bone, while right-drag pans.",
+      "checks": [
+        "test_catalogue_controls.py:check",
+        "test_associated_bones.py:main",
+        "test_hover.py:main",
+        "test_viewer.py:main"
+      ],
+      "matrix": "CT and reference, hardware WebGL; all seven supplementary transforms and native stapes source-face selections",
+      "failure": "Separate study-only bones, shifted atlas chains, changed native geometry, distorted ossicles, silent cross-specimen imports, camera refitting during explosion, hiding multiple bones or broken right-drag pan",
+      "tolerances": {
+        "bones": 29,
+        "landmarks_per_skull": 735,
+        "desktop_row_height_px": 26,
+        "unchanged_dimension_tolerance": 1e-05,
+        "camera_position_tolerance": 1e-06
+      },
+      "regression": "Preserved hover-original sources require catalogue tab switching and separate ear/hyoid studies. Exploding automatically refits the camera, making all bones appear smaller.",
+      "mutation": "test_catalogue_controls.py --snapshot artifacts/verification/hover-original must reject the old split layout; --mutant refit must reject automatic zoom changes during explosion through an isolated HTTP module response."
+    }
+  ]
+}

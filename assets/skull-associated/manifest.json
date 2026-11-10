@@ -1,0 +1,767 @@
+{
+  "schema_version": 1,
+  "model": "assets/skull-associated/bones.glb",
+  "sha256": "310b0f1698301c8caedceee87276070cf63db48f8fe412261c070bdc7ec636dd",
+  "target_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+  "groups": [
+    {
+      "id": "ossicles",
+      "name": "Auditory ossicles",
+      "description": "6 bones \u00b7 three in each middle ear"
+    },
+    {
+      "id": "associated",
+      "name": "Associated bone",
+      "description": "Hyoid \u00b7 separate from the skull"
+    }
+  ],
+  "structures": [
+    {
+      "id": "malleus-left",
+      "name": "Left malleus",
+      "source_name": "Malleus.l",
+      "group": "ossicles",
+      "side": "left",
+      "kind": "bone",
+      "color": "#dfaa59",
+      "description": "The hammer-shaped middle-ear ossicle. Its handle attaches to the tympanic membrane and its head articulates with the incus. Reference-atlas bone fitted to this CT display; its placement is estimated, not segmented from the CT specimen.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1993,
+      "triangles": 3982,
+      "bounds": [
+        [
+          37.98909914618845,
+          -14.73892221541971,
+          -10.043545358022477
+        ],
+        [
+          42.16381975973185,
+          -8.307543243826057,
+          -8.044984157290587
+        ]
+      ],
+      "center": [
+        40.289496494799636,
+        -11.805882323633787,
+        -9.100100307095358
+      ],
+      "source_matrix_world": [
+        [
+          -1.000000238418579,
+          0.0,
+          0.0,
+          0.04833701252937317
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.003989835735410452
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5819263458251953
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_transform": [
+        [
+          0.8090033195106957,
+          0.22076875457020304,
+          0.029762101733486937,
+          5.395239843983205
+        ],
+        [
+          -0.21379441167976063,
+          0.8009566095261116,
+          -0.12989016846682006,
+          13.394829593696201
+        ],
+        [
+          -0.06258254731614803,
+          0.1176463485848814,
+          0.8284646993743694,
+          -1.8204017181748169
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "source_dataset": "reference",
+      "placement_estimated": true
+    },
+    {
+      "id": "malleus-right",
+      "name": "Right malleus",
+      "source_name": "Malleus.r",
+      "group": "ossicles",
+      "side": "right",
+      "kind": "bone",
+      "color": "#7d9fcd",
+      "description": "The hammer-shaped middle-ear ossicle. Its handle attaches to the tympanic membrane and its head articulates with the incus. Reference-atlas bone fitted to this CT display; its placement is estimated, not segmented from the CT specimen.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1993,
+      "triangles": 3982,
+      "bounds": [
+        [
+          -52.788369923060934,
+          -8.972404438986608,
+          -6.15215010679632
+        ],
+        [
+          -49.7333207921029,
+          -1.5008518865526916,
+          -3.987729612530639
+        ]
+      ],
+      "center": [
+        -51.28072500607953,
+        -5.315082231766409,
+        -5.17230578986464
+      ],
+      "source_matrix_world": [
+        [
+          1.000000238418579,
+          0.0,
+          0.0,
+          -0.04833701252937317
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.003989835735410452
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5819263458251953
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_transform": [
+        [
+          0.8792331628159598,
+          0.05287215538192588,
+          -0.010148612460643799,
+          -7.848592223248275
+        ],
+        [
+          -0.05382013185025914,
+          0.8673924652016202,
+          -0.1438162663402149,
+          8.165465793782822
+        ],
+        [
+          0.00136108678179009,
+          0.14416747289762885,
+          0.8690013239035067,
+          -0.25399657027140776
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "source_dataset": "reference",
+      "placement_estimated": true
+    },
+    {
+      "id": "incus-left",
+      "name": "Left incus",
+      "source_name": "Incus.l",
+      "group": "ossicles",
+      "side": "left",
+      "kind": "bone",
+      "color": "#88c3b0",
+      "description": "The anvil-shaped middle-ear ossicle between the malleus and stapes. Reference-atlas bone fitted to this CT display; its placement is estimated, not segmented from the CT specimen.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1268,
+      "triangles": 2532,
+      "bounds": [
+        [
+          37.08483233305603,
+          -12.926808656078915,
+          -13.652488204566776
+        ],
+        [
+          41.59718362684175,
+          -8.421421552687953,
+          -9.38058761400007
+        ]
+      ],
+      "center": [
+        39.177764750835756,
+        -10.764276327491858,
+        -10.952763059916434
+      ],
+      "source_matrix_world": [
+        [
+          -1.000000238418579,
+          0.0,
+          0.0,
+          0.04691196605563164
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          0.9999998807907104,
+          0.006430268753319979
+        ],
+        [
+          0.0,
+          -1.0,
+          7.54978870531886e-08,
+          1.5824543237686157
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_transform": [
+        [
+          0.8090033195106957,
+          0.22076875457020304,
+          0.029762101733486937,
+          5.395239843983205
+        ],
+        [
+          -0.21379441167976063,
+          0.8009566095261116,
+          -0.12989016846682006,
+          13.394829593696201
+        ],
+        [
+          -0.06258254731614803,
+          0.1176463485848814,
+          0.8284646993743694,
+          -1.8204017181748169
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "source_dataset": "reference",
+      "placement_estimated": true
+    },
+    {
+      "id": "incus-right",
+      "name": "Right incus",
+      "source_name": "Incus.r",
+      "group": "ossicles",
+      "side": "right",
+      "kind": "bone",
+      "color": "#ce8f7a",
+      "description": "The anvil-shaped middle-ear ossicle between the malleus and stapes. Reference-atlas bone fitted to this CT display; its placement is estimated, not segmented from the CT specimen.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1268,
+      "triangles": 2532,
+      "bounds": [
+        [
+          -51.873344915159464,
+          -7.312307730605278,
+          -9.974970320626323
+        ],
+        [
+          -48.41253804535929,
+          -1.6177971768153405,
+          -5.5301605878731745
+        ]
+      ],
+      "center": [
+        -49.97194458549059,
+        -4.58720219729498,
+        -7.196539402339434
+      ],
+      "source_matrix_world": [
+        [
+          1.000000238418579,
+          0.0,
+          0.0,
+          -0.04691196605563164
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          0.9999998807907104,
+          0.006430268753319979
+        ],
+        [
+          0.0,
+          -1.0,
+          7.54978870531886e-08,
+          1.5824543237686157
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_transform": [
+        [
+          0.8792331628159598,
+          0.05287215538192588,
+          -0.010148612460643799,
+          -7.848592223248275
+        ],
+        [
+          -0.05382013185025914,
+          0.8673924652016202,
+          -0.1438162663402149,
+          8.165465793782822
+        ],
+        [
+          0.00136108678179009,
+          0.14416747289762885,
+          0.8690013239035067,
+          -0.25399657027140776
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "source_dataset": "reference",
+      "placement_estimated": true
+    },
+    {
+      "id": "stapes-left",
+      "name": "Left stapes",
+      "source_name": "Stapes.l",
+      "group": "ossicles",
+      "side": "left",
+      "kind": "bone",
+      "color": "#d0a1b4",
+      "description": "The stirrup-shaped middle-ear ossicle. Its footplate transmits vibration to the oval window. Reference-atlas bone fitted to this CT display; its placement is estimated, not segmented from the CT specimen.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2171,
+      "triangles": 4342,
+      "bounds": [
+        [
+          34.0415991365179,
+          -12.581944451051331,
+          -10.496173570924217
+        ],
+        [
+          37.17186574671271,
+          -10.174017553204887,
+          -7.898917846714
+        ]
+      ],
+      "center": [
+        35.327344786546135,
+        -11.341616994951785,
+        -9.438079699066396
+      ],
+      "source_matrix_world": [
+        [
+          -1.000000238418579,
+          0.0,
+          0.0,
+          0.04252353683114052
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.004685862455517054
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5808497667312622
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_transform": [
+        [
+          0.8090033195106957,
+          0.22076875457020304,
+          0.029762101733486937,
+          5.395239843983205
+        ],
+        [
+          -0.21379441167976063,
+          0.8009566095261116,
+          -0.12989016846682006,
+          13.394829593696201
+        ],
+        [
+          -0.06258254731614803,
+          0.1176463485848814,
+          0.8284646993743694,
+          -1.8204017181748169
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "source_dataset": "reference",
+      "placement_estimated": true
+    },
+    {
+      "id": "stapes-right",
+      "name": "Right stapes",
+      "source_name": "Stapes.r",
+      "group": "ossicles",
+      "side": "right",
+      "kind": "bone",
+      "color": "#b4c183",
+      "description": "The stirrup-shaped middle-ear ossicle. Its footplate transmits vibration to the oval window. Reference-atlas bone fitted to this CT display; its placement is estimated, not segmented from the CT specimen.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2171,
+      "triangles": 4342,
+      "bounds": [
+        [
+          -48.43159396979283,
+          -7.187154734979442,
+          -7.02635567069292
+        ],
+        [
+          -44.823784664316136,
+          -5.3752233627817105,
+          -4.349740853363072
+        ]
+      ],
+      "center": [
+        -46.2206500093108,
+        -6.468650175526922,
+        -5.922970962768067
+      ],
+      "source_matrix_world": [
+        [
+          1.000000238418579,
+          0.0,
+          0.0,
+          -0.04252353683114052
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.004685862455517054
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5808497667312622
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_transform": [
+        [
+          0.8792331628159598,
+          0.05287215538192588,
+          -0.010148612460643799,
+          -7.848592223248275
+        ],
+        [
+          -0.05382013185025914,
+          0.8673924652016202,
+          -0.1438162663402149,
+          8.165465793782822
+        ],
+        [
+          0.00136108678179009,
+          0.14416747289762885,
+          0.8690013239035067,
+          -0.25399657027140776
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "source_dataset": "reference",
+      "placement_estimated": true
+    },
+    {
+      "id": "hyoid-bone",
+      "name": "Hyoid bone",
+      "source_name": "Hyoid bone",
+      "group": "associated",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#bda880",
+      "description": "A separate bone below the mandible that supports the tongue and provides muscle attachments. It does not articulate directly with the skull. Reference-atlas bone fitted to this CT display; its placement is estimated, not segmented from the CT specimen.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 664,
+      "triangles": 1324,
+      "bounds": [
+        [
+          -30.646685153876017,
+          -92.69137138092651,
+          -7.930009916488908
+        ],
+        [
+          10.000081989359739,
+          -70.06884248580312,
+          24.20792722004824
+        ]
+      ],
+      "center": [
+        -10.18999928699242,
+        -81.85575282029126,
+        12.242324277276342
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -2.9677174051556676e-09
+        ],
+        [
+          0.0,
+          0.9999997019767761,
+          -6.556507514687837e-07,
+          -0.02530878223478794
+        ],
+        [
+          0.0,
+          6.556507514687837e-07,
+          0.9999997019767761,
+          1.5019774436950684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_transform": [
+        [
+          0.8935548558360386,
+          0.08936861132251302,
+          0.031204754377385117,
+          -2.236526282296899
+        ],
+        [
+          -0.0853324483891101,
+          0.8886975330610748,
+          -0.10166530261948682,
+          8.769844950428773
+        ],
+        [
+          -0.04097387750002614,
+          0.0981361901394056,
+          0.8922394271277007,
+          -2.0160991944522726
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "source_dataset": "reference",
+      "placement_estimated": true
+    }
+  ],
+  "registrations": {
+    "left": {
+      "method": "Local temporal-bone registration, one rigid orientation and uniform display-unit conversion for the intact chain",
+      "iterations": 60,
+      "median_surface_distance": 1.000332087278366,
+      "p95_surface_distance": 3.944212067127227,
+      "scale": 0.8391132204139071,
+      "matrix": [
+        [
+          0.82454166,
+          0.152889609,
+          0.029441714,
+          3.524740228
+        ],
+        [
+          -0.148224661,
+          0.819370338,
+          -0.103791597,
+          11.236723706
+        ],
+        [
+          -0.047660224,
+          0.096788498,
+          0.832148717,
+          -2.60898168
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "warp_checks": [
+        {
+          "weight": 0.5,
+          "sampled_minimum_jacobian": 0.492234725965436
+        },
+        {
+          "weight": 1.0,
+          "sampled_minimum_jacobian": 0.1447527442123645
+        }
+      ],
+      "warped_control_median_distance": 0.055150534957647324,
+      "warped_control_p95_distance": 0.6186634659767123,
+      "deformation": "2 regularized global thin-plate-spline displacement fields, 700 bone surface controls; damping prevents sampled foldovers",
+      "chain_scale": 0.8391132204139071,
+      "source_chain_center": [
+        45.73485328592854,
+        -19.25275009071704,
+        -3.2832163642647516
+      ],
+      "target_chain_center": [
+        38.04676689060878,
+        -11.377186367875947,
+        -9.66764994453024
+      ]
+    },
+    "right": {
+      "method": "Local temporal-bone registration, one rigid orientation and uniform display-unit conversion for the intact chain",
+      "iterations": 60,
+      "median_surface_distance": 0.8404960334300995,
+      "p95_surface_distance": 2.813867700099944,
+      "scale": 0.8808799088099147,
+      "matrix": [
+        [
+          0.876255747,
+          0.071025082,
+          0.055504213,
+          -6.953675038
+        ],
+        [
+          -0.064877822,
+          0.873495839,
+          -0.093516317,
+          8.767920081
+        ],
+        [
+          -0.062579135,
+          0.088937456,
+          0.874141519,
+          -4.902812503
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "warp_checks": [
+        {
+          "weight": 1.0,
+          "sampled_minimum_jacobian": 0.20736411391343532
+        },
+        {
+          "weight": 1.0,
+          "sampled_minimum_jacobian": 0.49627789972288155
+        }
+      ],
+      "warped_control_median_distance": 0.026825951412320137,
+      "warped_control_p95_distance": 0.3030351698398569,
+      "deformation": "2 regularized global thin-plate-spline displacement fields, 700 bone surface controls; damping prevents sampled foldovers",
+      "chain_scale": 0.8808799088099147,
+      "source_chain_center": [
+        -45.63027912667995,
+        -19.25275009071704,
+        -3.2832163642647516
+      ],
+      "target_chain_center": [
+        -48.952861163794566,
+        -5.606217011257254,
+        -5.944843034156121
+      ]
+    }
+  },
+  "hyoid_transform": [
+    [
+      0.8935548558360386,
+      0.08936861132251302,
+      0.031204754377385117,
+      -2.236526282296899
+    ],
+    [
+      -0.0853324483891101,
+      0.8886975330610748,
+      -0.10166530261948682,
+      8.769844950428773
+    ],
+    [
+      -0.04097387750002614,
+      0.0981361901394056,
+      0.8922394271277007,
+      -2.0160991944522726
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "note": "Reference geometry retains source triangles and within-chain relationships. CT placement is an unvalidated cross-specimen estimate. Hyoid pose follows the atlas via whole-skull similarity, not a measured articulation.",
+  "source_url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+  "license": "assets/skull/ATTRIBUTION.txt"
+}

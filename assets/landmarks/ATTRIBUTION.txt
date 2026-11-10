@@ -1,0 +1,20 @@
+Skull study landmark catalogue
+
+Anatomical label identities, leaders, cavity geometry and reference bone geometry: Z-Anatomy / BodyParts3D, pinned commit ca4ad71d24d05a6e81f8aeaadb96165c20dffc75.
+Source: https://github.com/Z-Anatomy/Models-of-human-anatomy/tree/ca4ad71d24d05a6e81f8aeaadb96165c20dffc75
+Source model attribution and license: ../skull/ATTRIBUTION.txt and ../skull/SOURCE-LICENSE.txt (CC BY-SA 4.0).
+Retain the source attribution and applicable terms: Z-Anatomy CC BY-SA 4.0; BodyParts3D CC BY-SA 2.1 Japan.
+The source atlas additionally credits University of Dundee School of Medicine, Anatomy of the Inner Ear, CC BY-NC-SA 4.0.
+Retain those noncommercial share-alike terms for ossicle-derived placements; the atlas supplies no per-object license map.
+License links and full credits are retained in the reference model attribution files cited above.
+Anatomical terms are public domain. Terminology reference: FIPAT, Terminologia Anatomica, second edition, 2019 (IFAA adoption 2020).
+Terminology: https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf
+General anatomy reference: https://openstax.org/books/anatomy-and-physiology-2e/pages/7-2-the-skull
+Descriptions and additional study annotations were written for this viewer.
+
+Reference pins are projected source leaders, mirrored pins, actual source cavity centres or expressly curated study locations.
+Source labels displaced more than 10 mm can use explicitly curated replacement positions; original leader points/distances remain recorded.
+CT label locations use bone-shape registration, native cortex, supported native fits and available source-region anchors. Original study coordinates remain in initial_placement. These are not independently validated anatomical coordinates.
+Accepted mapped-region label anchors retain BioDigital/UBC source URLs per placement; retain ../landmark-regions/REGISTERED-SOURCES.txt and publisher terms for those local derivatives.
+Suture polylines are inferred continuous exterior reference bone-contact locations, not separately segmented fibrous joints. They are omitted on CT.
+No bony microstructure or missing canal walls have been synthesized. See catalogue.json coverage for limits and the separate micro-CT study.

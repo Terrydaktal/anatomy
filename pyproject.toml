@@ -1,0 +1,30 @@
+[project]
+name = "anatomy"
+version = "0.1.0"
+description = "An interactive, individually selectable 3D skull atlas"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "zstandard>=0.25.0",
+]
+
+[tool.uv]
+default-groups = []
+
+[dependency-groups]
+build = [
+    "bpy>=5.2.3",
+    "embreex>=4.4.0.post1",
+    "numpy>=2.5.4",
+    "pikepdf>=10.18.0",
+    "rtree>=1.4.1",
+    "scikit-image>=0.26.0",
+    "scipy>=1.18.1",
+    "trimesh>=5.2.0",
+]
+delivery = [
+    "brotli>=1.2.1",
+]
+dev = [
+    "pillow>=13.0.0",
+    "playwright>=1.64.1",
+]

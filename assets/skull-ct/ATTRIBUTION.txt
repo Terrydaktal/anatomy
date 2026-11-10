@@ -1,0 +1,54 @@
+HIGH-DETAIL CT SKULL — OUVC 10503
+
+Source: Ohio University Heritage College of Osteopathic Medicine,
+Visible Interactive Human / WitmerLab.
+https://people.ohio.edu/witmerl/3D_human.htm
+https://people.ohio.edu/witmerl/3D_human_methods.htm
+
+Lawrence M. Witmer and Ryan Ridgely led the project. Ryan Ridgely performed
+the segmentation, 3D visualization and animation. The source credits William
+Porter, Ashley Morhardt and Jason Bourke for labeled movies and 3D PDFs.
+CT scanning was assisted by Heather Rockhold at O'Bleness Memorial Hospital.
+The project was funded by the National Science Foundation.
+
+Specimen: dry human skull OUVC 10503. CT: GE LightSpeed Ultra Multi-Slice,
+625 micrometre slice thickness, 120 kV, 200 mA. These are acquisition
+parameters, not a claim that every exported surface feature is accurate
+to 625 micrometres.
+
+SOURCE TERMS
+The Ohio University methods page permits educational and research use.
+Commercial use requires permission from L. M. Witmer and other relevant
+parties. These assets are not CC0 and are not represented as commercially
+licensed. Retain the attribution and source-use restrictions.
+
+SOURCE AND CONVERSION
+The highest-resolution public 3D PDF is the source. The exact URL and
+SHA-256 are recorded in manifest.json. Its U3D geometry is decoded using
+the pinned svhss/u3d-mesh-extract decoder, an independent implementation
+of Intel's U3D reference algorithm; the decoder is downloaded separately
+into the ignored source cache, rather than redistributed with this app.
+https://github.com/svhss/u3d-mesh-extract
+
+All source triangles of the 22 skull bones and two dental arches are
+retained. The two inferior nasal conchae are separate disconnected
+components of one source resource; they are separated without changing
+their surfaces. No other bones are synthesized or added from a different
+specimen. Teeth remain grouped into the two original dental-arch meshes.
+This specimen's export does not provide separately segmented auditory
+ossicles or a hyoid. The viewer adds seven supplementary atlas bones from
+../skull-associated/bones.glb with explicitly estimated placements; they
+are not part of this native CT segmentation. See that asset's attribution.
+
+Adaptations: lossless resource/component selection, replacement of the
+shared PDF presentation rotation with upright display axes, uniform display
+scaling, centering, smooth surface normals, optional study colours and GLB
+export. No decimation, subdivision, geometric smoothing or synthetic pores.
+The original skull.glb remains the stable native registration source.
+surface.glb restores the PDF's original per-corner normals and authored
+normal seams. Its triangle corners, triangle order and face IDs are exactly
+unchanged; this improves source shading fidelity without increasing scan
+resolution or adding new anatomical detail. scripts/export_ct_surface.py
+decodes that normal stream using the pinned decoder's bitstream primitives.
+The U3D contains an invalid zero unit-scale field. Display coordinates are
+not calibrated millimetres and must not be used as physical measurements.

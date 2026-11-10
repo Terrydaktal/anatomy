@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11191c" />
+    <meta name="description" content="Explore a detailed CT-derived skull with every skull bone individually selectable." />
+    <title>Skull Atlas · 3D Anatomy</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%2311191c'/%3E%3Cpath d='M14 31V18a10 10 0 0120 0v13l-4 3v6H18v-6z' fill='%23e5d7bc'/%3E%3Ccircle cx='19' cy='23' r='4' fill='%2311191c'/%3E%3Ccircle cx='29' cy='23' r='4' fill='%2311191c'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="importmap">
+      {"imports":{"three":"./vendor/build/three.module.js","three/addons/":"./vendor/examples/jsm/","three-mesh-bvh":"./vendor/three-mesh-bvh/index.module.js"}}
+    </script>
+  </head>
+  <body>
+    <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-focus" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 12h8m-4-4v8" /></symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></symbol>
+      <symbol id="icon-reset" viewBox="0 0 24 24"><path d="M3 11a9 9 0 111 5M3 4v7h7" /></symbol>
+      <symbol id="icon-camera" viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z" /><circle cx="12" cy="13" r="4" /></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6" /></symbol>
+      <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" /></symbol>
+    </svg>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Skull controls">
+        <header class="brand">
+          <div class="brand-mark" aria-hidden="true">a<span>·</span></div>
+          <div><p class="eyebrow">ANATOMY EXPLORER</p><h1>Skull atlas</h1></div>
+          <span class="edition">01</span>
+        </header>
+        <fieldset id="control-panel" disabled>
+          <legend class="sr-only">Anatomy and display controls</legend>
+          <div class="sidebar-scroll">
+            <section id="bone-catalogue" class="anatomy-controls" aria-label="Structure catalogue">
+              <div class="section-heading"><h2>Structures</h2><span id="catalogue-total" class="small-count">24</span></div>
+              <div class="search-field"><svg><use href="#icon-search" /></svg><input id="search" type="search" placeholder="Find a bone…" aria-label="Find a bone" autocomplete="off" /><kbd>/</kbd></div>
+              <div class="catalogue-actions"><button id="show-all">Show all</button><button id="hide-all">Hide all</button><button id="restore" hidden>Restore view</button></div>
+              <p id="search-results" class="fine-print" aria-live="polite" hidden></p>
+              <p id="no-results" class="fine-print" hidden>No matching bones.</p>
+              <div id="catalogue">
+                <section id="bone-studies" class="study-anatomy" aria-label="Bone landmarks and cavities">
+                  <div class="search-field landmark-search-field"><svg><use href="#icon-search" /></svg><input id="landmark-search" type="search" placeholder="Find a landmark…" aria-label="Find a landmark" autocomplete="off" /></div>
+                  <section class="landmark-controls" aria-labelledby="landmark-display-heading">
+                    <h3 id="landmark-display-heading">Landmark display</h3>
+                    <label class="check-label region-estimates"><input id="landmark-estimates" type="checkbox" checked />Include estimated regions</label>
+                    <div id="mapped-region-controls" hidden><button id="landmark-explore-mapped" class="text-button">Explore mapped regions and points</button><label class="check-label"><input id="landmark-mapped-only" type="checkbox" disabled />Mapped regions and fitted points only</label></div>
+                    <div class="anatomy-switches"><label class="check-label"><input id="landmark-markers" type="checkbox" />Pins</label><label class="check-label"><input id="landmark-labels" type="checkbox" />Names</label><button id="landmark-clear" class="text-button">Clear highlights</button></div>
+                    <div class="landmark-aids"><label class="check-label"><input id="landmark-locate" type="checkbox" checked />Locate highlight</label><label class="check-label"><input id="landmark-xray" type="checkbox" checked />See through bone</label></div>
+                    <p id="landmark-region-status" class="fine-print" role="status"></p>
+                  </section>
+                  <p id="landmark-results" class="fine-print" aria-live="polite" hidden></p>
+                  <p id="landmark-no-results" class="fine-print" hidden>No matching landmarks.</p>
+                  <details id="landmark-panel" class="bone-group landmark-group" data-group="landmarks" open>
+                    <summary class="group-heading"><input id="landmark-pins" type="checkbox" aria-label="Highlight all landmarks" /><svg class="catalogue-chevron"><use href="#icon-chevron" /></svg><span class="group-label">Landmarks</span><span id="landmark-total" class="group-count">…</span></summary>
+                    <div id="landmark-list" class="landmark-list"></div>
+                  </details>
+                  <details id="cavity-panel" class="anatomy-panel">
+                    <summary>Sinuses &amp; bony cavities</summary>
+                    <p class="fine-print">Original CT cavity boundaries inside this skull. Coloured surfaces outline spaces enclosed by bone; surrounding bones fade while these are shown.</p>
+                    <div id="cavity-list"></div>
+                    <button id="cavity-hide-all" class="text-button">Hide cavity surfaces</button>
+                  </details>
+                </section>
+              </div>
+            </section>
+            <details class="about">
+              <summary>About this model</summary>
+              <h3>Anatomy and sources</h3>
+              <p id="model-overview">All 22 skull bones and the dental arches of a CT-scanned specimen, retained at full source detail.</p>
+              <p id="model-coverage"></p>
+              <p id="model-provenance"></p>
+              <h3>Mesh and resolution</h3><p id="model-quality"></p>
+              <h3>Landmarks and accuracy</h3>
+              <p id="landmark-note">Hover or select a landmark to preview it. Estimated regions are included and identified; their anatomical boundaries remain unvalidated.</p>
+              <p id="landmark-coverage"></p>
+              <p id="model-landmark-methods">Surface selections, transferred regions, fitted openings and contact bands, and point guides have different sources. A location guide has no painted anatomical boundary. Registration fits and triangle checks do not measure anatomical accuracy.</p>
+              <p id="model-landmark-sources">Landmark names and initial locations draw on Z-Anatomy / BodyParts3D and anatomical terminology. The CT supplies no named landmark boundaries; supplied landmark selections belong to the supplementary ear bones. Available mapped regions include BioDigital and UBC FossaFinder geometry, registered to this specimen. Label positions use bone-shape registration, native surface checks and supported source anchors; the selection card identifies each entry’s method and source.</p>
+              <p id="model-fossa-info">Fossa highlights follow bony walls around a space. See-through previews reveal covered regions while retaining the same surface boundaries.</p>
+              <div id="model-cavity-info"><h3>Sinuses and cavities</h3><p>The six cavity groups preserve this specimen’s original segmented frontal, maxillary and sphenoidal sinuses, ethmoidal and mastoid air cells, and bony labyrinths. They can be shown independently; surrounding bones fade while a cavity is displayed.</p></div>
+              <h3>Colours and highlights</h3><p>Bones start in ivory. Hover temporarily shows their assigned colour; the colour dot makes it persistent. Landmark checkboxes retain highlights. Pins, names, location cues and see-through previews are optional.</p>
+              <h3>Navigation and study views</h3><p>Drag to rotate, scroll to zoom, and right-drag to pan. Right-click a bone to hide it. Selecting a bone or landmark preserves bone visibility. The bone and landmark searches filter their lists independently. Expand a landmark type and bone to browse its entries. Focus centres a landmark; Reveal shows its bones and hides the others, with an option to restore the skull view.</p>
+              <p id="model-orientation">Left and right refer to the subject. Exploded view and jaw opening are study aids; separated positions and motion are illustrative.</p>
+              <p id="model-scale" class="fine-print"></p>
+              <p>Explosion separates parts without resizing them. Fit reframes the current view. Section planes leave open cut surfaces; Reset all restores the initial controls and visibility.</p>
+              <h3>Credits and download</h3><p><a id="model-credits" href="assets/skull-ct/ATTRIBUTION.txt" target="_blank">Credits &amp; model use terms</a>.</p>
+              <p id="model-catalogue-credits"><a href="assets/landmarks/ATTRIBUTION.txt" target="_blank">Landmark credits and methods</a> · <a href="assets/landmark-regions/REGISTERED-SOURCES.txt" target="_blank">Mapped-region sources and terms</a>. Source assets retain their individual use terms.</p>
+              <a id="model-download" class="download-link" href="assets/skull-ct/skull.glb" download="skull.glb"><svg><use href="#icon-download" /></svg>Download 3D model · GLB</a>
+              <p id="model-download-note" class="fine-print"></p>
+              <p class="fine-print">Local assets · works without an internet connection.</p>
+            </details>
+            <section class="display-controls" aria-label="Display">
+              <div class="section-heading"><h2>Display</h2><button id="reset" class="text-button" title="Reset all controls">Reset all</button></div>
+              <div class="switch-row"><label for="bone-colors">Unique bone colours</label><input id="bone-colors" type="checkbox" class="switch" /></div>
+              <div class="switch-row"><label for="depth-shading">Depth shading</label><input id="depth-shading" type="checkbox" class="switch" checked /></div>
+              <p id="depth-shading-note" class="fine-print" hidden>Depth shading is available with opaque surfaces.</p>
+              <label class="slider-label" for="opacity"><span>Opacity</span><output id="opacity-value">100%</output></label>
+              <input id="opacity" type="range" min="5" max="100" value="100" />
+              <label class="slider-label" for="explode"><span>Exploded view</span><output id="explode-value">0%</output></label>
+              <input id="explode" type="range" min="0" max="100" value="0" />
+              <div class="slider-endpoints"><span>Assembled</span><span>Separated</span></div>
+              <details class="more-controls">
+                <summary>More display controls</summary>
+                <label class="slider-label" for="jaw"><span>Open jaw</span><output id="jaw-value">0°</output></label>
+                <input id="jaw" type="range" min="0" max="30" value="0" />
+                <label class="slider-label" for="gloss"><span>Gloss</span><output id="gloss-value">25%</output></label>
+                <input id="gloss" type="range" min="0" max="100" value="25" />
+                <label class="select-label" for="section">Section plane</label>
+                <select id="section"><option value="none">Off · complete surfaces</option><option value="sagittal">Sagittal · left / right</option><option value="coronal">Coronal · front / back</option><option value="axial">Axial · upper / lower</option></select>
+                <div id="section-controls" hidden>
+                  <label class="slider-label" for="section-position"><span>Position</span><output id="section-value">0 mm</output></label>
+                  <input id="section-position" type="range" min="0" max="100" value="50" />
+                  <label class="check-label"><input id="section-flip" type="checkbox" />Flip retained side</label>
+                  <p class="fine-print">Clipped surfaces are open; no artificial cut-face fill is added.</p>
+                </div>
+              </details>
+            </section>
+            <div class="dataset-control"><label for="dataset">Anatomical source</label><select id="dataset"><option value="ct">CT skull</option><option value="microct">Bone microstructure · micro-CT</option></select><p id="dataset-caption" class="fine-print">OUVC 10503 · Ohio University</p><div class="study-links"><a href="?dataset=microct">Inside skull bone <span>Real micro-CT ↗</span></a></div></div>
+          </div>
+        </fieldset>
+        <footer class="sidebar-footer"><span class="status-dot" id="status-dot"></span><span id="status" role="status" aria-live="polite">Loading anatomy…</span></footer>
+      </aside>
+      <section class="stage" aria-label="Interactive 3D skull">
+        <canvas id="skull-canvas" aria-label="3D skull. Drag to rotate, scroll to zoom, right-drag to pan. Click a bone to select it." tabindex="0"></canvas>
+        <div id="landmark-overlay" class="landmark-overlay" aria-label="Bone landmark markers">
+          <svg id="landmark-paths" class="landmark-paths" aria-hidden="true"></svg>
+          <div id="landmark-location-aid" class="landmark-location-aid" hidden>
+            <svg aria-hidden="true"><path id="landmark-location-leader" /><g id="landmark-location-target"><circle class="location-pulse" r="23" /><circle r="15" /><circle class="location-centre" r="3" /></g></svg>
+            <div id="landmark-location-caption" class="landmark-location-caption"><strong id="landmark-location-name"></strong><span id="landmark-location-status"></span></div>
+          </div>
+        </div>
+        <div class="stage-header">
+          <div><p class="eyebrow" id="specimen-label">CT ANATOMY / OUVC 10503</p><h2>Human skull</h2><p id="visible-count">22 skull bones · full source detail</p></div>
+          <div class="stage-actions">
+            <button id="fit" class="icon-button" title="Fit visible anatomy (F)" aria-label="Fit visible anatomy"><svg><use href="#icon-focus" /></svg></button>
+            <button id="reset-camera" class="icon-button" title="Reset camera (R)" aria-label="Reset camera"><svg><use href="#icon-reset" /></svg></button>
+            <button id="screenshot" class="icon-button" title="Save image" aria-label="Save image"><svg><use href="#icon-camera" /></svg></button>
+          </div>
+        </div>
+        <nav class="view-presets" aria-label="Anatomical views">
+          <button data-view="oblique" aria-pressed="true">3D</button>
+          <button data-view="anterior" aria-pressed="false">Anterior</button>
+          <button data-view="posterior" aria-pressed="false">Posterior</button>
+          <button data-view="left" aria-pressed="false">Left</button>
+          <button data-view="right" aria-pressed="false">Right</button>
+          <button data-view="superior" aria-pressed="false">Superior</button>
+          <button data-view="inferior" aria-pressed="false">Inferior</button>
+        </nav>
+        <div id="loading" class="loading" role="status"><div class="loader-ring"></div><h3>Assembling the skull</h3><p id="loading-message">Loading individual anatomical meshes…</p><progress id="load-progress" max="100" value="0"></progress></div>
+        <div id="hover-label" class="hover-label" role="tooltip" hidden><span id="hover-dot"></span><div><strong id="hover-name"></strong><small id="hover-group"></small><ul id="hover-overlaps" aria-label="Larger overlapping structures" hidden></ul></div></div>
+        <div id="bone-context-menu" class="bone-context-menu" role="menu" aria-label="Bone actions" hidden><strong id="context-bone-name"></strong><button id="context-hide-bone" role="menuitem">Hide bone</button></div>
+        <article id="selection" class="selection" aria-label="Selected structure" hidden>
+          <div class="selection-top"><span id="selected-group" class="eyebrow"></span><button id="clear-selection" class="icon-button" aria-label="Clear selection"><svg><use href="#icon-close" /></svg></button></div>
+          <h3 id="selected-name"></h3><p id="selected-description"></p>
+          <div class="selection-actions"><button id="isolate" class="primary">Isolate</button><button id="focus">Focus</button><button id="hide-selected">Hide</button></div>
+          <details class="selected-display"><summary>Structure appearance</summary><div class="selected-color-row"><label for="selected-color">Colour</label><input id="selected-color" type="color" value="#d4b184" /></div><label class="slider-label" for="selected-opacity"><span>Individual opacity</span><output id="selected-opacity-value">100%</output></label><input id="selected-opacity" type="range" min="5" max="100" value="100" /></details>
+        </article>
+        <article id="anatomy-selection" class="selection anatomy-selection" aria-label="Selected bone landmark" hidden>
+          <div class="selection-top"><span id="anatomy-kind" class="eyebrow"></span><button id="anatomy-close" class="icon-button" aria-label="Clear anatomy selection"><svg><use href="#icon-close" /></svg></button></div>
+          <h3 id="anatomy-name"></h3><p id="anatomy-location" class="anatomy-location"></p>
+          <div class="selection-actions"><button id="anatomy-focus" class="primary">Focus</button><button id="anatomy-isolate">Reveal</button><button id="anatomy-hide">Hide</button></div>
+          <button id="anatomy-restore" class="text-button" hidden>Restore skull view</button>
+          <details id="anatomy-information" class="anatomy-information" open><summary>Details and source</summary><p id="anatomy-description"></p><p id="anatomy-placement" class="anatomy-placement"></p><a id="anatomy-source" target="_blank" rel="noreferrer">Anatomy reference ↗</a></details>
+        </article>
+        <div class="stage-footer"><span class="desktop-hint">Drag to rotate <span>·</span> Scroll to zoom <span>·</span> Right-drag to pan</span><span class="mobile-hint">Drag to rotate · Pinch to zoom</span><span>Click a bone to explore</span></div>
+        <div id="toast" class="toast" role="status" hidden></div>
+      </section>
+    </main>
+    <noscript>This viewer requires JavaScript. The detailed CT model is available at assets/skull-ct/skull.glb.</noscript>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+SKULL MODEL CREDITS AND SOURCE TERMS
+
+Z-Anatomy - The libre 3D atlas of anatomy - CC BY-SA 4.0
+https://github.com/Z-Anatomy/Models-of-human-anatomy
+https://creativecommons.org/licenses/by-sa/4.0/
+Gauthier Kervyn (design, 3D, anatomy), Marcin Zielinski (Blender add-on),
+Lluis Vinent (app), and the Z-Anatomy contributors.
+
+BodyParts3D - The Database Center for Life Science - CC BY-SA 2.1 Japan
+Kousaku Okubo and contributors.
+https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html
+https://creativecommons.org/licenses/by-sa/2.1/jp/
+
+The upstream atlas also credits "Anatomy of the Inner Ear" by the
+University of Dundee School of Medicine, CC BY-NC-SA 4.0.
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+The atlas does not supply a per-object licence map. Retain this additional
+ear-source attribution and its noncommercial terms for the six ossicle
+meshes; do not assume that the atlas-wide licence removes those terms.
+
+The original upstream licence and complete credits are in SOURCE-LICENSE.txt.
+Individual structure identities, the exact source commit and archive hash
+are recorded in manifest.json.
+
+Adaptations in this project: selection of skull, ossicle, tooth and hyoid
+meshes; evaluation of existing source modifiers; application of original
+world transforms; rotation of axes; conversion to millimetres; translation
+to the skull centre; display colours; conversion to GLB. No decimation,
+remeshing, invented bones, or source-surface smoothing was performed.
+
+This is an educational reference atlas, not a scan of the brain project's
+subject. Teeth are not counted as bones; all 28 source teeth are included,
+and third molars (wisdom teeth) are absent. The hyoid is an optional
+associated bone, not one of the 22 skull bones. Exploded positions and jaw
+opening are display transformations, not measured motion or anatomy.

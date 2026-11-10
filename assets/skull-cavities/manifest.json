@@ -1,0 +1,213 @@
+{
+  "title": "Bony cavity boundaries \u00b7 OUVC 10503",
+  "model": "assets/skull-cavities/cavities.glb",
+  "sha256": "c0986af3a987428a37032dee655b4d103ced3bfac644e135c1635b7a463d9871",
+  "units": "display units",
+  "source": {
+    "name": "Ohio University \u00b7 WitmerLab",
+    "specimen": "OUVC 10503",
+    "url": "https://people.ohio.edu/witmerl/3D_human.htm",
+    "methods_url": "https://people.ohio.edu/witmerl/3D_human_methods.htm",
+    "download_url": "https://people.ohio.edu/witmerl/3D_human/OU-HCOM_3D_skull_highest-res.pdf",
+    "pdf_sha256": "323cb4b3ab608da1dda6bb7582d65a0560f637131e56bd197fc4a5c8bcd2f869",
+    "decoder_url": "https://raw.githubusercontent.com/svhss/u3d-mesh-extract/71c5f4428ae3bcff9c2521c4e00dd938a703a648/scripts/u3d2mesh.py",
+    "decoder_sha256": "d2a42da14e1bb6933f976c863f6b0c83fc08a7b2143eb33a62d33ef055ec6289",
+    "acquisition": "CT, 625 \u00b5m slice thickness, GE LightSpeed Ultra Multi-Slice, 120 kV, 200 mA",
+    "license": "assets/skull-ct/ATTRIBUTION.txt",
+    "scale_note": "The U3D unit-scale field is zero. Native coordinates are multiplied by 10 for display; viewer coordinates are not calibrated physical measurements.",
+    "modifications": "Decoded every source triangle at full detail; separated the two disconnected inferior conchae without changing geometry; retained source dental-arch grouping; rigidly rotated, centered and uniformly scaled for display; computed smooth surface normals. No decimation, subdivision, geometric smoothing, synthetic pores or registration to another subject."
+  },
+  "placement": "Original same-specimen coordinates, rotation and skull-centering translation. No registration or reshaping.",
+  "representation": "Surfaces outline spaces enclosed by bone. They are not additional solid bones or soft tissues. Bilateral resource groupings are retained.",
+  "structures": [
+    {
+      "id": "frontal-sinuses",
+      "name": "Frontal sinuses",
+      "source_name": "Frontal sinuses",
+      "kind": "cavity",
+      "owners": [
+        "frontal-bone"
+      ],
+      "color": "#e9b95d",
+      "visible": false,
+      "description": "The segmented air spaces inside the frontal bone, above the orbits. This surface outlines the cavity against its bony walls.",
+      "triangles": 6000,
+      "vertices": 3004,
+      "bounds": [
+        [
+          -15.6774,
+          4.1936,
+          59.39418
+        ],
+        [
+          19.2743,
+          29.6889,
+          79.16177
+        ]
+      ],
+      "center": [
+        1.79845,
+        16.94125,
+        69.27797
+      ]
+    },
+    {
+      "id": "maxillary-sinuses",
+      "name": "Maxillary sinuses",
+      "source_name": "Maxillary sinuses",
+      "kind": "cavity",
+      "owners": [
+        "maxilla-left",
+        "maxilla-right"
+      ],
+      "color": "#74c8cf",
+      "visible": false,
+      "description": "The paired air spaces in the maxillae, below the orbital floors and above the upper dental arches. Their original bilateral source grouping is retained.",
+      "triangles": 25000,
+      "vertices": 12502,
+      "bounds": [
+        [
+          -42.5968,
+          -48.84315,
+          29.43173
+        ],
+        [
+          37.7989,
+          -8.24763,
+          72.08271
+        ]
+      ],
+      "center": [
+        -2.39895,
+        -28.54539,
+        50.75722
+      ]
+    },
+    {
+      "id": "ethmoid-air-cells",
+      "name": "Ethmoidal air cells",
+      "source_name": "Ethmoid sinuses",
+      "kind": "cavity",
+      "owners": [
+        "ethmoid-bone"
+      ],
+      "color": "#cc9aca",
+      "visible": false,
+      "description": "The labyrinth of air cells within the ethmoid between the nasal cavity and the medial orbital walls. The surface follows the original segmented cavity boundaries.",
+      "triangles": 29978,
+      "vertices": 14861,
+      "bounds": [
+        [
+          -23.8709,
+          -17.79954,
+          16.76143
+        ],
+        [
+          16.8183,
+          11.19948,
+          76.63825
+        ]
+      ],
+      "center": [
+        -3.5263,
+        -3.30003,
+        46.69984
+      ]
+    },
+    {
+      "id": "sphenoid-sinus",
+      "name": "Sphenoidal sinus",
+      "source_name": "Sphenoid sinus",
+      "kind": "cavity",
+      "owners": [
+        "sphenoid-bone"
+      ],
+      "color": "#b7c968",
+      "visible": false,
+      "description": "The segmented air space within the body of the sphenoid, behind the nasal cavity and below the sella turcica.",
+      "triangles": 9000,
+      "vertices": 4502,
+      "bounds": [
+        [
+          -16.0569,
+          -17.62354,
+          2.6444
+        ],
+        [
+          12.53246,
+          7.87991,
+          35.33572
+        ]
+      ],
+      "center": [
+        -1.76222,
+        -4.87181,
+        18.99006
+      ]
+    },
+    {
+      "id": "mastoid-air-cells",
+      "name": "Mastoid air cells",
+      "source_name": "Mastoid air cells",
+      "kind": "cavity",
+      "owners": [
+        "temporal-bone-left",
+        "temporal-bone-right"
+      ],
+      "color": "#90b899",
+      "visible": false,
+      "description": "The communicating air spaces inside the mastoid portions of the temporal bones. These are the specimen's original cavity surfaces, rather than additional bones.",
+      "triangles": 89986,
+      "vertices": 44698,
+      "bounds": [
+        [
+          -68.201,
+          -37.07888,
+          -51.80961
+        ],
+        [
+          59.5616,
+          18.09497,
+          2.91763
+        ]
+      ],
+      "center": [
+        -4.3197,
+        -9.49196,
+        -24.44599
+      ]
+    },
+    {
+      "id": "bony-labyrinths",
+      "name": "Bony labyrinth cavities",
+      "source_name": "Inner ear labyrinths",
+      "kind": "cavity",
+      "owners": [
+        "temporal-bone-left",
+        "temporal-bone-right"
+      ],
+      "color": "#a4a4e2",
+      "visible": false,
+      "description": "The original segmented inner-ear cavity boundaries in the petrous temporal bones, including the cochlear and semicircular regions. The surface depicts spaces enclosed by bone, not soft inner-ear tissues.",
+      "triangles": 30000,
+      "vertices": 14980,
+      "bounds": [
+        [
+          -47.981,
+          -12.09658,
+          -24.11201
+        ],
+        [
+          38.8842,
+          4.01753,
+          -6.28402
+        ]
+      ],
+      "center": [
+        -4.5484,
+        -4.03953,
+        -15.19802
+      ]
+    }
+  ]
+}

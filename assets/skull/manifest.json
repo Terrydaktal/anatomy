@@ -1,0 +1,3349 @@
+{
+  "title": "Human skull",
+  "model": "assets/skull/skull.glb",
+  "sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+  "units": "millimetres",
+  "axes": {
+    "x": "patient left",
+    "y": "superior",
+    "z": "anterior"
+  },
+  "source": {
+    "name": "Z-Anatomy / BodyParts3D",
+    "url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+    "commit": "ca4ad71d24d05a6e81f8aeaadb96165c20dffc75",
+    "archive_sha256": "e029688545627bd0214b269e1063143abb580aad72b2c2445d6d8a9a0d9da736",
+    "license": "assets/skull/ATTRIBUTION.txt",
+    "modifications": "Selected named meshes; evaluated existing source modifiers; applied world transforms; rotated axes, converted metres to millimetres and centered the skull; assigned display colours; exported GLB. No remeshing, decimation or smoothing.",
+    "viewer_center_before_translation_mm": [
+      -0.05228706557524987,
+      1600.875373340873,
+      -1.551758497953486
+    ]
+  },
+  "coverage": {
+    "cranial": 8,
+    "facial": 14,
+    "ossicles": 6,
+    "teeth": 28,
+    "associated": 1
+  },
+  "defaults": {
+    "colors": false,
+    "gloss": 25,
+    "ambientOcclusion": true
+  },
+  "groups": [
+    {
+      "id": "cranial",
+      "name": "Cranial bones",
+      "description": "8 bones \u00b7 brain case and cranial base"
+    },
+    {
+      "id": "facial",
+      "name": "Facial bones",
+      "description": "14 bones \u00b7 face, palate and nasal cavity"
+    },
+    {
+      "id": "ossicles",
+      "name": "Auditory ossicles",
+      "description": "6 bones \u00b7 three in each middle ear"
+    },
+    {
+      "id": "teeth",
+      "name": "Teeth",
+      "description": "28 teeth \u00b7 third molars absent from this atlas"
+    },
+    {
+      "id": "associated",
+      "name": "Associated bone",
+      "description": "Hyoid \u00b7 separate from the skull"
+    }
+  ],
+  "structures": [
+    {
+      "id": "frontal-bone",
+      "name": "Frontal bone",
+      "source_name": "Frontal bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#e8b45d",
+      "description": "Forms the forehead, roofs of the orbits and the anterior cranial floor.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 3902,
+      "triangles": 7776,
+      "bounds": [
+        [
+          -61.13673,
+          -8.2637,
+          19.5649
+        ],
+        [
+          61.24127,
+          98.31707,
+          88.66376
+        ]
+      ],
+      "center": [
+        0.05227,
+        45.02669,
+        54.11433
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -1.4893230648738154e-08
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.04965398460626602
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.6336780786514282
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "parietal-bone-left",
+      "name": "Left parietal bone",
+      "source_name": "Parietal bone.l",
+      "group": "cranial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#e78f9c",
+      "description": "Forms the upper lateral wall and roof of the cranial vault.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 3443,
+      "triangles": 6886,
+      "bounds": [
+        [
+          -7.3729,
+          -11.18308,
+          -99.0084
+        ],
+        [
+          74.3379,
+          104.49223,
+          44.29481
+        ]
+      ],
+      "center": [
+        33.4825,
+        46.65457,
+        -27.3568
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          0.023958563804626465
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          0.03508342057466507
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.6630449295043945
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "parietal-bone-right",
+      "name": "Right parietal bone",
+      "source_name": "Parietal bone.r",
+      "group": "cranial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#79b4e5",
+      "description": "Forms the upper lateral wall and roof of the cranial vault.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 3386,
+      "triangles": 6780,
+      "bounds": [
+        [
+          -74.3379,
+          -11.05518,
+          -98.75336
+        ],
+        [
+          5.66828,
+          104.57876,
+          40.61285
+        ]
+      ],
+      "center": [
+        -34.33481,
+        46.76179,
+        -29.07025
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.027044976130127907
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          0.033261463046073914
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.6609492301940918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "temporal-bone-left",
+      "name": "Left temporal bone",
+      "source_name": "Temporal bone.l",
+      "group": "cranial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#ac99dd",
+      "description": "Forms part of the lateral skull and cranial base. Its petrous part surrounds the middle and inner ear.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 7051,
+      "triangles": 14094,
+      "bounds": [
+        [
+          9.70086,
+          -52.14887,
+          -50.01222
+        ],
+        [
+          72.47264,
+          22.27018,
+          46.33484
+        ]
+      ],
+      "center": [
+        41.08675,
+        -14.93934,
+        -1.83869
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          0.04784354567527771
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          0.006335520185530186
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5826013088226318
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "temporal-bone-right",
+      "name": "Right temporal bone",
+      "source_name": "Temporal bone.r",
+      "group": "cranial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#7bb69a",
+      "description": "Forms part of the lateral skull and cranial base. Its petrous part surrounds the middle and inner ear.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 7051,
+      "triangles": 14094,
+      "bounds": [
+        [
+          -72.36807,
+          -52.14887,
+          -50.01222
+        ],
+        [
+          -9.59629,
+          22.27018,
+          46.33484
+        ]
+      ],
+      "center": [
+        -40.98218,
+        -14.93934,
+        -1.83869
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.04784354567527771
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          0.006335520185530186
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5826013088226318
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "occipital-bone",
+      "name": "Occipital bone",
+      "source_name": "Occipital bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#63bec7",
+      "description": "Forms the back and lower part of the cranium and surrounds the foramen magnum.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 3757,
+      "triangles": 7531,
+      "bounds": [
+        [
+          -59.57853,
+          -50.13928,
+          -101.82343
+        ],
+        [
+          59.68307,
+          54.3176,
+          14.02401
+        ]
+      ],
+      "center": [
+        0.05227,
+        2.08916,
+        -43.89971
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -1.69887073298014e-08
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          0.05779091641306877
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5947802066802979
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "sphenoid-bone",
+      "name": "Sphenoid bone",
+      "source_name": "Sphenoid bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#bac95f",
+      "description": "Spans the central cranial base. Its wings contribute to the orbits and the sides of the skull.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 3650,
+      "triangles": 7308,
+      "bounds": [
+        [
+          -54.36705,
+          -50.56313,
+          3.8033
+        ],
+        [
+          54.47159,
+          19.37327,
+          57.00578
+        ]
+      ],
+      "center": [
+        0.05227,
+        -15.59493,
+        30.40454
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -1.6996636986732483e-08
+        ],
+        [
+          0.0,
+          0.9999998807907104,
+          -8.74227694680485e-08,
+          -0.027169296517968178
+        ],
+        [
+          0.0,
+          8.74227694680485e-08,
+          0.9999998807907104,
+          1.5886090993881226
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "ethmoid-bone",
+      "name": "Ethmoid bone",
+      "source_name": "Ethmoid bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#dc92c1",
+      "description": "Lies between the orbits. Contributes to the nasal septum, nasal cavity and anterior cranial floor.",
+      "visible": true,
+      "source_modifiers": [
+        "BOOLEAN",
+        "BOOLEAN",
+        "BOOLEAN",
+        "BOOLEAN",
+        "BOOLEAN",
+        "BOOLEAN"
+      ],
+      "vertices": 5082,
+      "triangles": 10130,
+      "bounds": [
+        [
+          -18.68778,
+          -34.99799,
+          32.96054
+        ],
+        [
+          18.79235,
+          4.43568,
+          77.49822
+        ]
+      ],
+      "center": [
+        0.05228,
+        -15.28115,
+        55.22938
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -1.69887073298014e-08
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.05600914731621742
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5869569778442383
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "maxilla-left",
+      "name": "Left maxilla",
+      "source_name": "Maxilla.l",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#edaa7d",
+      "description": "Forms the upper jaw and part of the hard palate, nasal cavity and orbital floor. Supports the upper teeth.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2399,
+      "triangles": 4798,
+      "bounds": [
+        [
+          -0.15882,
+          -63.43139,
+          41.61224
+        ],
+        [
+          46.08641,
+          4.34373,
+          95.42431
+        ]
+      ],
+      "center": [
+        22.96379,
+        -29.54383,
+        68.51828
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          0.01844574697315693
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.06459250301122665
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5599315166473389
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "maxilla-right",
+      "name": "Right maxilla",
+      "source_name": "Maxilla.r",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#80caca",
+      "description": "Forms the upper jaw and part of the hard palate, nasal cavity and orbital floor. Supports the upper teeth.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2399,
+      "triangles": 4798,
+      "bounds": [
+        [
+          -45.98183,
+          -63.43139,
+          41.61224
+        ],
+        [
+          0.26339,
+          4.34373,
+          95.42431
+        ]
+      ],
+      "center": [
+        -22.85922,
+        -29.54383,
+        68.51828
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.01844574697315693
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.06459250301122665
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5599315166473389
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "zygomatic-bone-left",
+      "name": "Left zygomatic bone",
+      "source_name": "Zygomatic bone.l",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#90bd77",
+      "description": "Forms the prominence of the cheek and contributes to the lateral orbital wall and zygomatic arch.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 666,
+      "triangles": 1328,
+      "bounds": [
+        [
+          31.6694,
+          -47.15879,
+          34.26031
+        ],
+        [
+          62.37698,
+          7.59021,
+          73.2292
+        ]
+      ],
+      "center": [
+        47.02319,
+        -19.78429,
+        53.74475
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          0.04576259106397629
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.0541573241353035
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5774693489074707
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "zygomatic-bone-right",
+      "name": "Right zygomatic bone",
+      "source_name": "Zygomatic bone.r",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#bb98cb",
+      "description": "Forms the prominence of the cheek and contributes to the lateral orbital wall and zygomatic arch.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 666,
+      "triangles": 1328,
+      "bounds": [
+        [
+          -62.27241,
+          -47.15879,
+          34.26031
+        ],
+        [
+          -31.56483,
+          7.59021,
+          73.2292
+        ]
+      ],
+      "center": [
+        -46.91862,
+        -19.78429,
+        53.74475
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.04576259106397629
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.0541573241353035
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5774693489074707
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "nasal-bone-left",
+      "name": "Left nasal bone",
+      "source_name": "Nasal bone.l",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#e5cf73",
+      "description": "Forms the bony bridge of the nose.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 148,
+      "triangles": 292,
+      "bounds": [
+        [
+          0.0523,
+          -27.16806,
+          80.88763
+        ],
+        [
+          8.45206,
+          4.20425,
+          101.82343
+        ]
+      ],
+      "center": [
+        4.25218,
+        -11.48191,
+        91.35553
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          0.0038006992544978857
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.08803901076316833
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5909209251403809
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "nasal-bone-right",
+      "name": "Right nasal bone",
+      "source_name": "Nasal bone.r",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#8b98df",
+      "description": "Forms the bony bridge of the nose.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 148,
+      "triangles": 292,
+      "bounds": [
+        [
+          -8.34749,
+          -27.16806,
+          80.88763
+        ],
+        [
+          0.05227,
+          4.20425,
+          101.82343
+        ]
+      ],
+      "center": [
+        -4.14761,
+        -11.48191,
+        91.35553
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.0038006992544978857
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.08803901076316833
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5909209251403809
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "lacrimal-bone-left",
+      "name": "Left lacrimal bone",
+      "source_name": "Lacrimal bone.l",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#a3cacc",
+      "description": "Small bone in the medial orbital wall, beside the groove for the lacrimal sac.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 296,
+      "triangles": 588,
+      "bounds": [
+        [
+          6.5205,
+          -27.75797,
+          63.07076
+        ],
+        [
+          17.17196,
+          -2.65596,
+          77.77964
+        ]
+      ],
+      "center": [
+        11.84623,
+        -15.20697,
+        70.4252
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          0.010798823088407516
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.06905056536197662
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5847736597061157
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "lacrimal-bone-right",
+      "name": "Right lacrimal bone",
+      "source_name": "Lacrimal bone.r",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#d6a38e",
+      "description": "Small bone in the medial orbital wall, beside the groove for the lacrimal sac.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 296,
+      "triangles": 588,
+      "bounds": [
+        [
+          -17.06738,
+          -27.75797,
+          63.07076
+        ],
+        [
+          -6.41592,
+          -2.65596,
+          77.77964
+        ]
+      ],
+      "center": [
+        -11.74165,
+        -15.20697,
+        70.4252
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.010798823088407516
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.06905056536197662
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5847736597061157
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "palatine-bone-left",
+      "name": "Left palatine bone",
+      "source_name": "Palatine bone.l",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#c49b65",
+      "description": "Forms the posterior hard palate and contributes to the nasal cavity and a small part of the orbit.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 732,
+      "triangles": 1460,
+      "bounds": [
+        [
+          0.83617,
+          -56.89766,
+          26.32962
+        ],
+        [
+          27.09067,
+          -16.74487,
+          61.54871
+        ]
+      ],
+      "center": [
+        13.96342,
+        -36.82126,
+        43.93916
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          0.013701247982680798
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.04383724555373192
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5606358051300049
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "palatine-bone-right",
+      "name": "Right palatine bone",
+      "source_name": "Palatine bone.r",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#91b0d0",
+      "description": "Forms the posterior hard palate and contributes to the nasal cavity and a small part of the orbit.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 732,
+      "triangles": 1460,
+      "bounds": [
+        [
+          -26.9861,
+          -56.89766,
+          26.32962
+        ],
+        [
+          -0.7316,
+          -16.74487,
+          61.54871
+        ]
+      ],
+      "center": [
+        -13.85885,
+        -36.82126,
+        43.93916
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.013701247982680798
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.04383724555373192
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5606358051300049
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "inferior-nasal-concha-left",
+      "name": "Left inferior nasal concha",
+      "source_name": "Inferior nasal concha bone.l",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#d9b6ce",
+      "description": "A separate curled bone on the lateral wall of the nasal cavity. The middle and superior conchae belong to the ethmoid.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 238,
+      "triangles": 476,
+      "bounds": [
+        [
+          4.47572,
+          -48.77205,
+          42.33948
+        ],
+        [
+          14.93247,
+          -26.2527,
+          76.98112
+        ]
+      ],
+      "center": [
+        9.7041,
+        -37.51238,
+        59.6603
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          0.00968641135841608
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.059139981865882874
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5628107786178589
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "inferior-nasal-concha-right",
+      "name": "Right inferior nasal concha",
+      "source_name": "Inferior nasal concha bone.r",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#b4cb8d",
+      "description": "A separate curled bone on the lateral wall of the nasal cavity. The middle and superior conchae belong to the ethmoid.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 238,
+      "triangles": 476,
+      "bounds": [
+        [
+          -14.8279,
+          -48.77205,
+          42.33948
+        ],
+        [
+          -4.37115,
+          -26.2527,
+          76.98112
+        ]
+      ],
+      "center": [
+        -9.59952,
+        -37.51238,
+        59.6603
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -0.00968641135841608
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.059139981865882874
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.5628107786178589
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "vomer",
+      "name": "Vomer",
+      "source_name": "Vomer",
+      "group": "facial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#b8a9dc",
+      "description": "Forms the lower and posterior part of the bony nasal septum.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 514,
+      "triangles": 1022,
+      "bounds": [
+        [
+          -5.06636,
+          -43.46863,
+          22.51012
+        ],
+        [
+          5.17097,
+          -20.51727,
+          83.65339
+        ]
+      ],
+      "center": [
+        0.0523,
+        -31.99295,
+        53.08176
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          0.0,
+          0.0,
+          1.4901161193847656e-08
+        ],
+        [
+          0.0,
+          1.0,
+          7.105426087051581e-15,
+          -0.045402467250823975
+        ],
+        [
+          0.0,
+          -7.105427357601002e-15,
+          0.9999998211860657,
+          1.570438027381897
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999403953552
+        ]
+      ]
+    },
+    {
+      "id": "mandible",
+      "name": "Mandible",
+      "source_name": "Mandible",
+      "group": "facial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#b8bea6",
+      "description": "Forms the lower jaw and supports the lower teeth. Its condyles articulate with the temporal bones.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 9388,
+      "triangles": 18838,
+      "bounds": [
+        [
+          -51.61175,
+          -104.57876,
+          3.34978
+        ],
+        [
+          51.71632,
+          -22.228,
+          85.2617
+        ]
+      ],
+      "center": [
+        0.05229,
+        -63.40338,
+        44.30574
+      ],
+      "source_matrix_world": [
+        [
+          1.0000003576278687,
+          -8.271806125530277e-23,
+          -6.661340265333307e-16,
+          7.930986596627054e-12
+        ],
+        [
+          -1.3565762045869654e-22,
+          1.0000001192092896,
+          -3.2782554626464844e-07,
+          -0.043990157544612885
+        ],
+        [
+          6.661338677146531e-16,
+          3.2782554626464844e-07,
+          1.0000001192092896,
+          1.5375064611434937
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "malleus-left",
+      "name": "Left malleus",
+      "source_name": "Malleus.l",
+      "group": "ossicles",
+      "side": "left",
+      "kind": "bone",
+      "color": "#dfaa59",
+      "description": "The hammer-shaped middle-ear ossicle. Its handle attaches to the tympanic membrane and its head articulates with the incus.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1993,
+      "triangles": 3982,
+      "bounds": [
+        [
+          46.42348,
+          -22.82639,
+          -3.81412
+        ],
+        [
+          50.06038,
+          -14.64762,
+          -0.93872
+        ]
+      ],
+      "center": [
+        48.24193,
+        -18.73701,
+        -2.37642
+      ],
+      "source_matrix_world": [
+        [
+          -1.000000238418579,
+          0.0,
+          0.0,
+          0.04833701252937317
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.003989835735410452
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5819263458251953
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "malleus-right",
+      "name": "Right malleus",
+      "source_name": "Malleus.r",
+      "group": "ossicles",
+      "side": "right",
+      "kind": "bone",
+      "color": "#7d9fcd",
+      "description": "The hammer-shaped middle-ear ossicle. Its handle attaches to the tympanic membrane and its head articulates with the incus.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1993,
+      "triangles": 3982,
+      "bounds": [
+        [
+          -49.9558,
+          -22.82639,
+          -3.81412
+        ],
+        [
+          -46.31891,
+          -14.64762,
+          -0.93872
+        ]
+      ],
+      "center": [
+        -48.13736,
+        -18.73701,
+        -2.37642
+      ],
+      "source_matrix_world": [
+        [
+          1.000000238418579,
+          0.0,
+          0.0,
+          -0.04833701252937317
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.003989835735410452
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5819263458251953
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "incus-left",
+      "name": "Left incus",
+      "source_name": "Incus.l",
+      "group": "ossicles",
+      "side": "left",
+      "kind": "bone",
+      "color": "#88c3b0",
+      "description": "The anvil-shaped middle-ear ossicle between the malleus and stapes.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1268,
+      "triangles": 2532,
+      "bounds": [
+        [
+          45.02667,
+          -21.30622,
+          -8.09936
+        ],
+        [
+          49.24774,
+          -15.07429,
+          -3.207
+        ]
+      ],
+      "center": [
+        47.13721,
+        -18.19026,
+        -5.65318
+      ],
+      "source_matrix_world": [
+        [
+          -1.000000238418579,
+          0.0,
+          0.0,
+          0.04691196605563164
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          0.9999998807907104,
+          0.006430268753319979
+        ],
+        [
+          0.0,
+          -1.0,
+          7.54978870531886e-08,
+          1.5824543237686157
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "incus-right",
+      "name": "Right incus",
+      "source_name": "Incus.r",
+      "group": "ossicles",
+      "side": "right",
+      "kind": "bone",
+      "color": "#ce8f7a",
+      "description": "The anvil-shaped middle-ear ossicle between the malleus and stapes.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1268,
+      "triangles": 2532,
+      "bounds": [
+        [
+          -49.14317,
+          -21.30622,
+          -8.09936
+        ],
+        [
+          -44.92209,
+          -15.07429,
+          -3.207
+        ]
+      ],
+      "center": [
+        -47.03263,
+        -18.19026,
+        -5.65318
+      ],
+      "source_matrix_world": [
+        [
+          1.000000238418579,
+          0.0,
+          0.0,
+          -0.04691196605563164
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          0.9999998807907104,
+          0.006430268753319979
+        ],
+        [
+          0.0,
+          -1.0,
+          7.54978870531886e-08,
+          1.5824543237686157
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "stapes-left",
+      "name": "Left stapes",
+      "source_name": "Stapes.l",
+      "group": "ossicles",
+      "side": "left",
+      "kind": "bone",
+      "color": "#d0a1b4",
+      "description": "The stirrup-shaped middle-ear ossicle. Its footplate transmits vibration to the oval window.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2171,
+      "triangles": 4342,
+      "bounds": [
+        [
+          41.00607,
+          -21.04129,
+          -4.41074
+        ],
+        [
+          45.06005,
+          -18.61021,
+          -1.35905
+        ]
+      ],
+      "center": [
+        43.03306,
+        -19.82575,
+        -2.8849
+      ],
+      "source_matrix_world": [
+        [
+          -1.000000238418579,
+          0.0,
+          0.0,
+          0.04252353683114052
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.004685862455517054
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5808497667312622
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "stapes-right",
+      "name": "Right stapes",
+      "source_name": "Stapes.r",
+      "group": "ossicles",
+      "side": "right",
+      "kind": "bone",
+      "color": "#b4c183",
+      "description": "The stirrup-shaped middle-ear ossicle. Its footplate transmits vibration to the oval window.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2171,
+      "triangles": 4342,
+      "bounds": [
+        [
+          -44.95548,
+          -21.04129,
+          -4.41074
+        ],
+        [
+          -40.90149,
+          -18.61021,
+          -1.35905
+        ]
+      ],
+      "center": [
+        -42.92849,
+        -19.82575,
+        -2.8849
+      ],
+      "source_matrix_world": [
+        [
+          1.000000238418579,
+          0.0,
+          0.0,
+          -0.04252353683114052
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.004685862455517054
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999998807907104,
+          1.5808497667312622
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "hyoid-bone",
+      "name": "Hyoid bone",
+      "source_name": "Hyoid bone",
+      "group": "associated",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#bda880",
+      "description": "A separate bone below the mandible that supports the tongue and provides muscle attachments. It does not articulate directly with the skull.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 664,
+      "triangles": 1324,
+      "bounds": [
+        [
+          -22.69213,
+          -109.35744,
+          4.57924
+        ],
+        [
+          22.7967,
+          -89.84418,
+          40.55004
+        ]
+      ],
+      "center": [
+        0.05229,
+        -99.60081,
+        22.56464
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          0.0,
+          0.0,
+          -2.9677174051556676e-09
+        ],
+        [
+          0.0,
+          0.9999997019767761,
+          -6.556507514687837e-07,
+          -0.02530878223478794
+        ],
+        [
+          0.0,
+          6.556507514687837e-07,
+          0.9999997019767761,
+          1.5019774436950684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-left-central-incisor",
+      "name": "Upper left central incisor",
+      "source_name": "Upper medial incisor.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent central incisor in the left half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 686,
+      "triangles": 1368,
+      "bounds": [
+        [
+          0.11407,
+          -74.58256,
+          82.16367
+        ],
+        [
+          8.89914,
+          -48.8299,
+          94.7549
+        ]
+      ],
+      "center": [
+        4.5066,
+        -61.70623,
+        88.45929
+      ],
+      "source_matrix_world": [
+        [
+          -1.0,
+          -1.654361619536508e-24,
+          8.271804547808466e-24,
+          0.004073188174515963
+        ],
+        [
+          -1.6543614223212817e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.08752739429473877
+        ],
+        [
+          8.271804547808466e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.536662220954895
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-left-lateral-incisor",
+      "name": "Upper left lateral incisor",
+      "source_name": "Upper lateral incisor.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent lateral incisor in the left half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 729,
+      "triangles": 1454,
+      "bounds": [
+        [
+          6.5558,
+          -75.28138,
+          80.66031
+        ],
+        [
+          15.92576,
+          -47.08052,
+          91.70411
+        ]
+      ],
+      "center": [
+        11.24078,
+        -61.18095,
+        86.18221
+      ],
+      "source_matrix_world": [
+        [
+          -1.0,
+          -1.654361619536508e-24,
+          8.271804547808466e-24,
+          0.010784901678562164
+        ],
+        [
+          -1.6543614223212817e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.08455163240432739
+        ],
+        [
+          8.271804547808466e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.538095235824585
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-left-canine",
+      "name": "Upper left canine",
+      "source_name": "Upper canine.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent canine in the left half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 737,
+      "triangles": 1470,
+      "bounds": [
+        [
+          12.59986,
+          -73.7679,
+          78.41341
+        ],
+        [
+          21.65607,
+          -43.16008,
+          87.51517
+        ]
+      ],
+      "center": [
+        17.12796,
+        -58.46399,
+        82.96429
+      ],
+      "source_matrix_world": [
+        [
+          -1.0,
+          -1.654361619536508e-24,
+          8.271804547808466e-24,
+          0.016568012535572052
+        ],
+        [
+          -1.6543614223212817e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.08045585453510284
+        ],
+        [
+          8.271804547808466e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5402090549468994
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-left-first-premolar",
+      "name": "Upper left first premolar",
+      "source_name": "Upper first premolar.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent first premolar in the left half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 844,
+      "triangles": 1684,
+      "bounds": [
+        [
+          15.45462,
+          -72.15974,
+          71.46026
+        ],
+        [
+          24.76371,
+          -44.42367,
+          79.32345
+        ]
+      ],
+      "center": [
+        20.10916,
+        -58.29171,
+        75.39186
+      ],
+      "source_matrix_world": [
+        [
+          -1.0,
+          -1.654361619536508e-24,
+          8.271804547808466e-24,
+          0.019535979256033897
+        ],
+        [
+          -1.6543614223212817e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.0738615095615387
+        ],
+        [
+          8.271804547808466e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5411888360977173
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-left-second-premolar",
+      "name": "Upper left second premolar",
+      "source_name": "Upper second premolar.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent second premolar in the left half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 779,
+      "triangles": 1554,
+      "bounds": [
+        [
+          18.58202,
+          -71.18788,
+          65.68463
+        ],
+        [
+          27.67262,
+          -45.87927,
+          73.11397
+        ]
+      ],
+      "center": [
+        23.12732,
+        -58.53358,
+        69.3993
+      ],
+      "source_matrix_world": [
+        [
+          -1.0,
+          -1.654361619536508e-24,
+          8.271804547808466e-24,
+          0.022671211510896683
+        ],
+        [
+          -1.6543614223212817e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.06807255744934082
+        ],
+        [
+          8.271804547808466e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5421364307403564
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-left-first-molar",
+      "name": "Upper left first molar",
+      "source_name": "Upper first molar tooth.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent first molar in the left half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1090,
+      "triangles": 2176,
+      "bounds": [
+        [
+          18.54584,
+          -69.1675,
+          55.06528
+        ],
+        [
+          29.87207,
+          -45.20191,
+          66.32395
+        ]
+      ],
+      "center": [
+        24.20896,
+        -57.18471,
+        60.69461
+      ],
+      "source_matrix_world": [
+        [
+          -1.0,
+          -1.654361619536508e-24,
+          8.271804547808466e-24,
+          0.024473898112773895
+        ],
+        [
+          -1.6543614223212817e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.05948296934366226
+        ],
+        [
+          8.271804547808466e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5429997444152832
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-left-second-molar",
+      "name": "Upper left second molar",
+      "source_name": "Upper second molar tooth.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent second molar in the left half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 924,
+      "triangles": 1844,
+      "bounds": [
+        [
+          17.91374,
+          -65.68446,
+          47.43304
+        ],
+        [
+          29.55348,
+          -43.55755,
+          57.03891
+        ]
+      ],
+      "center": [
+        23.73361,
+        -54.621,
+        52.23598
+      ],
+      "source_matrix_world": [
+        [
+          -1.0,
+          -1.654361619536508e-24,
+          8.271804547808466e-24,
+          0.02455030009150505
+        ],
+        [
+          -1.6543614223212817e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.05062587186694145
+        ],
+        [
+          8.271804547808466e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.546644687652588
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-right-central-incisor",
+      "name": "Upper right central incisor",
+      "source_name": "Upper medial incisor.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent central incisor in the right half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 686,
+      "triangles": 1368,
+      "bounds": [
+        [
+          -8.79457,
+          -74.58256,
+          82.16367
+        ],
+        [
+          -0.00949,
+          -48.8299,
+          94.7549
+        ]
+      ],
+      "center": [
+        -4.40203,
+        -61.70623,
+        88.45929
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          1.6543614223212817e-24,
+          -8.271806125530277e-24,
+          -0.004073188174515963
+        ],
+        [
+          -1.6543612251060553e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.08752739429473877
+        ],
+        [
+          8.271806125530277e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.536662220954895
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-right-lateral-incisor",
+      "name": "Upper right lateral incisor",
+      "source_name": "Upper lateral incisor.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent lateral incisor in the right half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 729,
+      "triangles": 1454,
+      "bounds": [
+        [
+          -15.82119,
+          -75.28138,
+          80.66031
+        ],
+        [
+          -6.45123,
+          -47.08052,
+          91.70411
+        ]
+      ],
+      "center": [
+        -11.13621,
+        -61.18095,
+        86.18221
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          1.6543614223212817e-24,
+          -8.271806125530277e-24,
+          -0.010784901678562164
+        ],
+        [
+          -1.6543612251060553e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.08455163240432739
+        ],
+        [
+          8.271806125530277e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.538095235824585
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-right-canine",
+      "name": "Upper right canine",
+      "source_name": "Upper canine.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent canine in the right half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 737,
+      "triangles": 1470,
+      "bounds": [
+        [
+          -21.55149,
+          -73.7679,
+          78.41341
+        ],
+        [
+          -12.49528,
+          -43.16008,
+          87.51517
+        ]
+      ],
+      "center": [
+        -17.02339,
+        -58.46399,
+        82.96429
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          1.6543614223212817e-24,
+          -8.271806125530277e-24,
+          -0.016568012535572052
+        ],
+        [
+          -1.6543612251060553e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.08045585453510284
+        ],
+        [
+          8.271806125530277e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5402090549468994
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-right-first-premolar",
+      "name": "Upper right first premolar",
+      "source_name": "Upper first premolar.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent first premolar in the right half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 844,
+      "triangles": 1684,
+      "bounds": [
+        [
+          -24.65913,
+          -72.15974,
+          71.46026
+        ],
+        [
+          -15.35005,
+          -44.42367,
+          79.32345
+        ]
+      ],
+      "center": [
+        -20.00459,
+        -58.29171,
+        75.39186
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          1.6543614223212817e-24,
+          -8.271806125530277e-24,
+          -0.019535979256033897
+        ],
+        [
+          -1.6543612251060553e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.0738615095615387
+        ],
+        [
+          8.271806125530277e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5411888360977173
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-right-second-premolar",
+      "name": "Upper right second premolar",
+      "source_name": "Upper second premolar.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent second premolar in the right half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 779,
+      "triangles": 1554,
+      "bounds": [
+        [
+          -27.56805,
+          -71.18788,
+          65.68463
+        ],
+        [
+          -18.47745,
+          -45.87927,
+          73.11397
+        ]
+      ],
+      "center": [
+        -23.02275,
+        -58.53358,
+        69.3993
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          1.6543614223212817e-24,
+          -8.271806125530277e-24,
+          -0.022671211510896683
+        ],
+        [
+          -1.6543612251060553e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.06807255744934082
+        ],
+        [
+          8.271806125530277e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5421364307403564
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-right-first-molar",
+      "name": "Upper right first molar",
+      "source_name": "Upper first molar tooth.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent first molar in the right half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 1090,
+      "triangles": 2176,
+      "bounds": [
+        [
+          -29.7675,
+          -69.1675,
+          55.06528
+        ],
+        [
+          -18.44127,
+          -45.20191,
+          66.32395
+        ]
+      ],
+      "center": [
+        -24.10438,
+        -57.18471,
+        60.69461
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          1.6543614223212817e-24,
+          -8.271806125530277e-24,
+          -0.024473898112773895
+        ],
+        [
+          -1.6543612251060553e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.05948296934366226
+        ],
+        [
+          8.271806125530277e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.5429997444152832
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "upper-right-second-molar",
+      "name": "Upper right second molar",
+      "source_name": "Upper second molar tooth.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "upper",
+      "color": "#f1e9d5",
+      "description": "Permanent second molar in the right half of the upper dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 924,
+      "triangles": 1844,
+      "bounds": [
+        [
+          -29.44891,
+          -65.68446,
+          47.43304
+        ],
+        [
+          -17.80917,
+          -43.55755,
+          57.03891
+        ]
+      ],
+      "center": [
+        -23.62904,
+        -54.621,
+        52.23598
+      ],
+      "source_matrix_world": [
+        [
+          1.0,
+          1.6543614223212817e-24,
+          -8.271806125530277e-24,
+          -0.02455030009150505
+        ],
+        [
+          -1.6543612251060553e-24,
+          1.0,
+          -1.490115231206346e-08,
+          -0.05062587186694145
+        ],
+        [
+          8.271806125530277e-24,
+          1.4901154976598718e-08,
+          0.9999998807907104,
+          1.546644687652588
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-left-central-incisor",
+      "name": "Lower left central incisor",
+      "source_name": "Lower medial incisor.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent central incisor in the left half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 494,
+      "triangles": 984,
+      "bounds": [
+        [
+          0.20841,
+          -98.18148,
+          72.21242
+        ],
+        [
+          6.33163,
+          -73.46185,
+          90.1192
+        ]
+      ],
+      "center": [
+        3.27002,
+        -85.82167,
+        81.16581
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          8.106364323221154e-23,
+          6.661338677146531e-16,
+          0.002679243450984359
+        ],
+        [
+          -1.4723814903443893e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.08027967810630798
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5170730352401733
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-left-lateral-incisor",
+      "name": "Lower left lateral incisor",
+      "source_name": "Lower lateral incisor.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent lateral incisor in the left half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 522,
+      "triangles": 1040,
+      "bounds": [
+        [
+          4.26949,
+          -97.97691,
+          72.89634
+        ],
+        [
+          11.96151,
+          -73.45342,
+          89.34273
+        ]
+      ],
+      "center": [
+        8.1155,
+        -85.71517,
+        81.11954
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          8.106364323221154e-23,
+          6.661338677146531e-16,
+          0.007279322948306799
+        ],
+        [
+          -1.4723814903443893e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.08066366612911224
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5182561874389648
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-left-canine",
+      "name": "Lower left canine",
+      "source_name": "Lower canine.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent canine in the left half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 640,
+      "triangles": 1276,
+      "bounds": [
+        [
+          9.04544,
+          -99.22304,
+          70.26333
+        ],
+        [
+          16.75162,
+          -73.04695,
+          85.46827
+        ]
+      ],
+      "center": [
+        12.89853,
+        -86.13499,
+        77.8658
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          8.106364323221154e-23,
+          6.661338677146531e-16,
+          0.012518685311079025
+        ],
+        [
+          -1.4723814903443893e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.07660961151123047
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5166033506393433
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-left-first-premolar",
+      "name": "Lower left first premolar",
+      "source_name": "Lower first premolar.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent first premolar in the left half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 613,
+      "triangles": 1222,
+      "bounds": [
+        [
+          13.03502,
+          -94.3841,
+          65.50342
+        ],
+        [
+          20.81485,
+          -72.42253,
+          79.32806
+        ]
+      ],
+      "center": [
+        16.92494,
+        -83.40332,
+        72.41574
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          8.106364323221154e-23,
+          6.661338677146531e-16,
+          0.016786258667707443
+        ],
+        [
+          -1.4723814903443893e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.0714850053191185
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5202326774597168
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-left-second-premolar",
+      "name": "Lower left second premolar",
+      "source_name": "Lower second premolar.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent second premolar in the left half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 592,
+      "triangles": 1180,
+      "bounds": [
+        [
+          16.00406,
+          -93.87789,
+          59.61005
+        ],
+        [
+          23.95805,
+          -71.06922,
+          72.61965
+        ]
+      ],
+      "center": [
+        19.98105,
+        -82.47356,
+        66.11485
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          8.106364323221154e-23,
+          6.661338677146531e-16,
+          0.020149938762187958
+        ],
+        [
+          -1.4723814903443893e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.06503281742334366
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5221930742263794
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-left-first-molar",
+      "name": "Lower left first molar",
+      "source_name": "Lower first molar tooth.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent first molar in the left half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2260,
+      "triangles": 4508,
+      "bounds": [
+        [
+          16.82346,
+          -87.44768,
+          51.46751
+        ],
+        [
+          28.88993,
+          -68.20301,
+          66.2198
+        ]
+      ],
+      "center": [
+        22.8567,
+        -77.82534,
+        58.84366
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          8.106364323221154e-23,
+          6.661338677146531e-16,
+          0.023150602355599403
+        ],
+        [
+          -1.4723814903443893e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.05665590986609459
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5242319107055664
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-left-second-molar",
+      "name": "Lower left second molar",
+      "source_name": "Lower second molar tooth.l",
+      "group": "teeth",
+      "side": "left",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent second molar in the left half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 840,
+      "triangles": 1676,
+      "bounds": [
+        [
+          20.37327,
+          -82.2794,
+          39.17961
+        ],
+        [
+          32.18914,
+          -64.03657,
+          55.32024
+        ]
+      ],
+      "center": [
+        26.28121,
+        -73.15799,
+        47.24992
+      ],
+      "source_matrix_world": [
+        [
+          -1.0000001192092896,
+          8.106364323221154e-23,
+          6.661338677146531e-16,
+          0.026425056159496307
+        ],
+        [
+          -1.4723814903443893e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.04642820730805397
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5285784006118774
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-right-central-incisor",
+      "name": "Lower right central incisor",
+      "source_name": "Lower medial incisor.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent central incisor in the right half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 494,
+      "triangles": 984,
+      "bounds": [
+        [
+          -6.22705,
+          -98.18148,
+          72.21242
+        ],
+        [
+          -0.10384,
+          -73.46185,
+          90.1192
+        ]
+      ],
+      "center": [
+        -3.16545,
+        -85.82167,
+        81.16581
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          -8.106365585398602e-23,
+          -6.661338677146531e-16,
+          -0.002679243450984359
+        ],
+        [
+          -1.4723813641266444e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.08027967810630798
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5170730352401733
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-right-lateral-incisor",
+      "name": "Lower right lateral incisor",
+      "source_name": "Lower lateral incisor.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent lateral incisor in the right half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 522,
+      "triangles": 1040,
+      "bounds": [
+        [
+          -11.85694,
+          -97.97691,
+          72.89634
+        ],
+        [
+          -4.16492,
+          -73.45342,
+          89.34273
+        ]
+      ],
+      "center": [
+        -8.01093,
+        -85.71517,
+        81.11954
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          -8.106365585398602e-23,
+          -6.661338677146531e-16,
+          -0.007279322948306799
+        ],
+        [
+          -1.4723813641266444e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.08066366612911224
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5182561874389648
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-right-canine",
+      "name": "Lower right canine",
+      "source_name": "Lower canine.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent canine in the right half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 640,
+      "triangles": 1276,
+      "bounds": [
+        [
+          -16.64705,
+          -99.22304,
+          70.26333
+        ],
+        [
+          -8.94086,
+          -73.04695,
+          85.46827
+        ]
+      ],
+      "center": [
+        -12.79395,
+        -86.13499,
+        77.8658
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          -8.106365585398602e-23,
+          -6.661338677146531e-16,
+          -0.012518685311079025
+        ],
+        [
+          -1.4723813641266444e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.07660961151123047
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5166033506393433
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-right-first-premolar",
+      "name": "Lower right first premolar",
+      "source_name": "Lower first premolar.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent first premolar in the right half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 613,
+      "triangles": 1222,
+      "bounds": [
+        [
+          -20.71028,
+          -94.3841,
+          65.50342
+        ],
+        [
+          -12.93045,
+          -72.42253,
+          79.32806
+        ]
+      ],
+      "center": [
+        -16.82036,
+        -83.40332,
+        72.41574
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          -8.106365585398602e-23,
+          -6.661338677146531e-16,
+          -0.016786258667707443
+        ],
+        [
+          -1.4723813641266444e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.0714850053191185
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5202326774597168
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-right-second-premolar",
+      "name": "Lower right second premolar",
+      "source_name": "Lower second premolar.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent second premolar in the right half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 592,
+      "triangles": 1180,
+      "bounds": [
+        [
+          -23.85348,
+          -93.87789,
+          59.61005
+        ],
+        [
+          -15.89948,
+          -71.06922,
+          72.61965
+        ]
+      ],
+      "center": [
+        -19.87648,
+        -82.47356,
+        66.11485
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          -8.106365585398602e-23,
+          -6.661338677146531e-16,
+          -0.020149938762187958
+        ],
+        [
+          -1.4723813641266444e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.06503281742334366
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5221930742263794
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-right-first-molar",
+      "name": "Lower right first molar",
+      "source_name": "Lower first molar tooth.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent first molar in the right half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 2260,
+      "triangles": 4508,
+      "bounds": [
+        [
+          -28.78536,
+          -87.44768,
+          51.46751
+        ],
+        [
+          -16.71889,
+          -68.20301,
+          66.2198
+        ]
+      ],
+      "center": [
+        -22.75212,
+        -77.82534,
+        58.84366
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          -8.106365585398602e-23,
+          -6.661338677146531e-16,
+          -0.023150602355599403
+        ],
+        [
+          -1.4723813641266444e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.05665590986609459
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5242319107055664
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "lower-right-second-molar",
+      "name": "Lower right second molar",
+      "source_name": "Lower second molar tooth.r",
+      "group": "teeth",
+      "side": "right",
+      "kind": "tooth",
+      "arch": "lower",
+      "color": "#f1e9d5",
+      "description": "Permanent second molar in the right half of the lower dental arch. Teeth are shown separately from the bone count. Third molars are absent from this source atlas.",
+      "visible": true,
+      "source_modifiers": [],
+      "vertices": 840,
+      "triangles": 1676,
+      "bounds": [
+        [
+          -32.08457,
+          -82.2794,
+          39.17961
+        ],
+        [
+          -20.2687,
+          -64.03657,
+          55.32024
+        ]
+      ],
+      "center": [
+        -26.17663,
+        -73.15799,
+        47.24992
+      ],
+      "source_matrix_world": [
+        [
+          1.0000001192092896,
+          -8.106365585398602e-23,
+          -6.661338677146531e-16,
+          -0.026425056159496307
+        ],
+        [
+          -1.4723813641266444e-22,
+          1.0000001192092896,
+          -3.427267074584961e-07,
+          -0.04642820730805397
+        ],
+        [
+          6.661337088959755e-16,
+          3.427267074584961e-07,
+          1.0000001192092896,
+          1.5285784006118774
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "resources": [
+    {
+      "path": "assets/skull-ct/skull.glb",
+      "sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+      "byte_length": 34089676,
+      "archive": {
+        "path": "assets/skull-ct/skull.glb.zst",
+        "sha256": "4893cc864282aadf970aacab049b6f3d89d0739607155d04efea11e65a935a9c",
+        "byte_length": 21581382
+      }
+    },
+    {
+      "path": "assets/skull-ct/surface.glb",
+      "sha256": "55fb8e234ec5df00eaeaa1847b7576f8b1b210aaac30977d9a6a7a239d33ce8a",
+      "byte_length": 34188288,
+      "archive": {
+        "path": "assets/skull-ct/surface.glb.zst",
+        "sha256": "38c31ce3bf2a9e976eebd99e1b648a902ef360ce1a536267c530751f970c6a14",
+        "byte_length": 21635302
+      }
+    },
+    {
+      "path": "assets/skull-associated/bones.glb",
+      "sha256": "310b0f1698301c8caedceee87276070cf63db48f8fe412261c070bdc7ec636dd",
+      "byte_length": 430484,
+      "archive": {
+        "path": "assets/skull-associated/bones.glb.zst",
+        "sha256": "53b7966dc804fb40df8fef57a6702cf17e9169ef1f77ecff94dd040104dc94a0",
+        "byte_length": 193059
+      }
+    },
+    {
+      "path": "assets/skull-cavities/cavities.glb",
+      "sha256": "c0986af3a987428a37032dee655b4d103ced3bfac644e135c1635b7a463d9871",
+      "byte_length": 4555120,
+      "archive": {
+        "path": "assets/skull-cavities/cavities.glb.zst",
+        "sha256": "9aba2ba75b2c773db88b9ec7f2683b188b92bc1049cbb3ec46412d6126bb9b62",
+        "byte_length": 2893047
+      }
+    },
+    {
+      "path": "assets/skull/skull.glb",
+      "sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "byte_length": 3748788,
+      "archive": {
+        "path": "assets/skull/skull.glb.zst",
+        "sha256": "4acd98152cbefc5278c7c2ce9c4c0e0da1204ee26f28527794157cd8be75f97c",
+        "byte_length": 1766612
+      }
+    },
+    {
+      "path": "assets/bone-microct/fragment.glb",
+      "sha256": "edc6c3879f593c5886d89299aa285fbc8b1d7e4d203519c48bc3fd19575ae621",
+      "byte_length": 18648624,
+      "archive": {
+        "path": "assets/bone-microct/fragment.glb.zst",
+        "sha256": "0f207d9bef9a008b15a310fc3114e50c8cd2f28e140c9763313b136f1de0db63",
+        "byte_length": 3838434
+      }
+    },
+    {
+      "path": "assets/landmark-highlights/highlights.bin",
+      "sha256": "d1f7d4a62f3297fa2071ec7b051e19d8db92daccd8da8cdcb6816c5726a8c288",
+      "byte_length": 107990288,
+      "archive": {
+        "path": "assets/landmark-highlights/highlights.bin.zst",
+        "sha256": "60ad3151ea13604ee8ed1682c329a10954d0f633f5aa7fa83ea8c98118a80896",
+        "byte_length": 28692620
+      }
+    }
+  ]
+}

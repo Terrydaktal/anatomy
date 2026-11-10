@@ -1,0 +1,1015 @@
+{
+  "landmarks": 735,
+  "categories": {
+    "sutures": 51,
+    "foramina": 66,
+    "canals": 53,
+    "fissures": 20,
+    "processes": 106,
+    "articulations": 16,
+    "parts": 219,
+    "ridges": 51,
+    "notches": 21,
+    "grooves": 44,
+    "sinuses": 14,
+    "fossae": 50,
+    "landmarks": 24
+  },
+  "source_labels_not_directly_positioned": [
+    {
+      "source_name": "Anterior limb of stapes.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Anterior process of malleus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Anterior surface of petrous part.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Apex of petrous part.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Arcuate eminence.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Articular facet for malleus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Articular facet for stapes.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Articular facet of head of malleus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Articular facet of head of stapes.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Base of stapes.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Body of incus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Handle of malleus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Head of malleus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Lateral process of malleus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Lenticular process of incus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Long limb of incus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Mastoid notch.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Mastoid process.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Maxillary dental arch.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Neck of malleus.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Occipital margin of temporal bone.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Petrous part of temporal bone.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Posterior limb of stapes.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Posterior surface of petrous part.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Squamous part of temporal bone.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Styloid process of temporal bone.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Tegmen tympani.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    },
+    {
+      "source_name": "Tympanic part of temporal bone.s",
+      "reason": "No positioned source leader; unplaced duplicate or missing geometry."
+    }
+  ],
+  "ct_unavailable": [
+    {
+      "id": "left-obturator-foramen-of-stapes",
+      "owners": [
+        "stapes-left"
+      ]
+    },
+    {
+      "id": "right-obturator-foramen-of-stapes",
+      "owners": [
+        "stapes-right"
+      ]
+    },
+    {
+      "id": "left-anterior-process-of-malleus",
+      "owners": [
+        "malleus-left"
+      ]
+    },
+    {
+      "id": "left-greater-horn-of-hyoid-bone",
+      "owners": [
+        "hyoid-bone"
+      ]
+    },
+    {
+      "id": "left-lateral-process-of-malleus",
+      "owners": [
+        "malleus-left"
+      ]
+    },
+    {
+      "id": "left-lenticular-process-of-incus",
+      "owners": [
+        "incus-left"
+      ]
+    },
+    {
+      "id": "left-lesser-horn-of-hyoid-bone",
+      "owners": [
+        "hyoid-bone"
+      ]
+    },
+    {
+      "id": "right-anterior-process-of-malleus",
+      "owners": [
+        "malleus-right"
+      ]
+    },
+    {
+      "id": "right-greater-horn-of-hyoid-bone",
+      "owners": [
+        "hyoid-bone"
+      ]
+    },
+    {
+      "id": "right-lateral-process-of-malleus",
+      "owners": [
+        "malleus-right"
+      ]
+    },
+    {
+      "id": "right-lenticular-process-of-incus",
+      "owners": [
+        "incus-right"
+      ]
+    },
+    {
+      "id": "right-lesser-horn-of-hyoid-bone",
+      "owners": [
+        "hyoid-bone"
+      ]
+    },
+    {
+      "id": "left-articular-facet-for-malleus",
+      "owners": [
+        "incus-left"
+      ]
+    },
+    {
+      "id": "left-articular-facet-for-stapes",
+      "owners": [
+        "incus-left"
+      ]
+    },
+    {
+      "id": "left-articular-facet-of-head-of-malleus",
+      "owners": [
+        "malleus-left"
+      ]
+    },
+    {
+      "id": "left-articular-facet-of-head-of-stapes",
+      "owners": [
+        "stapes-left"
+      ]
+    },
+    {
+      "id": "right-articular-facet-for-malleus",
+      "owners": [
+        "incus-right"
+      ]
+    },
+    {
+      "id": "right-articular-facet-for-stapes",
+      "owners": [
+        "incus-right"
+      ]
+    },
+    {
+      "id": "right-articular-facet-of-head-of-malleus",
+      "owners": [
+        "malleus-right"
+      ]
+    },
+    {
+      "id": "right-articular-facet-of-head-of-stapes",
+      "owners": [
+        "stapes-right"
+      ]
+    },
+    {
+      "id": "body-of-hyoid-bone",
+      "owners": [
+        "hyoid-bone"
+      ]
+    },
+    {
+      "id": "left-anterior-limb-of-stapes",
+      "owners": [
+        "stapes-left"
+      ]
+    },
+    {
+      "id": "left-base-of-stapes",
+      "owners": [
+        "stapes-left"
+      ]
+    },
+    {
+      "id": "left-body-of-incus",
+      "owners": [
+        "incus-left"
+      ]
+    },
+    {
+      "id": "left-handle-of-malleus",
+      "owners": [
+        "malleus-left"
+      ]
+    },
+    {
+      "id": "left-head-of-malleus",
+      "owners": [
+        "malleus-left"
+      ]
+    },
+    {
+      "id": "left-long-limb-of-incus",
+      "owners": [
+        "incus-left"
+      ]
+    },
+    {
+      "id": "left-neck-of-malleus",
+      "owners": [
+        "malleus-left"
+      ]
+    },
+    {
+      "id": "left-posterior-limb-of-stapes",
+      "owners": [
+        "stapes-left"
+      ]
+    },
+    {
+      "id": "left-short-limb-of-incus",
+      "owners": [
+        "incus-left"
+      ]
+    },
+    {
+      "id": "right-anterior-limb-of-stapes",
+      "owners": [
+        "stapes-right"
+      ]
+    },
+    {
+      "id": "right-base-of-stapes",
+      "owners": [
+        "stapes-right"
+      ]
+    },
+    {
+      "id": "right-body-of-incus",
+      "owners": [
+        "incus-right"
+      ]
+    },
+    {
+      "id": "right-handle-of-malleus",
+      "owners": [
+        "malleus-right"
+      ]
+    },
+    {
+      "id": "right-head-of-malleus",
+      "owners": [
+        "malleus-right"
+      ]
+    },
+    {
+      "id": "right-long-limb-of-incus",
+      "owners": [
+        "incus-right"
+      ]
+    },
+    {
+      "id": "right-neck-of-malleus",
+      "owners": [
+        "malleus-right"
+      ]
+    },
+    {
+      "id": "right-posterior-limb-of-stapes",
+      "owners": [
+        "stapes-right"
+      ]
+    },
+    {
+      "id": "right-short-limb-of-incus",
+      "owners": [
+        "incus-right"
+      ]
+    }
+  ],
+  "source_projection_over_10_mm": [
+    {
+      "id": "foramen-magnum",
+      "distance_mm": 14.28519,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-foramen-rotundum",
+      "distance_mm": 21.99007,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-mental-foramen",
+      "distance_mm": 29.58205,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-opening-of-frontal-sinus",
+      "distance_mm": 12.76195,
+      "placement_method": "source-space-guide"
+    },
+    {
+      "id": "right-foramen-rotundum",
+      "distance_mm": 21.99007,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "right-mental-foramen",
+      "distance_mm": 29.58205,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "right-opening-of-frontal-sinus",
+      "distance_mm": 12.76195,
+      "placement_method": "source-space-guide"
+    },
+    {
+      "id": "left-pterygoid-canal",
+      "distance_mm": 17.71223,
+      "placement_method": "source-space-guide"
+    },
+    {
+      "id": "right-pterygoid-canal",
+      "distance_mm": 17.71223,
+      "placement_method": "source-space-guide"
+    },
+    {
+      "id": "external-occipital-protuberance",
+      "distance_mm": 19.29575,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "inferior-mental-spine",
+      "distance_mm": 16.0372,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-greater-horn-of-hyoid-bone",
+      "distance_mm": 15.74454,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-mastoid-process",
+      "distance_mm": 13.78661,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-parietal-eminence",
+      "distance_mm": 18.72306,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-posterior-clinoid-process",
+      "distance_mm": 17.29502,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-pterygoid-hamulus",
+      "distance_mm": 18.97963,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-pterygoid-process",
+      "distance_mm": 35.67775,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-pterygospinous-process",
+      "distance_mm": 10.09458,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-sphenoidal-lingula",
+      "distance_mm": 14.90719,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-spine-of-sphenoid-bone",
+      "distance_mm": 15.14162,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-vaginal-process-of-sphenoid-bone",
+      "distance_mm": 13.4133,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-zygomatic-process-of-frontal-bone",
+      "distance_mm": 26.13192,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "mental-protuberance",
+      "distance_mm": 31.15783,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "nasal-spine-of-frontal-bone",
+      "distance_mm": 15.57043,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-greater-horn-of-hyoid-bone",
+      "distance_mm": 15.74454,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-mastoid-process",
+      "distance_mm": 13.78661,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "right-parietal-eminence",
+      "distance_mm": 18.72306,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-posterior-clinoid-process",
+      "distance_mm": 17.29502,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "right-pterygoid-hamulus",
+      "distance_mm": 18.97963,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-pterygoid-process",
+      "distance_mm": 35.67775,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-pterygospinous-process",
+      "distance_mm": 10.09458,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-sphenoidal-lingula",
+      "distance_mm": 14.90719,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-spine-of-sphenoid-bone",
+      "distance_mm": 15.14162,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-vaginal-process-of-sphenoid-bone",
+      "distance_mm": 13.4133,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-zygomatic-process-of-frontal-bone",
+      "distance_mm": 26.13192,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "superior-mental-spine",
+      "distance_mm": 18.13907,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "alveolar-part-of-mandible",
+      "distance_mm": 29.30637,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "base-of-mandible",
+      "distance_mm": 23.54342,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "body-of-mandible",
+      "distance_mm": 26.77775,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "body-of-sphenoid-bone",
+      "distance_mm": 23.54245,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "dorsum-sellae",
+      "distance_mm": 11.72058,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "external-surface-of-squamous-part-of-frontal-bone",
+      "distance_mm": 11.56393,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "internal-surface-of-squamous-part-of-frontal-bone",
+      "distance_mm": 10.80266,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-external-surface-of-parietal-bone",
+      "distance_mm": 12.73132,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-frontal-border-of-parietal-bone",
+      "distance_mm": 22.77449,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-infratemporal-surface-of-greater-wing",
+      "distance_mm": 19.7948,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-internal-surface-of-parietal-bone",
+      "distance_mm": 32.13797,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-lateral-part-of-occipital-bone",
+      "distance_mm": 15.40818,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-lateral-pterygoid-plate",
+      "distance_mm": 16.44762,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-mastoid-angle-of-parietal-bone",
+      "distance_mm": 10.48731,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-mastoid-border-of-occipital-bone",
+      "distance_mm": 10.05761,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-maxillary-surface-of-greater-wing",
+      "distance_mm": 18.72715,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-occipital-border-of-parietal-bone",
+      "distance_mm": 27.86467,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-occipital-margin-of-temporal-bone",
+      "distance_mm": 22.45757,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-orbital-part-of-frontal-bone",
+      "distance_mm": 21.09985,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-orbital-surface-of-frontal-bone",
+      "distance_mm": 10.80469,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-parietal-margin-of-greater-wing",
+      "distance_mm": 18.49151,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-sagittal-border-of-parietal-bone",
+      "distance_mm": 10.42338,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-sphenoidal-angle-of-parietal-bone",
+      "distance_mm": 31.5312,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-squamosal-border-of-parietal-bone",
+      "distance_mm": 14.14071,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-squamosal-margin-of-greater-wing",
+      "distance_mm": 23.11609,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-squamous-part-of-temporal-bone",
+      "distance_mm": 28.88314,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-temporal-surface-of-frontal-bone",
+      "distance_mm": 22.87335,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-temporal-surface-of-greater-wing",
+      "distance_mm": 20.62255,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-tympanic-part-of-temporal-bone",
+      "distance_mm": 29.55233,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-zygomatic-margin-of-greater-wing",
+      "distance_mm": 25.565,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "nasal-margin-of-frontal-bone",
+      "distance_mm": 18.13848,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "nasal-part-of-frontal-bone",
+      "distance_mm": 22.02793,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "occipital-plane",
+      "distance_mm": 14.06529,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-external-surface-of-parietal-bone",
+      "distance_mm": 12.73132,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-frontal-border-of-parietal-bone",
+      "distance_mm": 22.77449,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-infratemporal-surface-of-greater-wing",
+      "distance_mm": 19.7948,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-internal-surface-of-parietal-bone",
+      "distance_mm": 32.13797,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-lateral-part-of-occipital-bone",
+      "distance_mm": 15.40818,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-lateral-pterygoid-plate",
+      "distance_mm": 16.44762,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "right-mastoid-angle-of-parietal-bone",
+      "distance_mm": 10.48731,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-mastoid-border-of-occipital-bone",
+      "distance_mm": 10.05761,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-maxillary-surface-of-greater-wing",
+      "distance_mm": 18.72715,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-occipital-border-of-parietal-bone",
+      "distance_mm": 27.86467,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-occipital-margin-of-temporal-bone",
+      "distance_mm": 22.45757,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-orbital-part-of-frontal-bone",
+      "distance_mm": 21.09985,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-orbital-surface-of-frontal-bone",
+      "distance_mm": 10.80469,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-parietal-margin-of-greater-wing",
+      "distance_mm": 18.49151,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-sagittal-border-of-parietal-bone",
+      "distance_mm": 10.42338,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-sphenoidal-angle-of-parietal-bone",
+      "distance_mm": 31.5312,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-squamosal-border-of-parietal-bone",
+      "distance_mm": 14.14071,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-squamosal-margin-of-greater-wing",
+      "distance_mm": 23.11609,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-squamous-part-of-temporal-bone",
+      "distance_mm": 28.88314,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-temporal-surface-of-frontal-bone",
+      "distance_mm": 22.87335,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-temporal-surface-of-greater-wing",
+      "distance_mm": 20.62255,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-tympanic-part-of-temporal-bone",
+      "distance_mm": 29.55233,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-zygomatic-margin-of-greater-wing",
+      "distance_mm": 25.565,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "squamous-part-of-frontal-bone",
+      "distance_mm": 22.44935,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "squamous-part-of-occipital-bone",
+      "distance_mm": 15.14362,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "internal-occipital-crest",
+      "distance_mm": 10.23597,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-frontal-part-of-orbital-margin",
+      "distance_mm": 18.29707,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-inferior-temporal-line",
+      "distance_mm": 30.15034,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-mylohyoid-line",
+      "distance_mm": 20.21634,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-oblique-line-of-mandible",
+      "distance_mm": 31.45957,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "left-superciliary-arch",
+      "distance_mm": 23.84444,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-superior-temporal-line",
+      "distance_mm": 33.79211,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-temporal-line",
+      "distance_mm": 13.79755,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-frontal-part-of-orbital-margin",
+      "distance_mm": 18.29707,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-inferior-temporal-line",
+      "distance_mm": 30.15034,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-mylohyoid-line",
+      "distance_mm": 20.21634,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-oblique-line-of-mandible",
+      "distance_mm": 31.45957,
+      "placement_method": "registered-source-region-anchor"
+    },
+    {
+      "id": "right-superciliary-arch",
+      "distance_mm": 23.84444,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-superior-temporal-line",
+      "distance_mm": 33.79211,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-temporal-line",
+      "distance_mm": 13.79755,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "sphenoidal-crest",
+      "distance_mm": 17.57027,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "supreme-nuchal-line",
+      "distance_mm": 11.31431,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "ethmoidal-notch",
+      "distance_mm": 11.63422,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-pterygoid-notch",
+      "distance_mm": 15.32161,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-supraorbital-notch-or-foramen",
+      "distance_mm": 14.46613,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-pterygoid-notch",
+      "distance_mm": 15.32161,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-supraorbital-notch-or-foramen",
+      "distance_mm": 14.46613,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "groove-for-marginal-sinus",
+      "distance_mm": 10.66874,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-groove-for-middle-meningeal-artery",
+      "distance_mm": 32.57521,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-groove-of-pterygoid-hamulus",
+      "distance_mm": 12.28427,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-sulcus-of-auditory-tube",
+      "distance_mm": 20.49135,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-groove-for-middle-meningeal-artery",
+      "distance_mm": 32.57521,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-groove-of-pterygoid-hamulus",
+      "distance_mm": 12.28427,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-sulcus-of-auditory-tube",
+      "distance_mm": 20.49135,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "left-scaphoid-fossa",
+      "distance_mm": 10.05247,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "right-scaphoid-fossa",
+      "distance_mm": 10.05247,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "genion",
+      "distance_mm": 20.27402,
+      "placement_method": "native-surface-guide"
+    },
+    {
+      "id": "glabella",
+      "distance_mm": 15.33445,
+      "placement_method": "native-contour-extremum"
+    },
+    {
+      "id": "gnathion",
+      "distance_mm": 19.53705,
+      "placement_method": "native-contour-extremum"
+    },
+    {
+      "id": "mandibular-symphysis",
+      "distance_mm": 26.46913,
+      "placement_method": "native-surface-guide"
+    }
+  ]
+}

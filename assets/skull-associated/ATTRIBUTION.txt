@@ -1,0 +1,2 @@
+Six auditory ossicles and hyoid extracted without changing source vertices, face order or surface normals. Source: Z-Anatomy / BodyParts3D; see ../skull/ATTRIBUTION.txt and ../skull/SOURCE-LICENSE.txt.
+CT positions are estimated by register_associated_bones.py; these bones are not segmented from the CT specimen. The complete reference skull is not loaded by the viewer.

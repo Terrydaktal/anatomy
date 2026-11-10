@@ -1,0 +1,16 @@
+A micro-CT of a human skull (2022), Thomas Kirchner and contributors.
+Dataset: https://doi.org/10.5281/zenodo.6108435
+Descriptor: https://arxiv.org/abs/2202.11519
+Institutions: Martin-Luther University Halle-Wittenberg; Helmholtz Centre for Environmental Research UFZ.
+Contributors include John Maximilian Köhne, Hans-Jörg Vogel, Jan Laufer and Heike Kielstein.
+Licence: Creative Commons Attribution 4.0 International (CC BY 4.0).
+https://creativecommons.org/licenses/by/4.0/
+
+Adaptation: an approximately 17.5 x 17.5 mm skull-vault surface patch from the published binary
+bone mask. Native-spacing marching cubes, rectangular computational crop faces, rigid
+orientation/centering, display colour and smooth vertex normals; no decimation or geometric smoothing.
+All porosity comes from the source segmentation; no artificial trabeculae were generated.
+Three interpretive educational pins mark approximate cortical-table/diploe locations;
+the source contains no separate tissue labels for those layers.
+This independent donor fragment is not registered to the full-skull models.
+Exact source checksums, voxel crop, transform and extraction settings are in manifest.json.

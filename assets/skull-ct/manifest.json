@@ -1,0 +1,953 @@
+{
+  "title": "CT skull \u00b7 OUVC 10503",
+  "model": "assets/skull-ct/skull.glb",
+  "sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+  "units": "display units",
+  "axes": {
+    "x": "patient left",
+    "y": "superior",
+    "z": "anterior"
+  },
+  "source": {
+    "name": "Ohio University \u00b7 WitmerLab",
+    "specimen": "OUVC 10503",
+    "url": "https://people.ohio.edu/witmerl/3D_human.htm",
+    "methods_url": "https://people.ohio.edu/witmerl/3D_human_methods.htm",
+    "download_url": "https://people.ohio.edu/witmerl/3D_human/OU-HCOM_3D_skull_highest-res.pdf",
+    "pdf_sha256": "323cb4b3ab608da1dda6bb7582d65a0560f637131e56bd197fc4a5c8bcd2f869",
+    "decoder_url": "https://raw.githubusercontent.com/svhss/u3d-mesh-extract/71c5f4428ae3bcff9c2521c4e00dd938a703a648/scripts/u3d2mesh.py",
+    "decoder_sha256": "d2a42da14e1bb6933f976c863f6b0c83fc08a7b2143eb33a62d33ef055ec6289",
+    "acquisition": "CT, 625 \u00b5m slice thickness, GE LightSpeed Ultra Multi-Slice, 120 kV, 200 mA",
+    "license": "assets/skull-ct/ATTRIBUTION.txt",
+    "scale_note": "The U3D unit-scale field is zero. Native coordinates are multiplied by 10 for display; viewer coordinates are not calibrated physical measurements.",
+    "modifications": "Decoded every source triangle at full detail; separated the two disconnected inferior conchae without changing geometry; retained source dental-arch grouping; rigidly rotated, centered and uniformly scaled for display; computed smooth surface normals. No decimation, subdivision, geometric smoothing, synthetic pores or registration to another subject."
+  },
+  "coverage": {
+    "cranial": 8,
+    "facial": 14,
+    "dentition_meshes": 2
+  },
+  "groups": [
+    {
+      "id": "cranial",
+      "name": "Cranial bones",
+      "description": "8 bones \u00b7 brain case and cranial base"
+    },
+    {
+      "id": "facial",
+      "name": "Facial bones",
+      "description": "14 bones \u00b7 face, palate and nasal cavity"
+    },
+    {
+      "id": "teeth",
+      "name": "Teeth",
+      "description": "Upper and lower dental arches \u00b7 original source grouping"
+    }
+  ],
+  "structures": [
+    {
+      "id": "frontal-bone",
+      "name": "Frontal bone",
+      "source_name": "Frontal bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#e8b45d",
+      "description": "Forms the forehead, roofs of the orbits and the anterior cranial floor.",
+      "visible": true,
+      "vertices": 79998,
+      "triangles": 159988,
+      "bounds": [
+        [
+          -53.8679,
+          -2.77529,
+          14.23416
+        ],
+        [
+          58.9083,
+          100.42673,
+          81.93978
+        ]
+      ],
+      "center": [
+        2.5202,
+        48.82572,
+        48.08697
+      ]
+    },
+    {
+      "id": "parietal-bone-left",
+      "name": "Left parietal bone",
+      "source_name": "Left Parietal",
+      "group": "cranial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#e78f9c",
+      "description": "Forms the upper lateral wall and roof of the cranial vault.",
+      "visible": true,
+      "vertices": 69994,
+      "triangles": 139992,
+      "bounds": [
+        [
+          0.34929,
+          -0.58828,
+          -81.12583
+        ],
+        [
+          70.2454,
+          103.87685,
+          34.47696
+        ]
+      ],
+      "center": [
+        35.29735,
+        51.64429,
+        -23.32444
+      ]
+    },
+    {
+      "id": "parietal-bone-right",
+      "name": "Right parietal bone",
+      "source_name": "Right Parietal",
+      "group": "cranial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#79b4e5",
+      "description": "Forms the upper lateral wall and roof of the cranial vault.",
+      "visible": true,
+      "vertices": 70001,
+      "triangles": 139994,
+      "bounds": [
+        [
+          -69.0018,
+          7.64082,
+          -78.83042
+        ],
+        [
+          12.65319,
+          103.98419,
+          39.24418
+        ]
+      ],
+      "center": [
+        -28.17431,
+        55.8125,
+        -19.79312
+      ]
+    },
+    {
+      "id": "temporal-bone-left",
+      "name": "Left temporal bone",
+      "source_name": "Left Temporal",
+      "group": "cranial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#ac99dd",
+      "description": "Forms part of the lateral skull and cranial base. Its petrous part surrounds the middle and inner ear.",
+      "visible": true,
+      "vertices": 38876,
+      "triangles": 77986,
+      "bounds": [
+        [
+          6.2818,
+          -44.50534,
+          -58.3157
+        ],
+        [
+          67.0077,
+          29.91281,
+          33.50962
+        ]
+      ],
+      "center": [
+        36.64475,
+        -7.29626,
+        -12.40304
+      ]
+    },
+    {
+      "id": "temporal-bone-right",
+      "name": "Right temporal bone",
+      "source_name": "Right Temporal",
+      "group": "cranial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#7bb69a",
+      "description": "Forms part of the lateral skull and cranial base. Its petrous part surrounds the middle and inner ear.",
+      "visible": true,
+      "vertices": 38889,
+      "triangles": 77988,
+      "bounds": [
+        [
+          -70.2454,
+          -30.41722,
+          -53.20431
+        ],
+        [
+          -12.8698,
+          41.39939,
+          40.73276
+        ]
+      ],
+      "center": [
+        -41.5576,
+        5.49108,
+        -6.23577
+      ]
+    },
+    {
+      "id": "occipital-bone",
+      "name": "Occipital bone",
+      "source_name": "Occipital bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#63bec7",
+      "description": "Forms the back and lower part of the cranium and surrounds the foramen magnum.",
+      "visible": true,
+      "vertices": 88925,
+      "triangles": 179902,
+      "bounds": [
+        [
+          -59.1872,
+          -35.66707,
+          -87.7686
+        ],
+        [
+          51.1363,
+          66.2703,
+          10.39762
+        ]
+      ],
+      "center": [
+        -4.02545,
+        15.30161,
+        -38.68549
+      ]
+    },
+    {
+      "id": "sphenoid-bone",
+      "name": "Sphenoid bone",
+      "source_name": "Sphenoid bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#bac95f",
+      "description": "Spans the central cranial base. Its wings contribute to the orbits and the sides of the skull.",
+      "visible": true,
+      "vertices": 64835,
+      "triangles": 129976,
+      "bounds": [
+        [
+          -57.831,
+          -46.01077,
+          -5.88515
+        ],
+        [
+          53.2389,
+          34.79851,
+          53.43772
+        ]
+      ],
+      "center": [
+        -2.29605,
+        -5.60613,
+        23.77629
+      ]
+    },
+    {
+      "id": "ethmoid-bone",
+      "name": "Ethmoid bone",
+      "source_name": "Ethmoid bone",
+      "group": "cranial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#dc92c1",
+      "description": "Lies between the orbits. Contributes to the nasal septum, nasal cavity and anterior cranial floor.",
+      "visible": true,
+      "vertices": 35796,
+      "triangles": 71984,
+      "bounds": [
+        [
+          -25.0103,
+          -27.4333,
+          24.91168
+        ],
+        [
+          20.6473,
+          17.29021,
+          79.83635
+        ]
+      ],
+      "center": [
+        -2.1815,
+        -5.07154,
+        52.37402
+      ]
+    },
+    {
+      "id": "maxilla-left",
+      "name": "Left maxilla",
+      "source_name": "Left Maxilla",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#edaa7d",
+      "description": "Forms the upper jaw and part of the hard palate, nasal cavity and orbital floor. Supports the upper teeth.",
+      "visible": true,
+      "vertices": 34921,
+      "triangles": 69990,
+      "bounds": [
+        [
+          -4.4973,
+          -62.10745,
+          23.90187
+        ],
+        [
+          43.8625,
+          8.70855,
+          82.44119
+        ]
+      ],
+      "center": [
+        19.6826,
+        -26.69945,
+        53.17153
+      ]
+    },
+    {
+      "id": "maxilla-right",
+      "name": "Right maxilla",
+      "source_name": "Right Maxilla",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#80caca",
+      "description": "Forms the upper jaw and part of the hard palate, nasal cavity and orbital floor. Supports the upper teeth.",
+      "visible": true,
+      "vertices": 30993,
+      "triangles": 61994,
+      "bounds": [
+        [
+          -51.6134,
+          -61.46352,
+          27.31097
+        ],
+        [
+          -0.46958,
+          6.51206,
+          82.76837
+        ]
+      ],
+      "center": [
+        -26.04149,
+        -27.47573,
+        55.03967
+      ]
+    },
+    {
+      "id": "zygomatic-bone-left",
+      "name": "Left zygomatic bone",
+      "source_name": "Left Zygomatic",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#90bd77",
+      "description": "Forms the prominence of the cheek and contributes to the lateral orbital wall and zygomatic arch.",
+      "visible": true,
+      "vertices": 7002,
+      "triangles": 14000,
+      "bounds": [
+        [
+          25.3568,
+          -37.79262,
+          24.94839
+        ],
+        [
+          53.1641,
+          8.44381,
+          68.15127
+        ]
+      ],
+      "center": [
+        39.26045,
+        -14.6744,
+        46.54983
+      ]
+    },
+    {
+      "id": "zygomatic-bone-right",
+      "name": "Right zygomatic bone",
+      "source_name": "Right Zygomatic",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#bb98cb",
+      "description": "Forms the prominence of the cheek and contributes to the lateral orbital wall and zygomatic arch.",
+      "visible": true,
+      "vertices": 7001,
+      "triangles": 13998,
+      "bounds": [
+        [
+          -61.8834,
+          -31.66999,
+          28.28836
+        ],
+        [
+          -28.9973,
+          17.00991,
+          69.84316
+        ]
+      ],
+      "center": [
+        -45.44035,
+        -7.33004,
+        49.06576
+      ]
+    },
+    {
+      "id": "nasal-bone-left",
+      "name": "Left nasal bone",
+      "source_name": "Left Nasal",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#e5cf73",
+      "description": "Forms the bony bridge of the nose.",
+      "visible": true,
+      "vertices": 1152,
+      "triangles": 2300,
+      "bounds": [
+        [
+          0.25466,
+          -20.43373,
+          71.30051
+        ],
+        [
+          7.21345,
+          8.0783,
+          87.51001
+        ]
+      ],
+      "center": [
+        3.73405,
+        -6.17771,
+        79.40526
+      ]
+    },
+    {
+      "id": "nasal-bone-right",
+      "name": "Right nasal bone",
+      "source_name": "Right Nasal",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#8b98df",
+      "description": "Forms the bony bridge of the nose.",
+      "visible": true,
+      "vertices": 1252,
+      "triangles": 2500,
+      "bounds": [
+        [
+          -8.9367,
+          -19.43642,
+          72.04538
+        ],
+        [
+          2.664,
+          9.01791,
+          87.7686
+        ]
+      ],
+      "center": [
+        -3.13635,
+        -5.20926,
+        79.90699
+      ]
+    },
+    {
+      "id": "lacrimal-bone-left",
+      "name": "Left lacrimal bone",
+      "source_name": "Left Lacrimal",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#a3cacc",
+      "description": "Small bone in the medial orbital wall, beside the groove for the lacrimal sac.",
+      "visible": true,
+      "vertices": 2496,
+      "triangles": 5000,
+      "bounds": [
+        [
+          6.65279,
+          -27.16594,
+          46.79114
+        ],
+        [
+          16.1502,
+          5.59127,
+          67.57342
+        ]
+      ],
+      "center": [
+        11.4015,
+        -10.78734,
+        57.18228
+      ]
+    },
+    {
+      "id": "lacrimal-bone-right",
+      "name": "Right lacrimal bone",
+      "source_name": "Right Lacrimal",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#d6a38e",
+      "description": "Small bone in the medial orbital wall, beside the groove for the lacrimal sac.",
+      "visible": true,
+      "vertices": 2996,
+      "triangles": 6000,
+      "bounds": [
+        [
+          -20.2033,
+          -28.61882,
+          47.18715
+        ],
+        [
+          -7.4303,
+          11.63555,
+          68.33349
+        ]
+      ],
+      "center": [
+        -13.8168,
+        -8.49164,
+        57.76032
+      ]
+    },
+    {
+      "id": "palatine-bone-left",
+      "name": "Left palatine bone",
+      "source_name": "Left Palatine",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#c49b65",
+      "description": "Forms the posterior hard palate and contributes to the nasal cavity and a small part of the orbit.",
+      "visible": true,
+      "vertices": 4896,
+      "triangles": 9800,
+      "bounds": [
+        [
+          -4.96394,
+          -45.45088,
+          23.65473
+        ],
+        [
+          16.3347,
+          -13.97266,
+          54.05007
+        ]
+      ],
+      "center": [
+        5.68538,
+        -29.71177,
+        38.8524
+      ]
+    },
+    {
+      "id": "palatine-bone-right",
+      "name": "Right palatine bone",
+      "source_name": "Right Palatine",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#91b0d0",
+      "description": "Forms the posterior hard palate and contributes to the nasal cavity and a small part of the orbit.",
+      "visible": true,
+      "vertices": 4248,
+      "triangles": 8500,
+      "bounds": [
+        [
+          -23.8385,
+          -40.17608,
+          28.07422
+        ],
+        [
+          -2.81428,
+          -9.31567,
+          55.38764
+        ]
+      ],
+      "center": [
+        -13.32639,
+        -24.74587,
+        41.73093
+      ]
+    },
+    {
+      "id": "inferior-nasal-concha-left",
+      "name": "Left inferior nasal concha",
+      "source_name": "Inferior turbinates",
+      "group": "facial",
+      "side": "left",
+      "kind": "bone",
+      "color": "#d9b6ce",
+      "description": "A separate curled bone on the lateral wall of the nasal cavity. The middle and superior conchae belong to the ethmoid.",
+      "visible": true,
+      "vertices": 2165,
+      "triangles": 4326,
+      "bounds": [
+        [
+          3.09286,
+          -35.28461,
+          31.47378
+        ],
+        [
+          9.57397,
+          -21.80029,
+          74.64031
+        ]
+      ],
+      "center": [
+        6.33341,
+        -28.54245,
+        53.05705
+      ]
+    },
+    {
+      "id": "inferior-nasal-concha-right",
+      "name": "Right inferior nasal concha",
+      "source_name": "Inferior turbinates",
+      "group": "facial",
+      "side": "right",
+      "kind": "bone",
+      "color": "#b4cb8d",
+      "description": "A separate curled bone on the lateral wall of the nasal cavity. The middle and superior conchae belong to the ethmoid.",
+      "visible": true,
+      "vertices": 2335,
+      "triangles": 4674,
+      "bounds": [
+        [
+          -17.9301,
+          -33.96749,
+          31.61315
+        ],
+        [
+          -7.2585,
+          -20.24266,
+          74.25968
+        ]
+      ],
+      "center": [
+        -12.5943,
+        -27.10508,
+        52.93642
+      ]
+    },
+    {
+      "id": "vomer",
+      "name": "Vomer",
+      "source_name": "Vomer",
+      "group": "facial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#b8a9dc",
+      "description": "Forms the lower and posterior part of the bony nasal septum.",
+      "visible": true,
+      "vertices": 2697,
+      "triangles": 5398,
+      "bounds": [
+        [
+          -5.01124,
+          -38.34245,
+          11.91775
+        ],
+        [
+          1.48224,
+          -16.91021,
+          72.42506
+        ]
+      ],
+      "center": [
+        -1.7645,
+        -27.62633,
+        42.17141
+      ]
+    },
+    {
+      "id": "mandible",
+      "name": "Mandible",
+      "source_name": "Mandible",
+      "group": "facial",
+      "side": "midline",
+      "kind": "bone",
+      "color": "#b8bea6",
+      "description": "Forms the lower jaw and supports the lower teeth. Its condyles articulate with the temporal bones.",
+      "visible": true,
+      "vertices": 84652,
+      "triangles": 169988,
+      "bounds": [
+        [
+          -58.713,
+          -103.98419,
+          -11.19347
+        ],
+        [
+          46.5489,
+          -5.78693,
+          67.99683
+        ]
+      ],
+      "center": [
+        -6.08205,
+        -54.88556,
+        28.40168
+      ]
+    },
+    {
+      "id": "upper-dentition",
+      "name": "Upper dentition",
+      "source_name": "Maxillary teeth",
+      "group": "teeth",
+      "side": "bilateral",
+      "kind": "dentition",
+      "arch": "upper",
+      "color": "#e2d8bf",
+      "visible": true,
+      "description": "The upper dental arch of the same CT-scanned specimen. The source groups these teeth into one mesh; this viewer preserves that grouping rather than inventing individual tooth boundaries.",
+      "vertices": 16510,
+      "triangles": 33000,
+      "bounds": [
+        [
+          -38.9487,
+          -70.82993,
+          27.91124
+        ],
+        [
+          25.3389,
+          -35.0516,
+          81.79021
+        ]
+      ],
+      "center": [
+        -6.8049,
+        -52.94077,
+        54.85073
+      ]
+    },
+    {
+      "id": "lower-dentition",
+      "name": "Lower dentition",
+      "source_name": "Mandible teeth",
+      "group": "teeth",
+      "side": "bilateral",
+      "kind": "dentition",
+      "arch": "lower",
+      "color": "#e2d8bf",
+      "visible": true,
+      "description": "The lower dental arch of the same CT-scanned specimen. The source groups these teeth into one mesh; this viewer preserves that grouping rather than inventing individual tooth boundaries.",
+      "vertices": 15997,
+      "triangles": 31998,
+      "bounds": [
+        [
+          -40.5868,
+          -88.80961,
+          11.75392
+        ],
+        [
+          21.7905,
+          -48.55381,
+          74.7053
+        ]
+      ],
+      "center": [
+        -9.39815,
+        -68.68171,
+        43.22961
+      ]
+    }
+  ],
+  "defaults": {
+    "colors": false,
+    "gloss": 10,
+    "ambientOcclusion": true
+  },
+  "surface": {
+    "model": "assets/skull-ct/surface.glb",
+    "sha256": "55fb8e234ec5df00eaeaa1847b7576f8b1b210aaac30977d9a6a7a239d33ce8a",
+    "native_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+    "source_pdf_sha256": "323cb4b3ab608da1dda6bb7582d65a0560f637131e56bd197fc4a5c8bcd2f869",
+    "method": "Original U3D per-corner surface normals; split authored normal seams only. Triangle positions, order, count and face IDs are unchanged. No subdivision or geometric smoothing.",
+    "structures": [
+      {
+        "id": "frontal-bone",
+        "triangles": 159988,
+        "vertices": 80566,
+        "normal_change_degrees_p95": 6.124635095140301,
+        "normal_change_degrees_max": 147.76760036213932
+      },
+      {
+        "id": "parietal-bone-left",
+        "triangles": 139992,
+        "vertices": 70224,
+        "normal_change_degrees_p95": 5.021340417873188,
+        "normal_change_degrees_max": 170.70266535888032
+      },
+      {
+        "id": "parietal-bone-right",
+        "triangles": 139994,
+        "vertices": 70259,
+        "normal_change_degrees_p95": 4.8633804713726025,
+        "normal_change_degrees_max": 147.26397427462655
+      },
+      {
+        "id": "temporal-bone-left",
+        "triangles": 77986,
+        "vertices": 39046,
+        "normal_change_degrees_p95": 7.4044897134817615,
+        "normal_change_degrees_max": 158.19967411744213
+      },
+      {
+        "id": "temporal-bone-right",
+        "triangles": 77988,
+        "vertices": 39097,
+        "normal_change_degrees_p95": 7.861752105882905,
+        "normal_change_degrees_max": 150.65995125661243
+      },
+      {
+        "id": "occipital-bone",
+        "triangles": 179902,
+        "vertices": 90036,
+        "normal_change_degrees_p95": 11.319459599230541,
+        "normal_change_degrees_max": 162.35123965789504
+      },
+      {
+        "id": "sphenoid-bone",
+        "triangles": 129976,
+        "vertices": 65050,
+        "normal_change_degrees_p95": 6.33228714895159,
+        "normal_change_degrees_max": 149.3916506216448
+      },
+      {
+        "id": "ethmoid-bone",
+        "triangles": 71984,
+        "vertices": 36156,
+        "normal_change_degrees_p95": 7.692956560973398,
+        "normal_change_degrees_max": 174.7945728165784
+      },
+      {
+        "id": "maxilla-left",
+        "triangles": 69990,
+        "vertices": 35240,
+        "normal_change_degrees_p95": 8.689928984530452,
+        "normal_change_degrees_max": 160.52664065268527
+      },
+      {
+        "id": "maxilla-right",
+        "triangles": 61994,
+        "vertices": 31175,
+        "normal_change_degrees_p95": 7.776137812340818,
+        "normal_change_degrees_max": 139.85829406034205
+      },
+      {
+        "id": "zygomatic-bone-left",
+        "triangles": 14000,
+        "vertices": 7061,
+        "normal_change_degrees_p95": 6.917640984822087,
+        "normal_change_degrees_max": 116.8196088417933
+      },
+      {
+        "id": "zygomatic-bone-right",
+        "triangles": 13998,
+        "vertices": 7066,
+        "normal_change_degrees_p95": 6.679410890863095,
+        "normal_change_degrees_max": 119.97999611418655
+      },
+      {
+        "id": "nasal-bone-left",
+        "triangles": 2300,
+        "vertices": 1152,
+        "normal_change_degrees_p95": 4.581267757466032,
+        "normal_change_degrees_max": 11.861010122293342
+      },
+      {
+        "id": "nasal-bone-right",
+        "triangles": 2500,
+        "vertices": 1252,
+        "normal_change_degrees_p95": 4.7370279700268085,
+        "normal_change_degrees_max": 9.34461017732931
+      },
+      {
+        "id": "lacrimal-bone-left",
+        "triangles": 5000,
+        "vertices": 2497,
+        "normal_change_degrees_p95": 5.709065254543598,
+        "normal_change_degrees_max": 57.64149282468268
+      },
+      {
+        "id": "lacrimal-bone-right",
+        "triangles": 6000,
+        "vertices": 2997,
+        "normal_change_degrees_p95": 5.09253701090509,
+        "normal_change_degrees_max": 58.93638626357559
+      },
+      {
+        "id": "palatine-bone-left",
+        "triangles": 9800,
+        "vertices": 4897,
+        "normal_change_degrees_p95": 4.954001548971372,
+        "normal_change_degrees_max": 62.13905547707697
+      },
+      {
+        "id": "palatine-bone-right",
+        "triangles": 8500,
+        "vertices": 4249,
+        "normal_change_degrees_p95": 5.1830378502801135,
+        "normal_change_degrees_max": 62.42008841999707
+      },
+      {
+        "id": "inferior-nasal-concha-left",
+        "triangles": 4326,
+        "vertices": 2167,
+        "normal_change_degrees_p95": 4.89580678318299,
+        "normal_change_degrees_max": 67.82596811891469
+      },
+      {
+        "id": "inferior-nasal-concha-right",
+        "triangles": 4674,
+        "vertices": 2335,
+        "normal_change_degrees_p95": 4.739339426771446,
+        "normal_change_degrees_max": 18.105000373358237
+      },
+      {
+        "id": "vomer",
+        "triangles": 5398,
+        "vertices": 2730,
+        "normal_change_degrees_p95": 9.228502451421484,
+        "normal_change_degrees_max": 126.11477810544434
+      },
+      {
+        "id": "mandible",
+        "triangles": 169988,
+        "vertices": 84926,
+        "normal_change_degrees_p95": 6.400721784633628,
+        "normal_change_degrees_max": 165.79698680298483
+      },
+      {
+        "id": "upper-dentition",
+        "triangles": 33000,
+        "vertices": 16516,
+        "normal_change_degrees_p95": 4.135255295092422,
+        "normal_change_degrees_max": 80.13681891411866
+      },
+      {
+        "id": "lower-dentition",
+        "triangles": 31998,
+        "vertices": 15997,
+        "normal_change_degrees_p95": 4.378855935761901,
+        "normal_change_degrees_max": 14.859694101652966
+      }
+    ]
+  }
+}

@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "title": "Native geometry-fitted skull aperture rims",
+  "models": {
+    "ct": {
+      "model": "assets/skull-ct/skull.glb",
+      "sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8"
+    },
+    "reference": {
+      "model": "assets/skull/skull.glb",
+      "sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb"
+    }
+  },
+  "geometries": {
+    "ct:maxilla-left": {
+      "vertices": 34921,
+      "triangles": 69990,
+      "positions_sha256": "447c9e14189e68cf1cdae79b74fe32b4bfeef28aaf64f6010afe2a9c653a05a0",
+      "indices_sha256": "7ff962fa5c11f18dd6bffceaf71c7146870a4a5cd28f5ae16954bde3e80ea6de",
+      "winding_corrections": 6
+    },
+    "ct:maxilla-right": {
+      "vertices": 30993,
+      "triangles": 61994,
+      "positions_sha256": "103cfb7255c865c65f477cc9f78b65f30a8948f1de030d74b8dc3b59e2242b73",
+      "indices_sha256": "1f6b81d47a30be8f3328e46071188f3ecdf930d754a8c7e3b6f999f39e501cd1",
+      "winding_corrections": 4
+    },
+    "ct:mandible": {
+      "vertices": 84652,
+      "triangles": 169988,
+      "positions_sha256": "9ca05c9fc49d7714300c10bffc6e49db4f2f885ce558b7e5b81b5e73698b1334",
+      "indices_sha256": "5c275bfda682045b7bd957da40e2cb60ab1e05b9bd37f7e940e9f906138f3c16",
+      "winding_corrections": 19
+    },
+    "reference:maxilla-left": {
+      "vertices": 2399,
+      "triangles": 4798,
+      "positions_sha256": "3701f583694b3a1a90445e91fea26728868f500cbab4e5617caa441ba3283f64",
+      "indices_sha256": "13b72da1880a852b5e0eea27d5130b6ef568cfaf18ea376fe257fe0ecd0a3f9e",
+      "winding_corrections": 4796
+    },
+    "reference:maxilla-right": {
+      "vertices": 2399,
+      "triangles": 4798,
+      "positions_sha256": "467078d7b086a84118a13e82cb962d685f6306afe271b6c1d8efa6276716a3c2",
+      "indices_sha256": "13b72da1880a852b5e0eea27d5130b6ef568cfaf18ea376fe257fe0ecd0a3f9e",
+      "winding_corrections": 2
+    },
+    "reference:mandible": {
+      "vertices": 9388,
+      "triangles": 18838,
+      "positions_sha256": "2499670d489e7662e229a7587e8f77ffb3775f2a9bfaaea087ffef67ad8a2ed1",
+      "indices_sha256": "f6cf5369531d44b93864450c5cbb4165fa40b52309a0151b64075258697edfa2",
+      "winding_corrections": 14
+    }
+  },
+  "binary": {
+    "url": "assets/landmark-regions/apertures.bin",
+    "sha256": "dc6db916197589679a490879089c9ba7bb6af718ab9f074acabe848d6c5eb3ea",
+    "byte_length": 493560,
+    "positions_type": "float32-le",
+    "source_faces_type": "uint32-le"
+  },
+  "notes": "Only supported, closed apertures near named anatomical guides are exported. Anterior views are used for infraorbital foramina and 45-degree anterolateral views for mental foramina. Each rim follows the irregular native depth contour; it is not a circular guide neighborhood. Anatomical identity, thresholds and contour fitting remain inferred rather than manually segmented anatomy. The actual central opening is excluded. Every emitted vertex remains on its recorded original specimen triangle. Source face IDs refer to the manifest GLB order and must not be reordered by a BVH. No geometry or region boundary is transferred between specimens.",
+  "coverage": {
+    "regions": 4,
+    "ct": 4,
+    "reference": 0
+  },
+  "regions": [
+    {
+      "dataset": "ct",
+      "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+      "feature_id": "left-infraorbital-foramen",
+      "owner": "maxilla-left",
+      "method": "native-depth-fitted-aperture-rim",
+      "evidence": "Closed depth depression measured from the specimen's original mesh; anatomical identity and depth contour are inferred. Rim polygons are subdivisions/clips of recorded original source triangles, never a synthetic aperture cap.",
+      "approximate": true,
+      "bounds": [
+        [
+          22.65764,
+          -28.82159,
+          62.23998
+        ],
+        [
+          26.93264,
+          -24.42186,
+          68.92468
+        ]
+      ],
+      "center": [
+        24.87579,
+        -26.58245,
+        66.60369
+      ],
+      "surface_anchor": [
+        26.03978,
+        -25.93231,
+        65.84106
+      ],
+      "area": 22.022632,
+      "triangle_count": 3846,
+      "coordinate_units": "uncalibrated-display-units",
+      "area_units": "square display units",
+      "positions_byte_offset": 0,
+      "positions_count": 34614,
+      "source_faces_byte_offset": 138456,
+      "source_faces_count": 3846,
+      "fit": {
+        "frame": {
+          "origin": [
+            22.85764,
+            -22.99662,
+            63.4862
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "u": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "v": [
+            0,
+            1,
+            0
+          ]
+        },
+        "depth_resolution": 0.125,
+        "search_half_width": 12.0,
+        "depth_threshold": 1.6,
+        "observed_aperture_area": 6.78125,
+        "guide_offset": 4.11474,
+        "aperture_offset_uv": [
+          2.01815,
+          -3.58583
+        ],
+        "depth_peak": 4.979294,
+        "outer_rim_width": 0.7,
+        "inner_rim_width": 0.4,
+        "max_wall_depth": 6.0,
+        "max_projected_subtriangle_edge": 0.2,
+        "native_source_faces": 109,
+        "central_opening_excluded": true,
+        "coordinate_note": "Distances/areas use viewer coordinates. The CT model's display scale is not physically calibrated."
+      }
+    },
+    {
+      "dataset": "ct",
+      "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+      "feature_id": "right-infraorbital-foramen",
+      "owner": "maxilla-right",
+      "method": "native-depth-fitted-aperture-rim",
+      "evidence": "Closed depth depression measured from the specimen's original mesh; anatomical identity and depth contour are inferred. Rim polygons are subdivisions/clips of recorded original source triangles, never a synthetic aperture cap.",
+      "approximate": true,
+      "bounds": [
+        [
+          -30.84928,
+          -24.6194,
+          65.95521
+        ],
+        [
+          -27.69931,
+          -21.09645,
+          70.18577
+        ]
+      ],
+      "center": [
+        -29.21637,
+        -22.8752,
+        69.05272
+      ],
+      "surface_anchor": [
+        -29.79683,
+        -22.35106,
+        68.39131
+      ],
+      "area": 14.368264,
+      "triangle_count": 3348,
+      "coordinate_units": "uncalibrated-display-units",
+      "area_units": "square display units",
+      "positions_byte_offset": 153840,
+      "positions_count": 30132,
+      "source_faces_byte_offset": 274368,
+      "source_faces_count": 3348,
+      "fit": {
+        "frame": {
+          "origin": [
+            -29.39931,
+            -23.92142,
+            64.8113
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "v": [
+            0,
+            1,
+            0
+          ]
+        },
+        "depth_resolution": 0.125,
+        "search_half_width": 12.0,
+        "depth_threshold": 1.6,
+        "observed_aperture_area": 3.0,
+        "guide_offset": 1.062098,
+        "aperture_offset_uv": [
+          0.18294,
+          1.04622
+        ],
+        "depth_peak": 3.402832,
+        "outer_rim_width": 0.7,
+        "inner_rim_width": 0.4,
+        "max_wall_depth": 6.0,
+        "max_projected_subtriangle_edge": 0.2,
+        "native_source_faces": 91,
+        "central_opening_excluded": true,
+        "coordinate_note": "Distances/areas use viewer coordinates. The CT model's display scale is not physically calibrated."
+      }
+    },
+    {
+      "dataset": "ct",
+      "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+      "feature_id": "left-mental-foramen",
+      "owner": "mandible",
+      "method": "native-depth-fitted-aperture-rim",
+      "evidence": "Closed depth depression measured from the specimen's original mesh; anatomical identity and depth contour are inferred. Rim polygons are subdivisions/clips of recorded original source triangles, never a synthetic aperture cap.",
+      "approximate": true,
+      "bounds": [
+        [
+          12.59151,
+          -90.04023,
+          45.09054
+        ],
+        [
+          14.55182,
+          -86.89225,
+          48.03384
+        ]
+      ],
+      "center": [
+        13.61398,
+        -88.50577,
+        46.62933
+      ],
+      "surface_anchor": [
+        13.05054,
+        -87.93381,
+        46.85637
+      ],
+      "area": 8.252026,
+      "triangle_count": 1828,
+      "coordinate_units": "uncalibrated-display-units",
+      "area_units": "square display units",
+      "positions_byte_offset": 287760,
+      "positions_count": 16452,
+      "source_faces_byte_offset": 353568,
+      "source_faces_count": 1828,
+      "fit": {
+        "frame": {
+          "origin": [
+            18.31386,
+            -84.21523,
+            54.20899
+          ],
+          "normal": [
+            0.7071068,
+            0.0,
+            0.7071068
+          ],
+          "u": [
+            0.7071068,
+            0.0,
+            -0.7071068
+          ],
+          "v": [
+            0,
+            1,
+            0
+          ]
+        },
+        "depth_resolution": 0.125,
+        "search_half_width": 12.0,
+        "depth_threshold": 1.6,
+        "observed_aperture_area": 2.3125,
+        "guide_offset": 4.749245,
+        "aperture_offset_uv": [
+          2.03632,
+          -4.29054
+        ],
+        "depth_peak": 11.698557,
+        "outer_rim_width": 0.7,
+        "inner_rim_width": 0.4,
+        "max_wall_depth": 6.0,
+        "max_projected_subtriangle_edge": 0.2,
+        "native_source_faces": 73,
+        "central_opening_excluded": true,
+        "coordinate_note": "Distances/areas use viewer coordinates. The CT model's display scale is not physically calibrated."
+      }
+    },
+    {
+      "dataset": "ct",
+      "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+      "feature_id": "right-mental-foramen",
+      "owner": "mandible",
+      "method": "native-depth-fitted-aperture-rim",
+      "evidence": "Closed depth depression measured from the specimen's original mesh; anatomical identity and depth contour are inferred. Rim polygons are subdivisions/clips of recorded original source triangles, never a synthetic aperture cap.",
+      "approximate": true,
+      "bounds": [
+        [
+          -32.22096,
+          -88.03995,
+          47.30446
+        ],
+        [
+          -27.12627,
+          -84.51523,
+          53.51368
+        ]
+      ],
+      "center": [
+        -31.35011,
+        -86.20019,
+        52.06731
+      ],
+      "surface_anchor": [
+        -30.33392,
+        -85.15731,
+        51.11166
+      ],
+      "area": 13.793299,
+      "triangle_count": 3317,
+      "coordinate_units": "uncalibrated-display-units",
+      "area_units": "square display units",
+      "positions_byte_offset": 360880,
+      "positions_count": 29853,
+      "source_faces_byte_offset": 480292,
+      "source_faces_count": 3317,
+      "fit": {
+        "frame": {
+          "origin": [
+            -30.47795,
+            -84.21523,
+            54.20899
+          ],
+          "normal": [
+            -0.7071068,
+            0.0,
+            0.7071068
+          ],
+          "u": [
+            0.7071068,
+            0.0,
+            0.7071068
+          ],
+          "v": [
+            0,
+            1,
+            0
+          ]
+        },
+        "depth_resolution": 0.125,
+        "search_half_width": 12.0,
+        "depth_threshold": 1.6,
+        "observed_aperture_area": 4.15625,
+        "guide_offset": 2.912336,
+        "aperture_offset_uv": [
+          -2.13111,
+          -1.98496
+        ],
+        "depth_peak": 12.260614,
+        "outer_rim_width": 0.7,
+        "inner_rim_width": 0.4,
+        "max_wall_depth": 6.0,
+        "max_projected_subtriangle_edge": 0.2,
+        "native_source_faces": 112,
+        "central_opening_excluded": true,
+        "coordinate_note": "Distances/areas use viewer coordinates. The CT model's display scale is not physically calibrated."
+      }
+    }
+  ],
+  "unavailable": [
+    {
+      "dataset": "reference",
+      "feature_id": "left-infraorbital-foramen",
+      "owner": "maxilla-left",
+      "reason": "No closed, sufficiently deep native aperture was resolved near the anatomical guide"
+    },
+    {
+      "dataset": "reference",
+      "feature_id": "right-infraorbital-foramen",
+      "owner": "maxilla-right",
+      "reason": "No closed, sufficiently deep native aperture was resolved near the anatomical guide"
+    },
+    {
+      "dataset": "reference",
+      "feature_id": "left-mental-foramen",
+      "owner": "mandible",
+      "reason": "No closed, sufficiently deep native aperture was resolved near the anatomical guide"
+    },
+    {
+      "dataset": "reference",
+      "feature_id": "right-mental-foramen",
+      "owner": "mandible",
+      "reason": "No closed, sufficiently deep native aperture was resolved near the anatomical guide"
+    }
+  ]
+}

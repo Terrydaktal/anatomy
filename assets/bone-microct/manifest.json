@@ -1,0 +1,218 @@
+{
+  "title": "Bone microstructure · Halle micro-CT",
+  "model": "assets/bone-microct/fragment.glb",
+  "sha256": "edc6c3879f593c5886d89299aa285fbc8b1d7e4d203519c48bc3fd19575ae621",
+  "units": "millimetres",
+  "axes": {
+    "x": "source voxel x",
+    "y": "toward the outer table (source voxel z)",
+    "z": "toward the exposed crop face (negative source voxel y)"
+  },
+  "source": {
+    "name": "Thomas Kirchner et al. · Halle micro-CT",
+    "specimen": "Independent 70-year-old male donor skull, Martin-Luther University Halle-Wittenberg",
+    "url": "https://zenodo.org/records/6108435",
+    "doi": "10.5281/zenodo.6108435",
+    "methods_url": "https://arxiv.org/html/2202.11519v1",
+    "download_url": "https://zenodo.org/api/records/6108435/files/halle_skull_segmented.nrrd/content",
+    "license": "assets/bone-microct/ATTRIBUTION.txt",
+    "license_id": "CC-BY-4.0",
+    "nrrd_md5": "7ae22945a353069bdb695b63fa2f20bd",
+    "nrrd_sha256": "7cbb67ff56c2682515f3dd681044a36231be8526b9101332f9b720dec9c185e8",
+    "decoded_sha256": "46518b1b21d8ea1417661fa7ec90c150d01f68a25a513842e18e7cd3e14f028b",
+    "acquisition": "125 µm isotropic cone-beam micro-CT; Nikon XT H 225, 150 kV, 400 µA; semi-manual binary bone segmentation",
+    "nrrd_header": {
+      "type": "short",
+      "dimension": "3",
+      "space": "left-posterior-superior",
+      "sizes": "1150 1700 1400",
+      "space directions": "(0.125,0,0) (0,0.125,0) (0,0,0.125)",
+      "kinds": "domain domain domain",
+      "endian": "little",
+      "encoding": "gzip",
+      "space origin": "(0,0,0)"
+    },
+    "crop_voxel_xyz_half_open": [
+      [
+        650,
+        790
+      ],
+      [
+        760,
+        900
+      ],
+      [
+        1200,
+        1380
+      ]
+    ],
+    "crop_array_order": "zyx",
+    "crop_uint8_sha256": "91bb55ac3acc5d6f7304352b2275180715b3c04b28cd654f985d8bf0b210adda",
+    "crop_size_mm_xyz": [
+      17.5,
+      17.5,
+      22.5
+    ],
+    "voxel_spacing_mm": [
+      0.125,
+      0.125,
+      0.125
+    ],
+    "source_xyz_to_display_rotation": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ]
+    ],
+    "display_center_before_translation_mm": [
+      89.9375,
+      164.4375,
+      -103.6875
+    ],
+    "extraction": {
+      "algorithm": "Lewiner marching cubes",
+      "scikit_image_version": "0.26.0",
+      "level": 0.5,
+      "step_size": 1,
+      "padding_voxels": 1,
+      "allow_degenerate": false
+    },
+    "modifications": "Cropped the pinned binary mask at the recorded voxel bounds; zero-padded it by one voxel to expose rectangular cut faces; extracted every marching-cubes triangle at native 0.125 mm spacing; rigidly reoriented and centered; computed smooth vertex normals. No mesh decimation, geometric smoothing, generated trabeculae, assigned tissue segmentation or registration to another skull.",
+    "limitations": "The source is bone/non-bone only. Compact tables and diploë are visible but are not separately supplied tissue labels. Interpretive layer pins are approximate locations. The donor skull has a preparation cut and a small right-parietal trepanation elsewhere; the crop avoids the visible cut. Header LPS labels do not establish patient orientation of the specimen. This is a separate study sample, not an enlargement or measured thickness map of OUVC 10503."
+  },
+  "coverage": {
+    "microstructure_fragments": 1,
+    "layer_markers": 3
+  },
+  "groups": [
+    {
+      "id": "microstructure",
+      "name": "Bone microstructure",
+      "description": "One real vault fragment · three interpretive layer locations"
+    }
+  ],
+  "structures": [
+    {
+      "id": "skull-vault-fragment",
+      "name": "Skull-vault micro-CT fragment",
+      "group": "microstructure",
+      "kind": "bone",
+      "side": "study sample",
+      "color": "#cbaa7c",
+      "visible": true,
+      "description": "A real 17.5 × 17.5 mm surface patch cropped from a separate donor skull's 125 µm micro-CT bone mask. It preserves the compact tables and porous interior in a single mesh. Rectangular cut faces are computational crop boundaries. Layer pins are educational locations, not supplied tissue labels. This fragment is not registered to either full-skull model.",
+      "vertices": 388701,
+      "triangles": 776546,
+      "bounds": [
+        [
+          -8.75,
+          -7.625,
+          -8.75
+        ],
+        [
+          8.75,
+          7.625,
+          8.75
+        ]
+      ],
+      "center": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "outer-cortical-table",
+      "name": "Outer cortical table",
+      "position": [
+        -1.1875,
+        5.8125,
+        8.75
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "boneIds": [
+        "skull-vault-fragment"
+      ],
+      "approximate": true,
+      "category": "Bone microstructure",
+      "description": "Dense external plate of the skull vault. This pin identifies an illustrative location on the real binary bone surface; the source does not supply a separate cortical-table tissue label.",
+      "source_voxel_xyz": [
+        710,
+        760,
+        1362
+      ]
+    },
+    {
+      "id": "diploe",
+      "name": "Diploë",
+      "position": [
+        -1.1875,
+        2.9375,
+        8.75
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "boneIds": [
+        "skull-vault-fragment"
+      ],
+      "approximate": true,
+      "category": "Bone microstructure",
+      "description": "Porous bone between the compact tables. The visible bony network comes directly from the micro-CT bone mask. This is an illustrative location, not a separately segmented diploë region.",
+      "source_voxel_xyz": [
+        710,
+        760,
+        1339
+      ]
+    },
+    {
+      "id": "inner-cortical-table",
+      "name": "Inner cortical table",
+      "position": [
+        -1.1875,
+        0.0625,
+        8.75
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "boneIds": [
+        "skull-vault-fragment"
+      ],
+      "approximate": true,
+      "category": "Bone microstructure",
+      "description": "Dense plate facing the cranial cavity. This pin identifies an illustrative location on the real binary bone surface; the source does not supply a separate cortical-table tissue label.",
+      "source_voxel_xyz": [
+        710,
+        760,
+        1316
+      ]
+    }
+  ],
+  "defaults": {
+    "colors": false,
+    "gloss": 5,
+    "ambientOcclusion": true
+  }
+}

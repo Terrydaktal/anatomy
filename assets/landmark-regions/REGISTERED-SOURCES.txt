@@ -1,0 +1,56 @@
+Mapped skull region provenance
+
+BioDigital Bony Landmarks
+Publisher: BioDigital, Inc.
+Catalogue: https://human.biodigital.com/search/bookmarks/data?be=4a8V
+Description: https://support.biodigital.com/hc/en-us/articles/4417435696407
+Terms: https://www.biodigital.com/terms
+The shared catalogue supplies 68 skull landmark objects. 67 geometry assets are
+available; one alveolar-process asset and its transform return NOTFOUND.
+The publisher supplies selection volumes, not target-specimen masks. Selections
+are intersected with their own source bone first; the resulting surface footprint
+and its actual selection contour are transferred onto native specimen triangles.
+This is proprietary content. Technical retrieval does not grant an open licence
+or a licence to redistribute or reuse the publisher's content in another app.
+
+UBC FossaFinder
+Creators: UBC Emerging Media Lab / Faculty of Medicine teaching project.
+Project: https://eml.ubc.ca/projects/fossa-finder/
+Source: https://github.com/ubcemergingmedialab/FossaFinder
+Commit: b40226daf1906eddc5b75b3ec0476ecd8eae678c
+Assembly: Assets/Scenes/Main.unity, PPF_Region_v5.fbx, skull__visuals.fbx,
+posterior.fbx and medial.fbx, with pinned importer metadata.
+The explicitly named Anterior_Wall, Posterior_Wall and Medial_Wall meshes and
+PPF_Region_v5 bone assembly use their full scene transform chains relative to Head.
+Source scene descriptions identify the walls' maxillary, sphenoid and palatine
+owners. These labels constrain a shared smooth deformation; each wall is matched
+only to its owning bone's facing surface. A separate cavity volume is no longer
+cropped by source-bone distance: that method lost the anterior and medial walls.
+All three wall/bone pairs currently transfer on both sides of both viewer skulls.
+This is bone coverage, not proof of complete or accurate anatomical boundaries.
+One authored side is reflected for the opposite side; source laterality and all
+cross-specimen transfers are estimates. Projection distances and deformation
+checks remain geometric diagnostics, not an anatomical accuracy measurement.
+No explicit model reuse licence has been verified. Public source availability
+does not itself grant reuse or redistribution permission.
+
+These source terms are separate from those of Z-Anatomy / BodyParts3D and the
+Ohio University skull. Do not relicense this package under their licences.
+
+Transfer method
+Bone geometry initializes and constrains similarity ICP and regularized smooth
+deformations. Native bone triangles are clipped to the transferred source footprint/outline.
+Internal tessellation edges are excluded from its boundary. Mirrored target bone
+winding is reconciled with supplied GLB normals, retaining vertices and face IDs.
+BioDigital transfers must retain 95% of sampled projected source surface points
+within one display unit; failures are withheld rather than replaced by blobs. No author surface is
+rendered as a floating substitute for the target bone. Native source selections
+and fitted opening rims take precedence over transferred estimates.
+Source-file hashes, target-model hashes, fit residuals, deformation checks,
+partial coverage and rejections are recorded in registered-regions.json.
+Geometric validation does not establish anatomical accuracy. Cross-specimen
+regions remain optional estimates; no 99% accuracy claim is supplied.
+
+Bregma and lambda use native exterior three-bone junction fits, not independent
+per-bone author volumes. All point landmarks use compact visual indications;
+these are point locations, not supplied anatomical area boundaries.

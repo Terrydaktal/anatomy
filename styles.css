@@ -160,7 +160,7 @@ details[open] > summary > .catalogue-chevron { transform: rotate(90deg); }
 .anatomy-pin[aria-pressed="true"] { width: 20px; height: 20px; }
 .anatomy-pin.is-occluded { opacity: .5; border-style: dashed; }
 .anatomy-pin span { display: none; position: absolute; left: 18px; top: -5px; color: #edf2df; background: #14221fee; border: 1px solid #526852; border-radius: 4px; padding: 4px 6px; white-space: nowrap; font-size: 10px; text-align: left; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
-.anatomy-pin:hover span, .anatomy-pin[aria-pressed="true"] span, .landmark-overlay.show-names .anatomy-pin span { display: block; }
+.landmark-overlay.show-names .anatomy-pin span { display: block; }
 .landmark-overlay:not(.show-pins) .anatomy-pin { width: 0; height: 0; border: 0; box-shadow: none; background: transparent !important; }
 #landmark-region-status { min-height: 1.65em; }
 #landmark-region-status:empty { visibility: hidden; }

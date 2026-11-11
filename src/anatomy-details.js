@@ -191,7 +191,7 @@ export class AnatomyDetails {
       button.addEventListener('blur', () => { if (this.hovered === entry.id) this.setRegionHover(null); });
       row.append(checkbox, button); owner.list.append(row);
       const pin = document.createElement('button'); pin.className = 'anatomy-pin';
-      pin.dataset.landmark = entry.id; pin.hidden = true; pin.title = entry.name;
+      pin.dataset.landmark = entry.id; pin.hidden = true;
       pin.setAttribute('aria-label', `Locate ${entry.name.toLowerCase()}`);
       pin.setAttribute('aria-pressed', 'false');
       const label = document.createElement('span'); label.textContent = entry.name; pin.append(label);

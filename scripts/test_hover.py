@@ -138,6 +138,40 @@ def point_check(page, url, dataset):
     return f'{dataset}: point guides remain hoverable/selectable with unrelated or empty searches, obey their 14 CSS-pixel radius, occlusion, hidden bones, sections and estimate policy, and paint no invented surface'
 
 
+def pin_labels_check(page, url, dataset):
+    load(page, url, f'?dataset={dataset}')
+    identity = 'external-surface-of-squamous-part-of-frontal-bone'
+    name = 'External surface of squamous part of frontal bone'
+    page.locator('#landmark-search').fill(name)
+    page.locator('[data-view="anterior"]').click()
+    page.locator(f'.landmark-row[data-landmark="{identity}"] input').check()
+    page.locator('#landmark-markers').check()
+    settle(page)
+    pin = page.locator(f'.anatomy-pin[data-landmark="{identity}"]')
+    caption = page.locator('#landmark-location-caption')
+    inline = pin.locator('span')
+    for names in [False, True, False]:
+        page.locator('#landmark-labels').set_checked(names)
+        pin.hover()
+        settle(page)
+        assert pin.get_attribute('aria-label'), 'Removing duplicate text lost the accessible pin name'
+        assert not pin.evaluate('e=>e.closest("[title]")'), 'The pin still creates a third, browser-native tooltip'
+        for selected in [False, True]:
+            if selected:
+                pin.click()
+                settle(page)
+            assert caption.is_visible() and page.locator('#landmark-location-name').inner_text() == name
+            assert inline.is_visible() == names, 'Hover/selection bypassed the Names switch'
+            assert page.locator('#hover-label').is_hidden(), 'Pin hover also opened the canvas tooltip'
+            assert page.locator('.anatomy-pin span:visible').count() == int(names)
+        capture(page, f'hover-{dataset}-pin-labels-{"on" if names else "off"}')
+        page.locator('#anatomy-close').click()
+        page.mouse.move(0, 0)
+        settle(page)
+        assert caption.is_hidden() and inline.is_visible() == names
+    return f'{dataset}: pin hover and selection show one main caption, Names adds exactly one persistent label, and no native tooltip or duplicate canvas tooltip appears'
+
+
 def overlap_check(page, url, dataset):
     load(page, url, f'?dataset={dataset}')
     page.locator("#landmark-panel").evaluate("e=>e.open=true")
@@ -330,6 +364,7 @@ def main():
                     result['checks'].append(selection_check(page, url, dataset))
                     result['checks'].append(bone_check(page, url, dataset))
                     result['checks'].append(point_check(page, url, dataset))
+                    result['checks'].append(pin_labels_check(page, url, dataset))
                     result['checks'].append(overlap_check(page, url, dataset))
                 page.set_viewport_size({'width': 390, 'height': 844})
                 result['checks'].append(bone_check(page, url, 'ct'))

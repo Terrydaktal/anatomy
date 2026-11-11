@@ -17,7 +17,7 @@
     "license": "assets/landmarks/ATTRIBUTION.txt",
     "terminology_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
     "overview_url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/7-2-the-skull",
-    "placement_notes": "Original atlas leaders, mirrored leaders and curated study coordinates remain in initial_placement. Label anchors prefer original native selections and accepted source-region transfers. Other CT guides use per-bone similarity ICP and regularized nonrigid shape registration, with normal-compatible surface projection and round-trip diagnostics. Explicit inner/outer vault labels use exposed native cortex. Supported junctions and sagittal contour extrema are fitted directly on each specimen. Empty-space guides are not snapped onto arbitrary walls. All positions remain approximate and lack independent anatomical ground truth; no accuracy percentage is claimed."
+    "placement_notes": "Original atlas leaders, mirrored leaders and curated study coordinates remain in initial_placement. Label anchors prefer original native selections and accepted source-region transfers. Other CT guides use per-bone similarity ICP and regularized nonrigid shape registration, with normal-compatible surface projection and round-trip diagnostics. Explicit inner/outer vault labels use exposed native cortex. Supported junctions and sagittal contour extrema are fitted directly on each specimen. Empty-space guides are not snapped onto arbitrary walls. All positions remain approximate and lack independent anatomical ground truth; no accuracy percentage is claimed. Unlocated named openings have null active coordinates; rejected candidate coordinates remain archival evidence only."
   },
   "categories": [
     {
@@ -28,7 +28,7 @@
     {
       "id": "foramina",
       "name": "Foramina and openings",
-      "count": 66
+      "count": 68
     },
     {
       "id": "canals",
@@ -87,16 +87,16 @@
     }
   ],
   "coverage": {
-    "landmarks": 735,
-    "reference": 735,
-    "ct": 696,
+    "landmarks": 737,
+    "reference": 737,
+    "ct": 698,
     "source_label_entries": 267,
     "curated_source_corrections": 133,
     "source_cavity_centres": 8,
     "suture_paths": 40,
     "categories": {
       "sutures": 51,
-      "foramina": 66,
+      "foramina": 68,
       "canals": 53,
       "fissures": 20,
       "processes": 106,
@@ -119,7 +119,11 @@
       "Internal canal courses, bony labyrinth and air-cell partitions are not reconstructed by point annotations.",
       "Metopic, accessory occipital, squamomastoid and incisive sutures, infant fontanelles and other developmental variants are not fabricated on this adult skull.",
       "Reference auditory-ossicle and hyoid landmarks are available only in the reference model; these bones are absent from the CT specimen."
-    ]
+    ],
+    "unlocated": {
+      "reference": 12,
+      "ct": 12
+    }
   },
   "landmarks": [
     {
@@ -10139,24 +10143,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            15.0,
-            -2.0,
-            61.0
-          ],
-          "method": "source-space-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
-          },
           "initial_placement": {
             "point": [
               15.0,
@@ -10165,33 +10155,43 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            12.801592,
-            4.387622,
-            54.035727
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               15.0,
               -2.0,
               61.0
             ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.5877168766764695
+            "method": "source-space-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "source-space-guide",
+              "owner": "frontal-bone",
+              "attachment": "space",
+              "displacement_from_initial": 0.0
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               16.29513,
@@ -10200,10 +10200,47 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              12.801592,
+              4.387622,
+              54.035727
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "bone-shape-registration",
+              "owner": "frontal-bone",
+              "source_point": [
+                15.0,
+                -2.0,
+                61.0
+              ],
+              "attachment": "space",
+              "source_placement_basis": "source-space-guide",
+              "displacement_from_initial": 3.5877168766764695
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Left choana",
@@ -10385,6 +10422,149 @@
         }
       },
       "geometry_status": "study-annotation"
+    },
+    {
+      "name": "Left cranio-orbital foramen",
+      "category": "foramina",
+      "owners": [
+        "sphenoid-bone",
+        "frontal-bone"
+      ],
+      "description": "Variable small passage in the upper posterior lateral orbital wall, in the sphenoid, frontal bone or their suture; it may carry a meningolacrimal vessel. Its presence and location have not been established in this specimen.",
+      "source_name": null,
+      "view": "anterior",
+      "aliases": [
+        "Cranio-orbital foramen",
+        "Cranioorbital foramen",
+        "Foramen cranioorbitale",
+        "Left cranioorbital foramen",
+        "Meningo-orbital foramen",
+        "Meningoorbital foramen",
+        "Sphenofrontal foramen"
+      ],
+      "terminology": {
+        "system": "FIPAT TA2",
+        "id": 482,
+        "latin": "Foramen cranioorbitale",
+        "url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf#page=5"
+      },
+      "anatomical_sources": [
+        "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf#page=5",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12551468/"
+      ],
+      "specimen_presence": "unconfirmed",
+      "id": "left-cranio-orbital-foramen",
+      "point": [
+        32.0,
+        4.0,
+        46.0
+      ],
+      "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
+      "positions": {
+        "reference": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
+          "initial_placement": {
+            "point": [
+              32.0,
+              4.0,
+              46.0
+            ],
+            "method": "curated-study-location",
+            "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              31.241118,
+              4.047648,
+              47.082798
+            ],
+            "method": "native-surface-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 7197,
+              "projection_distance": 1.3231116412110322,
+              "basis": "native-surface-guide",
+              "owner": "sphenoid-bone",
+              "attachment": "surface",
+              "displacement_from_initial": 1.3231116412110322
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
+          "initial_placement": {
+            "point": [
+              31.01435,
+              7.65713,
+              37.78563
+            ],
+            "method": "owner-bounds-map",
+            "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              29.806029,
+              4.672235,
+              37.509302
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 59879,
+              "projection_distance": 0.2925826231565392,
+              "round_trip_distance": 0.12028120773243876,
+              "basis": "bone-shape-registration",
+              "owner": "sphenoid-bone",
+              "source_point": [
+                31.241118,
+                4.047648,
+                47.082798
+              ],
+              "attachment": "surface",
+              "source_placement_basis": "native-surface-guide",
+              "displacement_from_initial": 3.232026530313926
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        }
+      },
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Left foramen lacerum",
@@ -12115,24 +12295,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            15.0,
-            -1.0,
-            44.0
-          ],
-          "method": "source-space-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
-          },
           "initial_placement": {
             "point": [
               15.0,
@@ -12141,33 +12307,43 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            12.403852,
-            5.69237,
-            38.776851
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               15.0,
               -1.0,
               44.0
             ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.9713405575993135
+            "method": "source-space-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "source-space-guide",
+              "owner": "frontal-bone",
+              "attachment": "space",
+              "displacement_from_initial": 0.0
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               16.29513,
@@ -12176,10 +12352,47 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              12.403852,
+              5.69237,
+              38.776851
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "bone-shape-registration",
+              "owner": "frontal-bone",
+              "source_point": [
+                15.0,
+                -1.0,
+                44.0
+              ],
+              "attachment": "space",
+              "source_placement_basis": "source-space-guide",
+              "displacement_from_initial": 3.9713405575993135
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Left sphenoidal sinus opening",
@@ -12561,26 +12774,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            46.310443,
-            -23.341248,
-            64.865576
-          ],
-          "method": "native-surface-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 466,
-            "projection_distance": 1.3707142635243854,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-left",
-            "attachment": "surface",
-            "displacement_from_initial": 1.3707142635243854
-          },
           "initial_placement": {
             "point": [
               47.0,
@@ -12589,36 +12786,45 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            45.919848,
-            -16.762222,
-            56.363347
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 4568,
-            "projection_distance": 0.04231076307393649,
-            "round_trip_distance": 0.14045908359426196,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-left",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               46.310443,
               -23.341248,
               64.865576
             ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 7.698017768450045
+            "method": "native-surface-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 466,
+              "projection_distance": 1.3707142635243854,
+              "basis": "native-surface-guide",
+              "owner": "zygomatic-bone-left",
+              "attachment": "surface",
+              "displacement_from_initial": 1.3707142635243854
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               39.23945,
@@ -12627,10 +12833,50 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              45.919848,
+              -16.762222,
+              56.363347
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 4568,
+              "projection_distance": 0.04231076307393649,
+              "round_trip_distance": 0.14045908359426196,
+              "basis": "bone-shape-registration",
+              "owner": "zygomatic-bone-left",
+              "source_point": [
+                46.310443,
+                -23.341248,
+                64.865576
+              ],
+              "attachment": "surface",
+              "source_placement_basis": "native-surface-guide",
+              "displacement_from_initial": 7.698017768450045
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Left zygomaticoorbital foramen",
@@ -12653,26 +12899,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            40.381357,
-            -15.154397,
-            55.532214
-          ],
-          "method": "native-surface-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 552,
-            "projection_distance": 0.6229728603961314,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-left",
-            "attachment": "surface",
-            "displacement_from_initial": 0.6229728603961314
-          },
           "initial_placement": {
             "point": [
               40.0,
@@ -12681,36 +12911,45 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            39.238291,
-            -9.824871,
-            49.086238
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 8099,
-            "projection_distance": 0.08653138919103581,
-            "round_trip_distance": 0.127399261068114,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-left",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               40.381357,
               -15.154397,
               55.532214
             ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 6.389243264510138
+            "method": "native-surface-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 552,
+              "projection_distance": 0.6229728603961314,
+              "basis": "native-surface-guide",
+              "owner": "zygomatic-bone-left",
+              "attachment": "surface",
+              "displacement_from_initial": 0.6229728603961314
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               32.90059,
@@ -12719,10 +12958,50 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              39.238291,
+              -9.824871,
+              49.086238
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 8099,
+              "projection_distance": 0.08653138919103581,
+              "round_trip_distance": 0.127399261068114,
+              "basis": "bone-shape-registration",
+              "owner": "zygomatic-bone-left",
+              "source_point": [
+                40.381357,
+                -15.154397,
+                55.532214
+              ],
+              "attachment": "surface",
+              "source_placement_basis": "native-surface-guide",
+              "displacement_from_initial": 6.389243264510138
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Left zygomaticotemporal foramen",
@@ -12745,24 +13024,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            49.0,
-            -12.0,
-            46.0
-          ],
-          "method": "source-space-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "zygomatic-bone-left",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
-          },
           "initial_placement": {
             "point": [
               49.0,
@@ -12771,33 +13036,43 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            45.656947,
-            -7.580456,
-            39.988054
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-left",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               49.0,
               -12.0,
               46.0
             ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 5.058427757546919
+            "method": "source-space-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "source-space-guide",
+              "owner": "zygomatic-bone-left",
+              "attachment": "space",
+              "displacement_from_initial": 0.0
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               41.05055,
@@ -12806,10 +13081,47 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              45.656947,
+              -7.580456,
+              39.988054
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "bone-shape-registration",
+              "owner": "zygomatic-bone-left",
+              "source_point": [
+                49.0,
+                -12.0,
+                46.0
+              ],
+              "attachment": "space",
+              "source_placement_basis": "source-space-guide",
+              "displacement_from_initial": 5.058427757546919
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Piriform aperture",
@@ -13008,24 +13320,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            -14.89543,
-            -2.0,
-            61.0
-          ],
-          "method": "source-space-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
-          },
           "initial_placement": {
             "point": [
               -14.89543,
@@ -13034,33 +13332,43 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            -13.042377,
-            6.871936,
-            55.503703
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               -14.89543,
               -2.0,
               61.0
             ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.272107232510003
+            "method": "source-space-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "source-space-guide",
+              "owner": "frontal-bone",
+              "attachment": "space",
+              "displacement_from_initial": 0.0
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               -11.2547,
@@ -13069,10 +13377,47 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              -13.042377,
+              6.871936,
+              55.503703
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "bone-shape-registration",
+              "owner": "frontal-bone",
+              "source_point": [
+                -14.89543,
+                -2.0,
+                61.0
+              ],
+              "attachment": "space",
+              "source_placement_basis": "source-space-guide",
+              "displacement_from_initial": 3.272107232510003
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Right choana",
@@ -13254,6 +13599,149 @@
         }
       },
       "geometry_status": "study-annotation"
+    },
+    {
+      "name": "Right cranio-orbital foramen",
+      "category": "foramina",
+      "owners": [
+        "sphenoid-bone",
+        "frontal-bone"
+      ],
+      "description": "Variable small passage in the upper posterior lateral orbital wall, in the sphenoid, frontal bone or their suture; it may carry a meningolacrimal vessel. Its presence and location have not been established in this specimen.",
+      "source_name": null,
+      "view": "anterior",
+      "aliases": [
+        "Cranio-orbital foramen",
+        "Cranioorbital foramen",
+        "Foramen cranioorbitale",
+        "Meningo-orbital foramen",
+        "Meningoorbital foramen",
+        "Right cranioorbital foramen",
+        "Sphenofrontal foramen"
+      ],
+      "terminology": {
+        "system": "FIPAT TA2",
+        "id": 482,
+        "latin": "Foramen cranioorbitale",
+        "url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf#page=5"
+      },
+      "anatomical_sources": [
+        "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf#page=5",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12551468/"
+      ],
+      "specimen_presence": "unconfirmed",
+      "id": "right-cranio-orbital-foramen",
+      "point": [
+        -31.89543,
+        4.0,
+        46.0
+      ],
+      "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
+      "positions": {
+        "reference": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
+          "initial_placement": {
+            "point": [
+              -31.89543,
+              4.0,
+              46.0
+            ],
+            "method": "curated-study-location",
+            "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              -31.136557,
+              4.047648,
+              47.082784
+            ],
+            "method": "native-surface-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 4497,
+              "projection_distance": 1.3230947342076984,
+              "basis": "native-surface-guide",
+              "owner": "sphenoid-bone",
+              "attachment": "surface",
+              "displacement_from_initial": 1.3230947342076984
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
+          "initial_placement": {
+            "point": [
+              -29.93702,
+              7.65713,
+              37.78563
+            ],
+            "method": "owner-bounds-map",
+            "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              -31.902593,
+              8.881639,
+              40.008221
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 63065,
+              "projection_distance": 0.10544348722198907,
+              "round_trip_distance": 0.04579498845797726,
+              "basis": "bone-shape-registration",
+              "owner": "sphenoid-bone",
+              "source_point": [
+                -31.136557,
+                4.047648,
+                47.082784
+              ],
+              "attachment": "surface",
+              "source_placement_basis": "native-surface-guide",
+              "displacement_from_initial": 3.209799433902635
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        }
+      },
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Right foramen lacerum",
@@ -14993,24 +15481,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            -14.89543,
-            -1.0,
-            44.0
-          ],
-          "method": "source-space-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
-          },
           "initial_placement": {
             "point": [
               -14.89543,
@@ -15019,33 +15493,43 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            -14.07804,
-            6.7836,
-            40.020686
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               -14.89543,
               -1.0,
               44.0
             ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.7368746056902125
+            "method": "source-space-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "source-space-guide",
+              "owner": "frontal-bone",
+              "attachment": "space",
+              "displacement_from_initial": 0.0
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               -11.2547,
@@ -15054,10 +15538,47 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              -14.07804,
+              6.7836,
+              40.020686
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "bone-shape-registration",
+              "owner": "frontal-bone",
+              "source_point": [
+                -14.89543,
+                -1.0,
+                44.0
+              ],
+              "attachment": "space",
+              "source_placement_basis": "source-space-guide",
+              "displacement_from_initial": 3.7368746056902125
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Right sphenoidal sinus opening",
@@ -15439,26 +15960,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            -46.205879,
-            -23.341253,
-            64.86557
-          ],
-          "method": "native-surface-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 466,
-            "projection_distance": 1.370716870788576,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-right",
-            "attachment": "surface",
-            "displacement_from_initial": 1.370716870788576
-          },
           "initial_placement": {
             "point": [
               -46.89543,
@@ -15467,36 +15972,45 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            -49.478347,
-            -9.698178,
-            60.004779
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 4675,
-            "projection_distance": 0.12634645239319214,
-            "round_trip_distance": 0.11283203480693103,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-right",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               -46.205879,
               -23.341253,
               64.86557
             ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 4.613288499273053
+            "method": "native-surface-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 466,
+              "projection_distance": 1.370716870788576,
+              "basis": "native-surface-guide",
+              "owner": "zygomatic-bone-right",
+              "attachment": "surface",
+              "displacement_from_initial": 1.370716870788576
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               -45.41551,
@@ -15505,10 +16019,50 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              -49.478347,
+              -9.698178,
+              60.004779
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 4675,
+              "projection_distance": 0.12634645239319214,
+              "round_trip_distance": 0.11283203480693103,
+              "basis": "bone-shape-registration",
+              "owner": "zygomatic-bone-right",
+              "source_point": [
+                -46.205879,
+                -23.341253,
+                64.86557
+              ],
+              "attachment": "surface",
+              "source_placement_basis": "native-surface-guide",
+              "displacement_from_initial": 4.613288499273053
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Right zygomaticoorbital foramen",
@@ -15531,26 +16085,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            -40.276784,
-            -15.154395,
-            55.532214
-          ],
-          "method": "native-surface-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 552,
-            "projection_distance": 0.6229706259768274,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-right",
-            "attachment": "surface",
-            "displacement_from_initial": 0.6229706259768274
-          },
           "initial_placement": {
             "point": [
               -39.89543,
@@ -15559,36 +16097,45 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            -42.120443,
-            -3.788826,
-            52.681545
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 7522,
-            "projection_distance": 0.00763412827938572,
-            "round_trip_distance": 0.03761741570204107,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-right",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               -40.276784,
               -15.154395,
               55.532214
             ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 4.430257464344164
+            "method": "native-surface-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 552,
+              "projection_distance": 0.6229706259768274,
+              "basis": "native-surface-guide",
+              "owner": "zygomatic-bone-right",
+              "attachment": "surface",
+              "displacement_from_initial": 0.6229706259768274
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               -37.9189,
@@ -15597,10 +16144,50 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              -42.120443,
+              -3.788826,
+              52.681545
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "surface_face": 7522,
+              "projection_distance": 0.00763412827938572,
+              "round_trip_distance": 0.03761741570204107,
+              "basis": "bone-shape-registration",
+              "owner": "zygomatic-bone-right",
+              "source_point": [
+                -40.276784,
+                -15.154395,
+                55.532214
+              ],
+              "attachment": "surface",
+              "source_placement_basis": "native-surface-guide",
+              "displacement_from_initial": 4.430257464344164
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Right zygomaticotemporal foramen",
@@ -15623,24 +16210,10 @@
       "source_url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf",
       "positions": {
         "reference": {
-          "point": [
-            -48.89543,
-            -12.0,
-            46.0
-          ],
-          "method": "source-space-guide",
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
           "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-            "initial_method": "curated-study-location",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "zygomatic-bone-right",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
-          },
           "initial_placement": {
             "point": [
               -48.89543,
@@ -15649,33 +16222,43 @@
             ],
             "method": "curated-study-location",
             "approximate": true
-          }
-        },
-        "ct": {
-          "point": [
-            -48.686908,
-            -0.836246,
-            44.28716
-          ],
-          "method": "bone-shape-registration",
-          "approximate": true,
-          "label_fit": {
-            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-            "initial_method": "owner-bounds-map",
-            "anatomical_accuracy_percent": null,
-            "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-right",
-            "source_point": [
+          },
+          "rejected_location": {
+            "point": [
               -48.89543,
               -12.0,
               46.0
             ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.6836908362681475
+            "method": "source-space-guide",
+            "label_fit": {
+              "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+              "initial_method": "curated-study-location",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "source-space-guide",
+              "owner": "zygomatic-bone-right",
+              "attachment": "space",
+              "displacement_from_initial": 0.0
+            }
           },
+          "label_fit": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          }
+        },
+        "ct": {
+          "point": null,
+          "method": "unlocated",
+          "location_status": "unlocated",
+          "approximate": true,
           "initial_placement": {
             "point": [
               -47.5574,
@@ -15684,10 +16267,47 @@
             ],
             "method": "owner-bounds-map",
             "approximate": true
+          },
+          "rejected_location": {
+            "point": [
+              -48.686908,
+              -0.836246,
+              44.28716
+            ],
+            "method": "bone-shape-registration",
+            "label_fit": {
+              "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+              "initial_method": "owner-bounds-map",
+              "anatomical_accuracy_percent": null,
+              "independently_validated": false,
+              "status": "approximate",
+              "basis": "bone-shape-registration",
+              "owner": "zygomatic-bone-right",
+              "source_point": [
+                -48.89543,
+                -12.0,
+                46.0
+              ],
+              "attachment": "space",
+              "source_placement_basis": "source-space-guide",
+              "displacement_from_initial": 3.6836908362681475
+            }
+          },
+          "label_fit": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           }
         }
       },
-      "geometry_status": "study-annotation"
+      "geometry_status": "study-annotation",
+      "location_policy": "require-native-opening"
     },
     {
       "name": "Incisive canal",
@@ -74897,16 +75517,18 @@
     "counts": {
       "reference": {
         "native-junction": 51,
-        "native-surface-guide": 493,
+        "native-surface-guide": 489,
         "registered-source-region": 83,
-        "source-space-guide": 89,
+        "source-space-guide": 83,
+        "unlocated": 12,
         "native-source-selection": 14,
         "native-contour-extremum": 5
       },
       "ct": {
         "native-junction": 56,
-        "bone-shape-registration": 550,
+        "bone-shape-registration": 540,
         "registered-source-region": 75,
+        "unlocated": 12,
         "native-opening-fit": 4,
         "native-segmented-cavity": 6,
         "native-contour-extremum": 5

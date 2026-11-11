@@ -63,6 +63,22 @@ def baseline(placement):
     return deepcopy(placement.get('initial_placement', placement))
 
 
+def unlocated_placement(placement, model_sha256, owner):
+    """Keep rejected coordinate evidence out of the active spatial target."""
+    original = baseline(placement)
+    rejected = placement.get('rejected_location') or {
+        key: deepcopy(placement[key]) for key in ['point', 'method', 'label_fit'] if key in placement
+    }
+    return {
+        'point': None, 'method': 'unlocated', 'location_status': 'unlocated', 'approximate': True,
+        'initial_placement': original, 'rejected_location': rejected,
+        'label_fit': {'source_model_sha256': model_sha256, 'initial_method': original['method'],
+                      'owner': owner, 'status': 'unlocated', 'basis': 'unlocated', 'attachment': 'unlocated',
+                      'anatomical_accuracy_percent': None, 'independently_validated': False,
+                      'reason': 'No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen.'},
+    }
+
+
 def moved_normal(registration, point, normal):
     # Normals are covectors: J^{-T} n, rather than a deformed displacement J n.
     # The distinction matters on sheared thin processes and cavity walls.
@@ -312,12 +328,17 @@ def refine_catalogue(catalogue, root=ROOT):
                 continue
             original = originals[dataset, entry['id']]
             placement = deepcopy(original)
-            point = np.array(original['point'], float)
             fit = {'source_model_sha256': models[dataset]['sha256'], 'initial_method': original['method'],
                    'anatomical_accuracy_percent': None, 'independently_validated': False, 'status': 'approximate'}
             owner = entry['owners'][0]
             side = compartment(entry, owner)
             anchor = anchors.get((dataset, entry['id'])) if entry['category'] != 'landmarks' else None
+            if entry.get('location_policy') == 'require-native-opening' and (not anchor or anchor['basis'] not in {'native-opening-fit', 'native-source-selection'}):
+                placement = unlocated_placement(entry['positions'][dataset], models[dataset]['sha256'], owner)
+                entry['positions'][dataset] = placement
+                report['placements'].append({'dataset': dataset, 'id': entry['id'], 'point': None, **placement['label_fit']})
+                continue
+            point = np.array(original['point'], float)
             if original.get('native_point_fit'):
                 fit.update(basis='native-junction', owner=owner, status='geometry-fitted', attachment='junction')
             elif entry['id'] in native_cavities:
@@ -448,7 +469,8 @@ def refine_catalogue(catalogue, root=ROOT):
         'Label anchors prefer original native selections and accepted source-region transfers. Other CT guides use per-bone similarity ICP and '
         'regularized nonrigid shape registration, with normal-compatible surface projection and round-trip diagnostics. Explicit inner/outer vault '
         'labels use exposed native cortex. Supported junctions and sagittal contour extrema are fitted directly on each specimen. Empty-space guides '
-        'are not snapped onto arbitrary walls. All positions remain approximate and lack independent anatomical ground truth; no accuracy percentage is claimed.')
+        'are not snapped onto arbitrary walls. Unlocated named openings have null active coordinates; rejected candidate coordinates remain archival evidence only. '
+        'All positions remain approximate and lack independent anatomical ground truth; no accuracy percentage is claimed.')
     catalogue['label_refinement'] = {'version': 1, 'models': report['models'], 'counts': report['counts'],
                                    'limits': LIMITS, 'independently_validated': False, 'anatomical_accuracy_percent': None}
     report['catalogue_sha256'] = hashlib.sha256((json.dumps(catalogue, indent=2) + '\n').encode()).hexdigest()

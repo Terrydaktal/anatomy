@@ -1,8 +1,8 @@
 {
-  "landmarks": 735,
+  "landmarks": 737,
   "categories": {
     "sutures": 51,
-    "foramina": 66,
+    "foramina": 68,
     "canals": 53,
     "fissures": 20,
     "processes": 106,
@@ -1010,6 +1010,92 @@
       "id": "mandibular-symphysis",
       "distance_mm": 26.46913,
       "placement_method": "native-surface-guide"
+    }
+  ],
+  "unlocated": [
+    {
+      "id": "left-anterior-ethmoidal-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "left-cranio-orbital-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "left-posterior-ethmoidal-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "left-zygomaticofacial-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "left-zygomaticoorbital-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "left-zygomaticotemporal-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "right-anterior-ethmoidal-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "right-cranio-orbital-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "right-posterior-ethmoidal-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "right-zygomaticofacial-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "right-zygomaticoorbital-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
+    },
+    {
+      "id": "right-zygomaticotemporal-foramen",
+      "datasets": [
+        "reference",
+        "ct"
+      ]
     }
   ]
 }

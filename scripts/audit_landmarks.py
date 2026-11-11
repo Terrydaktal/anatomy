@@ -188,7 +188,8 @@ def catalogue_inventory(manifest, models):
             if not placement or not set(entry['owners']).intersection(models[dataset]):
                 continue
             key = dataset, entry['id']
-            kind = ('source-face-selection' if dataset == 'reference' and entry['id'] in supplied else
+            kind = ('unlocated' if placement.get('location_status') == 'unlocated' else
+                    'source-face-selection' if dataset == 'reference' and entry['id'] in supplied else
                     'native-point-fit' if placement.get('native_point_fit') else
                     'native-opening-fit' if key in openings else
                     'location-guide' if entry['category'] == 'landmarks' else
@@ -210,7 +211,7 @@ def catalogue_inventory(manifest, models):
 def runtime_failures(row, result):
     identity = f"{row['dataset']}:{row['id']}"
     failures = []
-    if row['kind'] in {'location-guide', 'withheld'} and result['area']:
+    if row['kind'] in {'unlocated', 'location-guide', 'withheld'} and result['area']:
         failures.append(f'{identity}: an unsupported location was painted as an anatomical area')
     if row['kind'] in {'source-face-selection', 'native-point-fit', 'native-opening-fit', 'registered-estimate'} and not result['area']:
         failures.append(f'{identity}: an accepted region produced no geometry')

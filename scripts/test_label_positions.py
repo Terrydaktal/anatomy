@@ -56,7 +56,7 @@ def asset_checks(catalogue, report):
               for dataset, directory in [('ct', 'skull-ct'), ('reference', 'skull')]}
     # Independent triangle-distance engine; production uses Blender BVH.
     meshes = {dataset: trimesh.load(ROOT / model['model'], force='scene', process=False).geometry for dataset, model in models.items()}
-    checked, native, surface, space = 0, 0, 0, 0
+    checked, native, surface, space, unlocated = 0, 0, 0, 0, 0
     for entry in catalogue['landmarks']:
         for dataset, placement in entry['positions'].items():
             checked += 1
@@ -65,14 +65,20 @@ def asset_checks(catalogue, report):
             if not fit:
                 failures.append(f'{identity}: missing placement evidence')
                 continue
-            point = np.array(placement['point'])
             try:
                 assert fit['source_model_sha256'] == models[dataset]['sha256'], 'Different specimen'
                 assert placement['method'] != 'owner-bounds-map', 'Bounding-box transfer remains active'
-                assert np.isfinite(point).all() and len(point) == 3
                 assert fit['owner'] in entry['owners'], 'Anchor attached to unrelated bone'
                 assert 'initial_placement' in placement, 'Original provenance lost'
                 assert fit['anatomical_accuracy_percent'] is None and not fit['independently_validated']
+                if placement.get('location_status') == 'unlocated':
+                    assert placement['point'] is None and fit['attachment'] == 'unlocated'
+                    assert placement['method'] == fit['status'] == 'unlocated'
+                    assert placement['rejected_location']['point'] is not None, 'Rejected candidate provenance lost'
+                    unlocated += 1
+                    continue
+                point = np.array(placement['point'])
+                assert np.isfinite(point).all() and len(point) == 3
                 if placement.get('native_point_fit') and placement['method'] == 'native-suture-junction':
                     evidence = placement['native_point_fit']
                     for owner in evidence['owner_distances']:
@@ -110,9 +116,11 @@ def asset_checks(catalogue, report):
                         assert fit['status'] == 'uncertain-fit', 'A failed fit is presented without uncertainty'
             except (AssertionError, KeyError, ValueError) as error:
                 failures.append(f'{identity}: {error}')
-    assert checked == 1431, f'Incomplete catalogue audit: {checked}'
+    assert checked == 1435, f'Incomplete catalogue audit: {checked}'
     checks.append(f'{checked} placements: hashes, owning bones, original provenance and explicit uncertainty')
     checks.append(f'{surface} surface anchors checked against original GLB faces; {native} native junction/contact locations; {space} preserved space/cavity guides')
+    assert unlocated == 24
+    checks.append(f'{unlocated} unlocated orbital entries retain rejected evidence and supply no active coordinate')
     comparison = report['comparison_summary']
     assert comparison['count'] >= 60, 'Insufficient held-out source anchor coverage'
     assert comparison['after_median'] <= comparison['before_median'] * .75, 'Shape registration does not reduce median mismatch by at least 25%'
@@ -146,6 +154,10 @@ def browser_checks(catalogue, mutant=None):
                 for entry in catalogue['landmarks']:
                     placement = entry['positions'].get(dataset)
                     if not placement or 'registered-source-region' in placement['method']:
+                        continue
+                    if placement.get('location_status') == 'unlocated':
+                        assert actual[entry['id']]['point'] is None and not actual[entry['id']]['located']
+                        assert page.evaluate('id=>window.skullAtlas.projectLandmark(id)', entry['id']) is None
                         continue
                     difference = np.linalg.norm(np.array(actual[entry['id']]['point']) - placement['point'])
                     if difference >= .0001:

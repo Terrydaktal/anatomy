@@ -67,13 +67,13 @@ export class AnatomyDetails {
             source_model_sha256: entries.get(owners[0]).source_model_sha256 } };
         if (source.path) placement.path = source.path.map((point) => new THREE.Vector3(...point).applyMatrix4(matrix).toArray());
       }
-      if (!placement?.point || !owners.length) continue;
+      if (!placement || (!placement.point && placement.location_status !== 'unlocated') || !owners.length) continue;
       if (placement.native_point_fit) {
         if (placement.native_point_fit.source_model_sha256 !== this.context.manifest.sha256) throw new Error('Point fit belongs to a different skull model.');
         this.regions.pointFits.set(record.id, placement);
       }
       if (placement.label_fit && placement.label_fit.source_model_sha256 !== (imported ? entries.get(owners[0]).source_model_sha256 : this.context.manifest.sha256)) throw new Error('Label fit belongs to a different skull model.');
-      if (dataset !== 'microct' && !placement.label_fit && !placement.native_point_fit) {
+      if (placement.point && dataset !== 'microct' && !placement.label_fit && !placement.native_point_fit) {
         const surface = entries.get(owners[0]).mesh.geometry.boundsTree.closestPointToPoint(new THREE.Vector3(...placement.point));
         if (surface) placement = { ...placement, point: surface.point.toArray(), surfaceDistance: surface.distance };
       }
@@ -82,6 +82,7 @@ export class AnatomyDetails {
     }
     await this.regions.loadSources(this.landmarks);
     for (const entry of this.landmarks.values()) {
+      if (!this.hasLocation(entry)) continue;
       const mapped = this.regions.registeredPlacement(entry.id);
       if (mapped) {
         entry.placement = { ...entry.placement, point: mapped.surface_anchor, approximate: true, method: 'registered-author-region' };
@@ -101,9 +102,10 @@ export class AnatomyDetails {
     if (mappedCount) $('landmark-coverage').textContent += ` ${mappedCount} source regions have been mapped from other skulls; their fit is estimated.`;
     if (this.regions.pointFits.size) $('landmark-coverage').textContent += ` ${this.regions.pointFits.size} point landmarks are fitted to this skull's native geometry.`;
     $('mapped-region-controls').hidden = !mappedCount && !this.regions.pointFits.size;
+    const unlocated = [...this.landmarks.values()].filter((entry) => !this.hasLocation(entry)).length;
     $('model-coverage').textContent = dataset === 'microct'
       ? `${entries.size} bone-fragment mesh and ${this.landmarks.size} layer location guides.`
-      : `${[...entries.values()].filter((entry) => entry.group !== 'teeth').length} bones: eight cranial, 14 facial, six auditory ossicles and the hyoid. Teeth are grouped into two dental arches, not separate tooth meshes. The catalogue contains ${this.landmarks.size} landmark entries, including point guides, organised by type and bone.`;
+      : `${[...entries.values()].filter((entry) => entry.group !== 'teeth').length} bones: eight cranial, 14 facial, six auditory ossicles and the hyoid. Teeth are grouped into two dental arches, not separate tooth meshes. The catalogue contains ${this.landmarks.size} landmark entries, including point guides, organised by type and bone.${unlocated ? ` ${unlocated} entries have no identified location on this skull and remain available as anatomical reference names.` : ''}`;
     this.buildLandmarks();
     this.bindControls();
     $('cavity-panel').hidden = dataset !== 'ct';
@@ -163,7 +165,8 @@ export class AnatomyDetails {
       subtitle.textContent = entry.owners.map((id) => entries.get(id).name).join(' · ');
       if (entry.mappedSource) subtitle.textContent += entry.partialMapping ? ' · mapped source (partial)' : ' · mapped source';
       if (entry.pointFit) subtitle.textContent += entry.placement.method === 'native-contour-extremum' ? ' · fitted midline contour · point' : ' · fitted suture junction · point';
-      if (!entry.mappedSource && !entry.pointFit && !this.regions.hasSuppliedBoundary(entry.id)
+      if (!this.hasLocation(entry)) subtitle.textContent += ' · not located on this skull';
+      else if (!entry.mappedSource && !entry.pointFit && !this.regions.hasSuppliedBoundary(entry.id)
           && !this.regions.apertureDomains.some((domain) => domain.feature_id === entry.id)
           && !(entry.category === 'sutures' && entry.owners.length > 1)) subtitle.textContent += ' · location guide only';
       subtitle.title = subtitle.textContent;
@@ -253,9 +256,14 @@ export class AnatomyDetails {
   }
 
   hasSurface(entry) {
+    if (!this.hasLocation(entry)) return false;
     return this.regions.hasSuppliedBoundary(entry.id) || this.regions.hasRegisteredBoundary(entry.id)
       || this.regions.pointFits.has(entry.id) || this.regions.apertureDomains.some((part) => part.feature_id === entry.id)
       || (entry.category === 'sutures' && entry.owners.length > 1);
+  }
+
+  hasLocation(entry) {
+    return Boolean(entry && entry.placement.location_status !== 'unlocated' && Array.isArray(entry.placement.point));
   }
 
   exploreMapped() {
@@ -334,30 +342,35 @@ export class AnatomyDetails {
 
   updateControls() {
     const filtered = this.filteredLandmarks ?? this.filtered();
+    const locatable = filtered.filter((entry) => this.hasLocation(entry));
     const count = filtered.filter((entry) => this.enabled.has(entry.id)).length;
-    $('landmark-pins').disabled = filtered.length === 0;
-    $('landmark-pins').checked = count > 0 && count === filtered.length;
-    $('landmark-pins').indeterminate = count > 0 && count < filtered.length;
+    $('landmark-pins').disabled = locatable.length === 0;
+    $('landmark-pins').checked = count > 0 && count === locatable.length;
+    $('landmark-pins').indeterminate = count > 0 && count < locatable.length;
     $('landmark-total').textContent = filtered.length === this.landmarks.size ? String(this.landmarks.size) : `${filtered.length}/${this.landmarks.size}`;
     for (const group of this.landmarkGroups) {
       const matches = group.matches ?? group.ids;
-      const marked = matches.filter((id) => this.enabled.has(id)).length;
-      group.checkbox.disabled = matches.length === 0;
-      group.checkbox.checked = marked > 0 && marked === matches.length;
-      group.checkbox.indeterminate = marked > 0 && marked < matches.length;
+      const locatable = matches.filter((id) => this.hasLocation(this.landmarks.get(id)));
+      const marked = locatable.filter((id) => this.enabled.has(id)).length;
+      group.checkbox.disabled = locatable.length === 0;
+      group.checkbox.checked = marked > 0 && marked === locatable.length;
+      group.checkbox.indeterminate = marked > 0 && marked < locatable.length;
       group.count.textContent = String(matches.length);
     }
     for (const [id, row] of this.rows) {
+      row.checkbox.disabled = !this.hasLocation(this.landmarks.get(id));
       row.checkbox.checked = this.enabled.has(id);
       const selected = this.selected?.kind === 'landmark' && this.selected.id === id;
       row.row.classList.toggle('is-selected', selected);
       row.button.setAttribute('aria-pressed', String(selected));
       row.pin.setAttribute('aria-pressed', String(selected));
     }
+    const unlocated = this.selected?.kind === 'landmark' && !this.hasLocation(this.landmarks.get(this.selected.id));
+    for (const id of ['anatomy-focus', 'anatomy-isolate', 'anatomy-hide']) $(id).disabled = Boolean(unlocated);
   }
 
   toggleMarker(id, shown, update = true) {
-    if (shown && !this.canHighlight(id)) return;
+    if (shown && (!this.canHighlight(id) || !this.hasLocation(this.landmarks.get(id)))) return;
     if (shown) this.enabled.add(id); else this.enabled.delete(id);
     if (!shown && this.selected?.id === id) this.clearSelection();
     if (shown) this.prepareQueue();
@@ -366,7 +379,7 @@ export class AnatomyDetails {
 
   setMarkers(ids, shown) {
     for (const id of ids) {
-      if (shown && this.canHighlight(id)) this.enabled.add(id);
+      if (shown && this.canHighlight(id) && this.hasLocation(this.landmarks.get(id))) this.enabled.add(id);
       else if (!shown) this.enabled.delete(id);
     }
     if (!shown && this.selected?.kind === 'landmark' && ids.includes(this.selected.id)) this.clearSelection();
@@ -376,6 +389,7 @@ export class AnatomyDetails {
   }
 
   worldPoint(entry, position = entry.placement.point) {
+    if (!this.hasLocation(entry) || !position) return null;
     return new THREE.Vector3(...position).applyMatrix4(this.context.entries.get(entry.mappedSource?.owner ?? entry.placement.label_fit?.owner ?? entry.owners[0]).mesh.matrixWorld);
   }
 
@@ -387,6 +401,7 @@ export class AnatomyDetails {
     $('anatomy-name').textContent = entry.name;
     $('anatomy-description').textContent = entry.description;
     $('anatomy-location').textContent = entry.owners.map((id) => this.context.entries.get(id).name).join(' · ');
+    if (kind === 'landmark' && !this.hasLocation(entry)) $('anatomy-location').textContent += ' · Not located on this skull';
     if (entry.placement?.imported_reference) $('anatomy-location').textContent += ' · Reference bone fitted to CT; estimated placement';
     $('anatomy-placement').textContent = kind === 'cavity'
       ? 'Original segmented cavity boundary, aligned to this skull. Bones fade while cavity surfaces are shown.'
@@ -404,6 +419,7 @@ export class AnatomyDetails {
   }
 
   regionDescription(entry) {
+    if (!this.hasLocation(entry)) return 'Not located on this skull. No opening has been identified for this entry, so no target, pin or region is shown. The anatomical name remains available for reference.';
     const region = this.regions.cache.get(entry.id);
     if (!region && this.hasSurface(entry)) return 'Preparing the surface highlight…';
     if (!region?.parts.length) {
@@ -482,7 +498,7 @@ export class AnatomyDetails {
     const nearby = [];
     for (const id of candidates) {
       const entry = this.landmarks.get(id);
-      if (!this.canHighlight(id) || this.hasSurface(entry) || !entry.owners.some((owner) => entries.get(owner).mesh.visible)) continue;
+      if (!this.canHighlight(id) || !this.hasLocation(entry) || this.hasSurface(entry) || !entry.owners.some((owner) => entries.get(owner).mesh.visible)) continue;
       const projected = this.project(entry, null, rect);
       if (projected.z < -1 || projected.z > 1 || projected.x < 0 || projected.x > rect.width || projected.y < 0 || projected.y > rect.height) continue;
       if (this.context.sectionEnabled() && sectionPlane.distanceToPoint(projected.world) < 0) continue;
@@ -517,6 +533,7 @@ export class AnatomyDetails {
       this.context.frameMeshes(entry.parts, 'anterior');
     } else {
       const entry = this.landmarks.get(this.selected.id);
+      if (!this.hasLocation(entry)) return;
       const region = this.hasSurface(entry) ? await this.regions.prepare(entry) : this.regions.empty(entry);
       if (this.selected?.id !== entry.id) return;
       if (region.parts.length) {
@@ -538,6 +555,7 @@ export class AnatomyDetails {
       this.context.frameMeshes(entry.parts, 'anterior');
     } else {
       const entry = this.landmarks.get(this.selected.id);
+      if (!this.hasLocation(entry)) return;
       this.context.isolateOwners(entry.owners);
       this.focus();
     }
@@ -627,6 +645,7 @@ export class AnatomyDetails {
   }
 
   project(entry, position = null, rect = this.context.canvas.getBoundingClientRect()) {
+    if (!this.hasLocation(entry)) return null;
     const region = this.regions.cache.get(entry.id);
     const visible = region?.parts.filter((item) => this.context.entries.get(item.ownerId).mesh.visible);
     const part = (visible?.length ? visible : region?.parts)?.reduce((largest, item) => !largest || item.area > largest.area ? item : largest, null);
@@ -647,6 +666,7 @@ export class AnatomyDetails {
   }
 
   locationStatus(entry) {
+    if (!this.hasLocation(entry)) return 'Not located on this skull';
     const supported = Boolean(this.regions.cache.get(entry.id)?.parts.length);
     if (!this.regions.cache.has(entry.id) && this.hasSurface(entry)) return 'Preparing highlight…';
     if (supported) return entry.pointFit ? 'Fitted point' : this.regions.hasSuppliedBoundary(entry.id) ? 'Supplied surface' : 'Estimated surface';
@@ -661,7 +681,7 @@ export class AnatomyDetails {
     const id = this.hovered ?? (this.selected?.kind === 'landmark' ? this.selected.id : null);
     const entry = this.landmarks.get(id);
     this.locationState = null;
-    aid.hidden = !$('landmark-locate').checked || $('bone-studies').hidden || !entry || !this.canHighlight(id);
+    aid.hidden = !$('landmark-locate').checked || $('bone-studies').hidden || !this.hasLocation(entry) || !this.canHighlight(id);
     if (aid.hidden) return;
     const { canvas, entries } = this.context;
     const projected = this.project(entry, null, rect);
@@ -770,13 +790,13 @@ export class AnatomyDetails {
       enabledRegions: [...this.enabled], hoveredRegion: this.hovered, preparingRegions: this.preparing,
       locationAid: this.locationState,
       regions: this.regions.snapshot(),
-      landmarks: [...this.landmarks.values()].map((entry) => ({ id: entry.id, name: entry.name, category: entry.category, owners: entry.owners, point: this.worldPoint(entry).toArray(), placementMethod: entry.placement.method, placementStatus: entry.placement.label_fit?.status ?? 'approximate', visible: !this.rows.get(entry.id).pin.hidden })),
+      landmarks: [...this.landmarks.values()].map((entry) => ({ id: entry.id, name: entry.name, category: entry.category, owners: entry.owners, point: this.worldPoint(entry)?.toArray() ?? null, located: this.hasLocation(entry), placementMethod: entry.placement.method, placementStatus: entry.placement.label_fit?.status ?? 'approximate', visible: !this.rows.get(entry.id).pin.hidden })),
       cavities: [...this.cavities.values()].map((entry) => ({ id: entry.id, visible: entry.visible, rendered: entry.parts.some((part) => part.visible), triangles: entry.parts.reduce((sum, part) => sum + part.geometry.index.count / 3, 0), bounds: entry.parts.map((part) => { const box = part.geometry.boundingBox.clone().applyMatrix4(part.matrix); return [box.min.toArray(), box.max.toArray()]; }) })),
     };
   }
 
   projectLandmark(id) {
-    const entry = this.landmarks.get(id); if (!entry) return null;
+    const entry = this.landmarks.get(id); if (!this.hasLocation(entry)) return null;
     this.context.scene.updateMatrixWorld(true);
     const result = this.project(entry); const rect = this.context.canvas.getBoundingClientRect();
     return { x: rect.left + result.x, y: rect.top + result.y };

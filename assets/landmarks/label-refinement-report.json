@@ -1695,20 +1695,16 @@
     {
       "dataset": "reference",
       "id": "left-anterior-ethmoidal-foramen",
-      "point": [
-        15.0,
-        -2.0,
-        61.0
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "source-space-guide",
-      "owner": "frontal-bone",
-      "attachment": "space",
-      "displacement_from_initial": 0.0
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
@@ -2113,20 +2109,16 @@
     {
       "dataset": "reference",
       "id": "left-posterior-ethmoidal-foramen",
-      "point": [
-        15.0,
-        -1.0,
-        44.0
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "source-space-guide",
-      "owner": "frontal-bone",
-      "attachment": "space",
-      "displacement_from_initial": 0.0
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
@@ -2207,60 +2199,44 @@
     {
       "dataset": "reference",
       "id": "left-zygomaticofacial-foramen",
-      "point": [
-        46.310443,
-        -23.341248,
-        64.865576
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "zygomatic-bone-left",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 466,
-      "projection_distance": 1.3707142635243854,
-      "basis": "native-surface-guide",
-      "owner": "zygomatic-bone-left",
-      "attachment": "surface",
-      "displacement_from_initial": 1.3707142635243854
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
       "id": "left-zygomaticoorbital-foramen",
-      "point": [
-        40.381357,
-        -15.154397,
-        55.532214
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "zygomatic-bone-left",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 552,
-      "projection_distance": 0.6229728603961314,
-      "basis": "native-surface-guide",
-      "owner": "zygomatic-bone-left",
-      "attachment": "surface",
-      "displacement_from_initial": 0.6229728603961314
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
       "id": "left-zygomaticotemporal-foramen",
-      "point": [
-        49.0,
-        -12.0,
-        46.0
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "zygomatic-bone-left",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "source-space-guide",
-      "owner": "zygomatic-bone-left",
-      "attachment": "space",
-      "displacement_from_initial": 0.0
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
@@ -2301,20 +2277,16 @@
     {
       "dataset": "reference",
       "id": "right-anterior-ethmoidal-foramen",
-      "point": [
-        -14.89543,
-        -2.0,
-        61.0
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "source-space-guide",
-      "owner": "frontal-bone",
-      "attachment": "space",
-      "displacement_from_initial": 0.0
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
@@ -2721,20 +2693,16 @@
     {
       "dataset": "reference",
       "id": "right-posterior-ethmoidal-foramen",
-      "point": [
-        -14.89543,
-        -1.0,
-        44.0
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "source-space-guide",
-      "owner": "frontal-bone",
-      "attachment": "space",
-      "displacement_from_initial": 0.0
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
@@ -2815,60 +2783,44 @@
     {
       "dataset": "reference",
       "id": "right-zygomaticofacial-foramen",
-      "point": [
-        -46.205879,
-        -23.341253,
-        64.86557
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "zygomatic-bone-right",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 466,
-      "projection_distance": 1.370716870788576,
-      "basis": "native-surface-guide",
-      "owner": "zygomatic-bone-right",
-      "attachment": "surface",
-      "displacement_from_initial": 1.370716870788576
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
       "id": "right-zygomaticoorbital-foramen",
-      "point": [
-        -40.276784,
-        -15.154395,
-        55.532214
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "zygomatic-bone-right",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 552,
-      "projection_distance": 0.6229706259768274,
-      "basis": "native-surface-guide",
-      "owner": "zygomatic-bone-right",
-      "attachment": "surface",
-      "displacement_from_initial": 0.6229706259768274
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
       "id": "right-zygomaticotemporal-foramen",
-      "point": [
-        -48.89543,
-        -12.0,
-        46.0
-      ],
+      "point": null,
       "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
       "initial_method": "curated-study-location",
+      "owner": "zygomatic-bone-right",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "source-space-guide",
-      "owner": "zygomatic-bone-right",
-      "attachment": "space",
-      "displacement_from_initial": 0.0
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "reference",
@@ -17298,26 +17250,16 @@
     {
       "dataset": "ct",
       "id": "left-anterior-ethmoidal-foramen",
-      "point": [
-        12.801592,
-        4.387622,
-        54.035727
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "bone-shape-registration",
-      "owner": "frontal-bone",
-      "source_point": [
-        15.0,
-        -2.0,
-        61.0
-      ],
-      "attachment": "space",
-      "source_placement_basis": "source-space-guide",
-      "displacement_from_initial": 3.5877168766764695
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
@@ -17793,26 +17735,16 @@
     {
       "dataset": "ct",
       "id": "left-posterior-ethmoidal-foramen",
-      "point": [
-        12.403852,
-        5.69237,
-        38.776851
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "bone-shape-registration",
-      "owner": "frontal-bone",
-      "source_point": [
-        15.0,
-        -1.0,
-        44.0
-      ],
-      "attachment": "space",
-      "source_placement_basis": "source-space-guide",
-      "displacement_from_initial": 3.9713405575993135
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
@@ -17919,80 +17851,44 @@
     {
       "dataset": "ct",
       "id": "left-zygomaticofacial-foramen",
-      "point": [
-        45.919848,
-        -16.762222,
-        56.363347
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "zygomatic-bone-left",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 4568,
-      "projection_distance": 0.04231076307393649,
-      "round_trip_distance": 0.14045908359426196,
-      "basis": "bone-shape-registration",
-      "owner": "zygomatic-bone-left",
-      "source_point": [
-        46.310443,
-        -23.341248,
-        64.865576
-      ],
-      "attachment": "surface",
-      "source_placement_basis": "native-surface-guide",
-      "displacement_from_initial": 7.698017768450045
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
       "id": "left-zygomaticoorbital-foramen",
-      "point": [
-        39.238291,
-        -9.824871,
-        49.086238
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "zygomatic-bone-left",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 8099,
-      "projection_distance": 0.08653138919103581,
-      "round_trip_distance": 0.127399261068114,
-      "basis": "bone-shape-registration",
-      "owner": "zygomatic-bone-left",
-      "source_point": [
-        40.381357,
-        -15.154397,
-        55.532214
-      ],
-      "attachment": "surface",
-      "source_placement_basis": "native-surface-guide",
-      "displacement_from_initial": 6.389243264510138
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
       "id": "left-zygomaticotemporal-foramen",
-      "point": [
-        45.656947,
-        -7.580456,
-        39.988054
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "zygomatic-bone-left",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "bone-shape-registration",
-      "owner": "zygomatic-bone-left",
-      "source_point": [
-        49.0,
-        -12.0,
-        46.0
-      ],
-      "attachment": "space",
-      "source_placement_basis": "source-space-guide",
-      "displacement_from_initial": 5.058427757546919
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
@@ -18045,26 +17941,16 @@
     {
       "dataset": "ct",
       "id": "right-anterior-ethmoidal-foramen",
-      "point": [
-        -13.042377,
-        6.871936,
-        55.503703
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "bone-shape-registration",
-      "owner": "frontal-bone",
-      "source_point": [
-        -14.89543,
-        -2.0,
-        61.0
-      ],
-      "attachment": "space",
-      "source_placement_basis": "source-space-guide",
-      "displacement_from_initial": 3.272107232510003
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
@@ -18547,26 +18433,16 @@
     {
       "dataset": "ct",
       "id": "right-posterior-ethmoidal-foramen",
-      "point": [
-        -14.07804,
-        6.7836,
-        40.020686
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "ethmoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "bone-shape-registration",
-      "owner": "frontal-bone",
-      "source_point": [
-        -14.89543,
-        -1.0,
-        44.0
-      ],
-      "attachment": "space",
-      "source_placement_basis": "source-space-guide",
-      "displacement_from_initial": 3.7368746056902125
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
@@ -18673,80 +18549,44 @@
     {
       "dataset": "ct",
       "id": "right-zygomaticofacial-foramen",
-      "point": [
-        -49.478347,
-        -9.698178,
-        60.004779
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "zygomatic-bone-right",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 4675,
-      "projection_distance": 0.12634645239319214,
-      "round_trip_distance": 0.11283203480693103,
-      "basis": "bone-shape-registration",
-      "owner": "zygomatic-bone-right",
-      "source_point": [
-        -46.205879,
-        -23.341253,
-        64.86557
-      ],
-      "attachment": "surface",
-      "source_placement_basis": "native-surface-guide",
-      "displacement_from_initial": 4.613288499273053
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
       "id": "right-zygomaticoorbital-foramen",
-      "point": [
-        -42.120443,
-        -3.788826,
-        52.681545
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "zygomatic-bone-right",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "surface_face": 7522,
-      "projection_distance": 0.00763412827938572,
-      "round_trip_distance": 0.03761741570204107,
-      "basis": "bone-shape-registration",
-      "owner": "zygomatic-bone-right",
-      "source_point": [
-        -40.276784,
-        -15.154395,
-        55.532214
-      ],
-      "attachment": "surface",
-      "source_placement_basis": "native-surface-guide",
-      "displacement_from_initial": 4.430257464344164
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
       "id": "right-zygomaticotemporal-foramen",
-      "point": [
-        -48.686908,
-        -0.836246,
-        44.28716
-      ],
+      "point": null,
       "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
       "initial_method": "owner-bounds-map",
+      "owner": "zygomatic-bone-right",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
       "anatomical_accuracy_percent": null,
       "independently_validated": false,
-      "status": "approximate",
-      "basis": "bone-shape-registration",
-      "owner": "zygomatic-bone-right",
-      "source_point": [
-        -48.89543,
-        -12.0,
-        46.0
-      ],
-      "attachment": "space",
-      "source_placement_basis": "source-space-guide",
-      "displacement_from_initial": 3.6836908362681475
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     },
     {
       "dataset": "ct",
@@ -33968,6 +33808,62 @@
       ],
       "criterion": "vertex",
       "displacement_from_initial": 5.963336489601293
+    },
+    {
+      "dataset": "reference",
+      "id": "left-cranio-orbital-foramen",
+      "point": null,
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "initial_method": "curated-study-location",
+      "owner": "sphenoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
+      "anatomical_accuracy_percent": null,
+      "independently_validated": false,
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+    },
+    {
+      "dataset": "reference",
+      "id": "right-cranio-orbital-foramen",
+      "point": null,
+      "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+      "initial_method": "curated-study-location",
+      "owner": "sphenoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
+      "anatomical_accuracy_percent": null,
+      "independently_validated": false,
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+    },
+    {
+      "dataset": "ct",
+      "id": "left-cranio-orbital-foramen",
+      "point": null,
+      "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+      "initial_method": "owner-bounds-map",
+      "owner": "sphenoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
+      "anatomical_accuracy_percent": null,
+      "independently_validated": false,
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+    },
+    {
+      "dataset": "ct",
+      "id": "right-cranio-orbital-foramen",
+      "point": null,
+      "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+      "initial_method": "owner-bounds-map",
+      "owner": "sphenoid-bone",
+      "status": "unlocated",
+      "basis": "unlocated",
+      "attachment": "unlocated",
+      "anatomical_accuracy_percent": null,
+      "independently_validated": false,
+      "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
     }
   ],
   "registrations": {
@@ -35445,16 +35341,18 @@
   "counts": {
     "reference": {
       "native-junction": 51,
-      "native-surface-guide": 493,
+      "native-surface-guide": 489,
       "registered-source-region": 83,
-      "source-space-guide": 89,
+      "source-space-guide": 83,
+      "unlocated": 12,
       "native-source-selection": 14,
       "native-contour-extremum": 5
     },
     "ct": {
       "native-junction": 56,
-      "bone-shape-registration": 550,
+      "bone-shape-registration": 540,
       "registered-source-region": 75,
+      "unlocated": 12,
       "native-opening-fit": 4,
       "native-segmented-cavity": 6,
       "native-contour-extremum": 5
@@ -35468,5 +35366,5 @@
     "before_p95": 10.654476440561865,
     "after_p95": 6.543584996542394
   },
-  "catalogue_sha256": "6e6a6da4671d2b0af113c7d1f9d26ef2f67b6587f6039c771e70ce12192aefff"
+  "catalogue_sha256": "664f62e20f488c59cc7d4f6b897f9de9bdce2d2dafba208a14e1f9af7ad8e2d1"
 }

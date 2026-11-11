@@ -304,6 +304,7 @@ export class SurfaceRegions {
   }
 
   async prepare(entry) {
+    if (entry.placement?.location_status === 'unlocated' || !entry.placement?.point) return this.empty(entry);
     if (this.cache.has(entry.id)) return this.cache.get(entry.id);
     if (this.pending.has(entry.id)) return this.pending.get(entry.id).promise;
     if (!this.worker) return this.build(entry);
@@ -447,6 +448,7 @@ export class SurfaceRegions {
   }
 
   build(entry) {
+    if (entry.placement?.location_status === 'unlocated' || !entry.placement?.point) return this.empty(entry);
     if (this.cache.has(entry.id)) return this.cache.get(entry.id);
     const parts = [], methods = new Set();
     const transferred = this.hasRegisteredBoundary(entry.id);

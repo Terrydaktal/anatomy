@@ -89,7 +89,9 @@ def viewer_checks(p, url, report):
         })''')
         assert elapsed < 1000, f'Cold Show all waited {elapsed:.0f} ms'
         state = snapshot(page)
-        assert not state['anatomy']['preparingRegions'] and len(state['anatomy']['enabledRegions']) == 735
+        located = {entry['id'] for entry in state['anatomy']['landmarks'] if entry['located']}
+        assert len(located) == 725
+        assert not state['anatomy']['preparingRegions'] and set(state['anatomy']['enabledRegions']) == located
         assert sum(region['rendered'] for region in state['anatomy']['regions']) == 150
         report['cold_show_all_ms'] = elapsed
         base = compare_batch(page, 'all', report)

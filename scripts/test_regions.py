@@ -247,7 +247,7 @@ def source_mode_checks(page, url, checks):
     load(page, url, "?dataset=ct")
     page.locator("#landmark-panel").evaluate("e=>e.open=true")
     assert page.locator("#landmark-estimates").is_checked()
-    assert page.locator(".landmark-row:not([hidden])").count() == 735
+    assert page.locator(".landmark-row:not([hidden])").count() == 737
     page.locator("#landmark-estimates").uncheck()
     assert snapshot(page)["anatomy"]["suppliedRegionCount"] == 10
     assert page.locator(".landmark-row:not([hidden])").count() == 10

@@ -92,7 +92,7 @@ def main():
                     assert page.locator('#dataset option').evaluate_all('values=>values.map(e=>e.value)') == ['ct', 'microct']
                     assert page.locator('#landmark-reference').count() == 0
                     assert len(snapshot(page)['structures']) == 31
-                    assert snapshot(page)['anatomy']['landmarkCount'] == 735
+                    assert snapshot(page)['anatomy']['landmarkCount'] == 737
                     page.locator('#landmark-estimates').uncheck()
                     page.locator('#search').fill('sphenoid')
                     page.get_by_role('button', name='Isolate and focus sphenoid bone', exact=True).click()
@@ -102,7 +102,7 @@ def main():
                     page.unroute('**/assets/skull-ct/manifest.json', source)
                 assert page.locator('#model-download').get_attribute('href') == manifest['surface']['model']
                 assert not any('/assets/skull/skull.glb' in item or '/assets/skull/manifest.json' in item for item in requested)
-                report['checks'].append('Retired reference links resolve to CT; 29 bones and 735 landmarks remain, with no reference skull network load')
+                report['checks'].append('Retired reference links resolve to CT; 29 bones and 737 landmarks remain, with no reference skull network load')
                 page.locator('#reset').click()
                 page.locator('#landmark-xray').uncheck()
                 for side in ['Left', 'Right']:

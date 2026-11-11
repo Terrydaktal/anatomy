@@ -44,6 +44,15 @@
   ],
   "requirements": [
     {
+      "id": "LM-ORBITAL-FORAMINA",
+      "owner": "landmark-catalogue",
+      "contract": "Left/right cranio-orbital names (TA2 482) appear once each with their search aliases. All 12 bilateral cranio-orbital, zygomaticofacial, zygomaticoorbital, zygomaticotemporal and anterior/posterior ethmoidal entries remain explicitly unlocated until a named native opening is identified. Active coordinates are null; no spatial hover, target, pin, paint, Focus or Reveal is supplied. Show all skips these entries while names and source information remain searchable.",
+      "checks": ["test_landmark_location.py:orbital_foramina_check", "test_region_evidence.py:test_variable_orbital_names_remain_unlocated"],
+      "definition_source": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf#page=5",
+      "regression": "A curated reference seed was projected onto intact sphenoid and then transferred to CT. Low geometric residuals did not establish a foramen. The rejected coordinates remain archival evidence and cannot supply an active target.",
+      "mutation": "test_landmark_location.py --mutant orbital-guesses restores rejected candidate coordinates in an isolated catalogue response and must reproduce the false-marker failure."
+    },
+    {
       "id": "LM-SELECTION-REPLACEMENT",
       "owner": "landmark-viewer",
       "contract": "Catalogue and canvas clicks replace the single selected landmark highlight without checking or retaining it. Closing selection or clicking empty canvas removes its highlight; explicitly checked regions persist independently. Bone visibility and appearance remain unchanged.",
@@ -53,7 +62,7 @@
     {
       "id": "PKG-CLEAN-CHECKOUT",
       "owner": "viewer-resources",
-      "contract": "A clean Git tree, without source caches, fitting inputs, native binary caches or a virtual environment, starts through the documented uv command and displays the same 31 structures, 735 landmarks and 150 supported surface highlights.",
+      "contract": "A clean Git tree, without source caches, fitting inputs, native binary caches or a virtual environment, starts through the documented uv command and displays the same 31 structures, 737 landmarks and 150 supported surface highlights.",
       "checks": ["test_portable_viewer.py:browser_checks", "test_portable_viewer.py:main"],
       "environment": "Executed on Linux with Chrome/NVIDIA Vulkan; other operating systems and browsers require their own acceptance runs.",
       "failure": "Missing regions, live fitting instead of prepared surfaces, outside anatomy requests, changed versioned files or a missing micro-CT fragment"
@@ -329,7 +338,7 @@
     {
       "id": "LM-MAIN-CATALOGUE",
       "owner": "skull-viewer",
-      "contract": "Both skull views display 29 independently toggleable bones and 735 landmarks on one page, with estimates enabled initially and after Reset. Associated bones retain source triangles and intact chain relationships, reference coordinates remain unaltered, and CT placements retain explicit estimated provenance. Explosion translates bones without changing their dimensions, camera zoom or target. Right-click Hide affects only the underlying bone, while right-drag pans.",
+      "contract": "Both skull views display 29 independently toggleable bones and 737 landmarks on one page, with estimates enabled initially and after Reset. Associated bones retain source triangles and intact chain relationships, reference coordinates remain unaltered, and CT placements retain explicit estimated provenance. Explosion translates bones without changing their dimensions, camera zoom or target. Right-click Hide affects only the underlying bone, while right-drag pans.",
       "checks": [
         "test_catalogue_controls.py:check",
         "test_associated_bones.py:main",
@@ -340,7 +349,7 @@
       "failure": "Separate study-only bones, shifted atlas chains, changed native geometry, distorted ossicles, silent cross-specimen imports, camera refitting during explosion, hiding multiple bones or broken right-drag pan",
       "tolerances": {
         "bones": 29,
-        "landmarks_per_skull": 735,
+        "landmarks_per_skull": 737,
         "desktop_row_height_px": 26,
         "unchanged_dimension_tolerance": 1e-05,
         "camera_position_tolerance": 1e-06

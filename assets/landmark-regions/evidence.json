@@ -46,34 +46,36 @@
     "reference": {
       "model": "assets/skull/skull.glb",
       "model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
-      "catalogued_features": 735,
+      "catalogued_features": 737,
       "supplied_boundaries": 14,
-      "estimates": 721,
+      "estimates": 723,
       "evidence_counts": {
         "contact-fit": 51,
-        "location-guide": 571,
+        "location-guide": 561,
         "registered-source-region": 83,
+        "unlocated": 12,
         "withheld-source-transfer": 8,
         "source-face-selection": 14,
         "native-geometry-fit": 8
       },
-      "terminology_matched_features": 598,
+      "terminology_matched_features": 600,
       "complete_source_boundary_coverage": false
     },
     "ct": {
       "model": "assets/skull-ct/skull.glb",
       "model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
-      "catalogued_features": 696,
+      "catalogued_features": 698,
       "supplied_boundaries": 0,
-      "estimates": 696,
+      "estimates": 698,
       "evidence_counts": {
         "contact-fit": 51,
-        "location-guide": 542,
+        "location-guide": 532,
         "registered-source-region": 75,
+        "unlocated": 12,
         "native-geometry-fit": 14,
         "withheld-source-transfer": 14
       },
-      "terminology_matched_features": 561,
+      "terminology_matched_features": 563,
       "complete_source_boundary_coverage": false
     }
   },
@@ -5020,51 +5022,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "source-space-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
-              15.0,
-              -2.0,
-              61.0
-            ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.5877168766764695
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -5204,6 +5200,67 @@
           "kind": "location-guide",
           "scope": "no-painted-region",
           "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+        }
+      },
+      "external_mesh_candidates": []
+    },
+    {
+      "id": "left-cranio-orbital-foramen",
+      "name": "Left cranio-orbital foramen",
+      "category": "foramina",
+      "owners": [
+        "sphenoid-bone",
+        "frontal-bone"
+      ],
+      "terminology": [
+        {
+          "ta2_id": "482",
+          "english": "(Cranio-orbital foramen)",
+          "latin": "(Foramen cranioorbitale)"
+        }
+      ],
+      "datasets": {
+        "reference": {
+          "available": true,
+          "placement_method": "unlocated",
+          "supplied_boundary": false,
+          "label_placement": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          },
+          "independently_validated": false,
+          "anatomical_accuracy_percent": null,
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
+        },
+        "ct": {
+          "available": true,
+          "placement_method": "unlocated",
+          "supplied_boundary": false,
+          "label_placement": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          },
+          "independently_validated": false,
+          "anatomical_accuracy_percent": null,
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -6547,51 +6604,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "source-space-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
-              15.0,
-              -1.0,
-              44.0
-            ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.9713405575993135
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -6882,56 +6933,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "native-surface-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 466,
-            "projection_distance": 1.3707142635243854,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-left",
-            "attachment": "surface",
-            "displacement_from_initial": 1.3707142635243854
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 4568,
-            "projection_distance": 0.04231076307393649,
-            "round_trip_distance": 0.14045908359426196,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-left",
-            "source_point": [
-              46.310443,
-              -23.341248,
-              64.865576
-            ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 7.698017768450045
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -6947,56 +6987,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "native-surface-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 552,
-            "projection_distance": 0.6229728603961314,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-left",
-            "attachment": "surface",
-            "displacement_from_initial": 0.6229728603961314
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 8099,
-            "projection_distance": 0.08653138919103581,
-            "round_trip_distance": 0.127399261068114,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-left",
-            "source_point": [
-              40.381357,
-              -15.154397,
-              55.532214
-            ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 6.389243264510138
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -7018,51 +7047,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "source-space-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "zygomatic-bone-left",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-left",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-left",
-            "source_point": [
-              49.0,
-              -12.0,
-              46.0
-            ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 5.058427757546919
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -7214,51 +7237,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "source-space-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
-              -14.89543,
-              -2.0,
-              61.0
-            ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.272107232510003
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -7398,6 +7415,67 @@
           "kind": "location-guide",
           "scope": "no-painted-region",
           "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+        }
+      },
+      "external_mesh_candidates": []
+    },
+    {
+      "id": "right-cranio-orbital-foramen",
+      "name": "Right cranio-orbital foramen",
+      "category": "foramina",
+      "owners": [
+        "sphenoid-bone",
+        "frontal-bone"
+      ],
+      "terminology": [
+        {
+          "ta2_id": "482",
+          "english": "(Cranio-orbital foramen)",
+          "latin": "(Foramen cranioorbitale)"
+        }
+      ],
+      "datasets": {
+        "reference": {
+          "available": true,
+          "placement_method": "unlocated",
+          "supplied_boundary": false,
+          "label_placement": {
+            "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
+            "initial_method": "curated-study-location",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          },
+          "independently_validated": false,
+          "anatomical_accuracy_percent": null,
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
+        },
+        "ct": {
+          "available": true,
+          "placement_method": "unlocated",
+          "supplied_boundary": false,
+          "label_placement": {
+            "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
+            "initial_method": "owner-bounds-map",
+            "owner": "sphenoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
+            "anatomical_accuracy_percent": null,
+            "independently_validated": false,
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
+          },
+          "independently_validated": false,
+          "anatomical_accuracy_percent": null,
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -8750,51 +8828,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "source-space-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "frontal-bone",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "ethmoid-bone",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "frontal-bone",
-            "source_point": [
-              -14.89543,
-              -1.0,
-              44.0
-            ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.7368746056902125
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -9085,56 +9157,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "native-surface-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 466,
-            "projection_distance": 1.370716870788576,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-right",
-            "attachment": "surface",
-            "displacement_from_initial": 1.370716870788576
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 4675,
-            "projection_distance": 0.12634645239319214,
-            "round_trip_distance": 0.11283203480693103,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-right",
-            "source_point": [
-              -46.205879,
-              -23.341253,
-              64.86557
-            ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 4.613288499273053
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -9150,56 +9211,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "native-surface-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 552,
-            "projection_distance": 0.6229706259768274,
-            "basis": "native-surface-guide",
-            "owner": "zygomatic-bone-right",
-            "attachment": "surface",
-            "displacement_from_initial": 0.6229706259768274
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "surface_face": 7522,
-            "projection_distance": 0.00763412827938572,
-            "round_trip_distance": 0.03761741570204107,
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-right",
-            "source_point": [
-              -40.276784,
-              -15.154395,
-              55.532214
-            ],
-            "attachment": "surface",
-            "source_placement_basis": "native-surface-guide",
-            "displacement_from_initial": 4.430257464344164
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []
@@ -9221,51 +9271,45 @@
       "datasets": {
         "reference": {
           "available": true,
-          "placement_method": "source-space-guide",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "8d15ee3c5954e17f18855d1ce51574bd860beab582904be29e2be8643c89a3bb",
             "initial_method": "curated-study-location",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "source-space-guide",
-            "owner": "zygomatic-bone-right",
-            "attachment": "space",
-            "displacement_from_initial": 0.0
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         },
         "ct": {
           "available": true,
-          "placement_method": "bone-shape-registration",
+          "placement_method": "unlocated",
           "supplied_boundary": false,
           "label_placement": {
             "source_model_sha256": "80b9bcee116cb12b231feee9c6db32803ffdddce4618a885592209c8e71e5ca8",
             "initial_method": "owner-bounds-map",
+            "owner": "zygomatic-bone-right",
+            "status": "unlocated",
+            "basis": "unlocated",
+            "attachment": "unlocated",
             "anatomical_accuracy_percent": null,
             "independently_validated": false,
-            "status": "approximate",
-            "basis": "bone-shape-registration",
-            "owner": "zygomatic-bone-right",
-            "source_point": [
-              -48.89543,
-              -12.0,
-              46.0
-            ],
-            "attachment": "space",
-            "source_placement_basis": "source-space-guide",
-            "displacement_from_initial": 3.6836908362681475
+            "reason": "No named opening has been located on this specimen. The previous point was an estimated location, not an identified foramen."
           },
           "independently_validated": false,
           "anatomical_accuracy_percent": null,
-          "kind": "location-guide",
-          "scope": "no-painted-region",
-          "note": "Approximate label location only. No supplied or fitted boundary; no generic anatomical area is painted."
+          "kind": "unlocated",
+          "scope": "no-location-no-painted-region",
+          "note": "Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied."
         }
       },
       "external_mesh_candidates": []

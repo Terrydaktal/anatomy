@@ -53,7 +53,10 @@ def asset_checks() -> dict:
         assert entry["category"] in category_ids and entry["description"]
         for placement in entry["positions"].values():
             if placement is not None:
-                assert len(placement["point"]) == 3 and all(math.isfinite(value) for value in placement["point"])
+                if placement.get('location_status') == 'unlocated':
+                    assert placement['point'] is None and placement['label_fit']['status'] == 'unlocated'
+                else:
+                    assert len(placement["point"]) == 3 and all(math.isfinite(value) for value in placement["point"])
     return catalogue
 
 

@@ -21,9 +21,9 @@ def unified_catalogue_checks(page):
     assert page.get_by_role('searchbox', name='Find a landmark', exact=True).count() == 1
     assert page.locator('#search').bounding_box()['y'] < page.locator('#landmark-search').bounding_box()['y']
     assert page.locator('#catalogue select').count() == 0, 'Landmarks still use dropdown filters'
-    assert page.locator('#catalogue-total').inner_text() == '766'
+    assert page.locator('#catalogue-total').inner_text() == '768'
     assert page.locator('.landmark-level-1').count() == 13
-    assert page.locator('.landmark-row').evaluate_all('rows => new Set(rows.map(row => row.dataset.landmark)).size') == 735
+    assert page.locator('.landmark-row').evaluate_all('rows => new Set(rows.map(row => row.dataset.landmark)).size') == 737
     assert page.locator('.sidebar-scroll').evaluate('node => [...node.children].map(child => child.id || child.className)') == ['bone-catalogue', 'about', 'display-controls', 'dataset-control']
     assert page.locator('.about #landmark-note, .about #landmark-coverage').count() == 2
     assert page.locator('#bone-catalogue #landmark-note, #bone-catalogue #landmark-coverage').count() == 0
@@ -36,7 +36,7 @@ def unified_catalogue_checks(page):
     capture(page, 'catalogue-type-and-bone')
     page.locator('#search').fill('sphenoid')
     assert page.locator('.bone-row:visible').count() == 1
-    assert page.locator('.landmark-row:not([hidden])').count() == 735, 'Bone search filtered landmarks'
+    assert page.locator('.landmark-row:not([hidden])').count() == 737, 'Bone search filtered landmarks'
     assert not page.locator('[data-landmark-group="sutures"]').evaluate('node => node.open'), 'Bone search expanded unrelated landmark groups'
     page.locator('#landmark-search').fill('sphenoid')
     assert page.locator('.landmark-row:visible').count() > 24
@@ -45,7 +45,7 @@ def unified_catalogue_checks(page):
     capture(page, 'catalogue-separate-searches')
     page.locator('#search').fill('')
     assert page.locator('.bone-row:not([hidden])').count() == 31
-    assert page.locator('.landmark-row:not([hidden])').count() < 735, 'Clearing bone search cleared landmark search'
+    assert page.locator('.landmark-row:not([hidden])').count() < 737, 'Clearing bone search cleared landmark search'
     page.locator('#landmark-search').fill('')
     assert category.evaluate('node => node.open') and owner.evaluate('node => node.open'), 'Search lost the manually expanded branch'
     assert not page.locator('[data-landmark-group="sutures"]').evaluate('node => node.open'), 'Clearing search left unrelated categories expanded'
@@ -109,7 +109,7 @@ def unified_catalogue_checks(page):
 
     page.locator('.about > summary').click()
     about = page.locator('.about').inner_text()
-    for text in ['OUVC 10503', '29 bones', '735 landmark', '1,421,276', '625 µm', 'unvalidated', '75 source regions', '10 point landmarks', 'BioDigital', 'FossaFinder', 'display units', 'Download CT skull']:
+    for text in ['OUVC 10503', '29 bones', '737 landmark', '1,421,276', '625 µm', 'unvalidated', '75 source regions', '10 point landmarks', 'BioDigital', 'FossaFinder', 'display units', 'Download CT skull']:
         assert text in about, f'About this model omits {text}'
     page.locator('#model-catalogue-credits').scroll_into_view_if_needed()
     capture(page, 'catalogue-about-sources')
@@ -150,7 +150,7 @@ def check(page, url, dataset):
     assert page.locator('#bone-catalogue').is_visible() and page.locator('#bone-studies').is_visible(), 'Bones and landmarks still require separate catalogue views'
     assert page.locator('.anatomy-tabs').count() == 0
     assert page.locator('#landmark-estimates').is_checked()
-    assert page.locator('.landmark-row:not([hidden])').count() == 735
+    assert page.locator('.landmark-row:not([hidden])').count() == 737
     assert page.locator('a[href*="study=ossicles"],a[href*="study=hyoid"]').count() == 0
     assert page.locator('.bone-row[data-id="frontal-bone"]').bounding_box()['height'] <= 26
     unified_catalogue_checks(page)
@@ -210,12 +210,12 @@ def check(page, url, dataset):
     assert all(e['visible'] for e in by_id(page).values())
     page.locator('#landmark-estimates').uncheck()
     assert page.locator('.landmark-row:not([hidden])').count() == 10
-    assert page.locator('#catalogue-total').inner_text() == '41 / 766'
+    assert page.locator('#catalogue-total').inner_text() == '41 / 768'
     page.locator('#reset').click()
     assert page.locator('#landmark-estimates').is_checked()
     assert all(by_id(page)[k]['visible'] for k in associated)
     assert page.locator('#search').input_value() == '' and page.locator('#landmark-search').input_value() == ''
-    return f'{dataset}: separate bone/landmark searches in one catalogue, independent empty results and visibility actions, restored expansion, nested type/bone groups, model About, 735 landmarks, 29 bones, pointer Hide menu, pan and translation-only explosion'
+    return f'{dataset}: separate bone/landmark searches in one catalogue, independent empty results and visibility actions, restored expansion, nested type/bone groups, model About, 737 landmarks, 29 bones, pointer Hide menu, pan and translation-only explosion'
 
 
 def main():

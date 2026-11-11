@@ -12,7 +12,7 @@ from unittest.mock import patch
 import sync_region_evidence as evidence
 
 
-TERMS = b'"TA2ID;English;Latin"\n"429;Pterygopalatine fossa;Fossa pterygopalatina"\n"600;Pterygoid fossa;Fossa pterygoidea"\n"557;Occipital condyle;Condylus occipitalis"\n'
+TERMS = b'"TA2ID;English;Latin"\n"429;Pterygopalatine fossa;Fossa pterygopalatina"\n"600;Pterygoid fossa;Fossa pterygoidea"\n"557;Occipital condyle;Condylus occipitalis"\n"482;(Cranio-orbital foramen);(Foramen cranioorbitale)"\n'
 MESHES = b'<table><tr><td class="art_id">FJ6412</td><td class="rep_id">BP29493</td><td class="cdi_name">FMA52891</td><td class="cdi_name_e">Perpendicular plate of ethmoid</td><td class="cdi_syn_e">Lamina perpendicularis</td></tr></table>'
 
 
@@ -36,6 +36,15 @@ class RegionEvidenceTests(unittest.TestCase):
             self.assertFalse(region["datasets"][dataset]["supplied_boundary"])
             self.assertEqual(region["datasets"][dataset]["kind"], "location-guide")
             self.assertEqual(region["datasets"][dataset]["scope"], "no-painted-region")
+
+    def test_variable_orbital_names_remain_unlocated(self):
+        for side in ['left', 'right']:
+            region = next(item for item in self.report['regions'] if item['id'] == f'{side}-cranio-orbital-foramen')
+            self.assertEqual([term['ta2_id'] for term in region['terminology']], ['482'])
+            for dataset in ['reference', 'ct']:
+                self.assertEqual(region['datasets'][dataset]['kind'], 'unlocated')
+                self.assertEqual(region['datasets'][dataset]['scope'], 'no-location-no-painted-region')
+                self.assertFalse(region['datasets'][dataset]['supplied_boundary'])
 
     def test_registered_sources_remain_estimates(self):
         region = next(item for item in self.report['regions'] if item['id'] == 'left-pterygopalatine-fossa')

@@ -150,6 +150,9 @@ def evidence_for(entry: dict, dataset: str, authored: dict, apertures: dict, reg
     common = {"available": True, "placement_method": placement["method"], "supplied_boundary": False,
               "label_placement": placement.get('label_fit'),
               "independently_validated": False, "anatomical_accuracy_percent": None}
+    if placement.get('location_status') == 'unlocated':
+        return {**common, 'kind': 'unlocated', 'scope': 'no-location-no-painted-region',
+                'note': 'Named anatomical entry only. No opening is located on this specimen; no spatial target, pin or painted region is supplied.'}
     domains = authored.get(entry["id"], []) if dataset == "reference" else []
     if domains:
         return {**common, "kind": "source-face-selection", "supplied_boundary": True,

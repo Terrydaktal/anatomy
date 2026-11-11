@@ -142,7 +142,7 @@ def browser_checks(p, url, report):
         report['initial'] = {'landmarks': initial['anatomy']['landmarkCount'], 'precomputed': initial['anatomy']['precomputed'],
                              'cached_regions': len(initial['anatomy']['regions']), 'structures': len(initial['structures'])}
         assert initial['anatomy']['precomputed'], 'A clean checkout lost the supplied prepared highlights.'
-        assert len(initial['structures']) == 31 and initial['anatomy']['landmarkCount'] == 735
+        assert len(initial['structures']) == 31 and initial['anatomy']['landmarkCount'] == 737
         assert not page.workers and initial['anatomy']['batching']['enabled']
         page.locator('#landmark-pins').click()
         settle(page)
@@ -169,7 +169,7 @@ def browser_checks(p, url, report):
         microct = snapshot(page)
         assert len(microct['structures']) == 1 and microct['anatomy']['landmarkCount'] == 3
         assert not errors, errors
-        report['browser_checks'] = ['all 735 entries and 150 prepared surfaces', 'three-wall pterygopalatine fossa',
+        report['browser_checks'] = ['all 737 entries and 150 prepared surfaces', 'three-wall pterygopalatine fossa',
                                     '31 loaded structures', 'Zstd delivery without a generated compression manifest',
                                     'no fitting source downloads', 'no external anatomical requests', 'micro-CT fragment']
     finally:

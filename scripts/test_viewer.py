@@ -453,7 +453,7 @@ def ct_browser_checks(page, url: str, checks: list) -> None:
     page.wait_for_function("document.documentElement.dataset.ready === 'true'", timeout=60000)
     assert snapshot(page)["dataset"] == "ct"
     assert snapshot(page)["depthShading"]
-    assert page.locator("#catalogue-total").inner_text() == "766"
+    assert page.locator("#catalogue-total").inner_text() == "768"
     assert not page.locator("#bone-colors").is_checked()
     loaded = by_id(page)
     for entry in structures:

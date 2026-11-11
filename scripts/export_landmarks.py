@@ -216,6 +216,7 @@ def curated_records(reference: dict, ct: dict, center: np.ndarray) -> list[dict]
                 "description": detail["description"], "source_name": None,
                 "view": view, "aliases": [detail["name"]],
             }
+            record.update(detail.get("metadata", {}))
             result.append(positioned(record, point, reference, ct, "curated-study-location"))
     return result
 
@@ -439,6 +440,10 @@ def validate(records: list[dict], reference: dict, ct: dict) -> None:
             entries = reference if dataset == "reference" else ct
             if any(owner not in entries for owner in entry["owners"]):
                 raise RuntimeError(f"Landmark targets absent bone in {dataset}: {entry['id']}")
+            if placement.get('location_status') == 'unlocated':
+                if placement['point'] is not None or placement.get('label_fit', {}).get('attachment') != 'unlocated':
+                    raise RuntimeError(f"Unlocated landmark has a spatial target: {entry['id']} {dataset}")
+                continue
             points = np.array([placement["point"], *placement.get("path", [])])
             if points.shape[1] != 3 or not np.isfinite(points).all() or np.abs(points).max() > 200:
                 raise RuntimeError(f"Invalid or untransformed landmark coordinates: {entry['id']}")
@@ -515,10 +520,14 @@ def export(source: Path, output: Path) -> None:
     }
     from refine_label_positions import refine_catalogue
     refinement = refine_catalogue(result)
+    result['coverage']['unlocated'] = {dataset: sum(entry['positions'].get(dataset, {}).get('location_status') == 'unlocated' for entry in records)
+                                       for dataset in ['reference', 'ct']}
     validate(records, reference, ct)
     output.mkdir(parents=True, exist_ok=True)
     (output / "catalogue.json").write_text(json.dumps(result, indent=2) + "\n")
     report = {"landmarks": len(records), "categories": dict(coverage), "source_labels_not_directly_positioned": omitted, "ct_unavailable": [{"id": entry["id"], "owners": entry["owners"]} for entry in records if "ct" not in entry["positions"]], "source_projection_over_10_mm": [{"id": entry["id"], "distance_mm": entry["positions"]["reference"]["projection_distance_mm"], "placement_method": entry["positions"]["reference"]["method"]} for entry in records if entry["positions"]["reference"].get("projection_distance_mm", 0) > 10]}
+    report['unlocated'] = [{"id": entry['id'], "datasets": [dataset for dataset, placement in entry['positions'].items() if placement.get('location_status') == 'unlocated']}
+                           for entry in records if any(placement.get('location_status') == 'unlocated' for placement in entry['positions'].values())]
     (output / "export-report.json").write_text(json.dumps(report, indent=2) + "\n")
     (output / "label-refinement-report.json").write_text(json.dumps(refinement, indent=2) + "\n")
     (output / "ATTRIBUTION.txt").write_text(

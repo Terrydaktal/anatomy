@@ -137,9 +137,68 @@ def check(page, url, dataset, checks):
     assert not any(r['xrayRendered'] for r in snapshot(page)['anatomy']['regions'])
 
 
+def orbital_foramina_check(page, url, checks):
+    load(page, url, '?dataset=ct')
+    page.locator('#landmark-panel').evaluate('e=>e.open=true')
+    page.locator('[data-view="anterior"]').click()
+    page.mouse.move(0, 0)
+    settle(page)
+    state = snapshot(page)
+    identities = {entry['id'] for entry in state['anatomy']['landmarks']}
+    features = ['cranio-orbital foramen', 'zygomaticoorbital foramen', 'zygomaticofacial foramen',
+                'zygomaticotemporal foramen', 'anterior ethmoidal foramen', 'posterior ethmoidal foramen']
+    unlocated = {f'{side}-{feature.replace(" ", "-")}' for side in ['left', 'right'] for feature in features}
+    for side in ['left', 'right']:
+        for feature in [name.replace(' ', '-') for name in features]:
+            assert f'{side}-{feature}' in identities, f'Missing named orbital opening: {side}-{feature}'
+    expected = {'left-cranio-orbital-foramen', 'right-cranio-orbital-foramen'}
+    for query in ['cranio-orbital', 'cranioorbital', 'meningo-orbital', 'meningoorbital', 'sphenofrontal foramen', 'foramen cranioorbitale']:
+        page.locator('#landmark-search').fill(query)
+        matches = page.locator('.landmark-row:not([hidden])').evaluate_all('rows=>rows.map(row=>row.dataset.landmark)')
+        assert set(matches) == expected and len(matches) == 2, f'{query}: missing or duplicate cranio-orbital synonyms: {matches}'
+    for name in [f'{side} {feature}' for side in ['Left', 'Right'] for feature in features]:
+        identity = name.lower().replace(' ', '-')
+        page.locator('#landmark-search').fill(name)
+        page.get_by_role('button', name=name, exact=True).click()
+        page.mouse.move(0, 0)
+        settle(page)
+        assert page.locator('#landmark-location-aid').is_hidden(), f'{identity}: an unlocated foramen still points to a guessed surface location'
+        current = snapshot(page)
+        assert current['anatomy']['selected'] == {'id': identity, 'kind': 'landmark'}
+        assert current['structures'] == state['structures'] and current['camera'] == state['camera'], 'Selecting an unlocated name changed the bones or camera'
+        entry = next(entry for entry in current['anatomy']['landmarks'] if entry['id'] == identity)
+        assert not entry['located'] and entry['point'] is None and entry['placementStatus'] == 'unlocated'
+        assert page.evaluate('id=>window.skullAtlas.projectLandmark(id)', identity) is None
+        assert page.locator(f'.landmark-row[data-landmark="{identity}"] input').is_disabled()
+        assert 'not located on this skull' in page.locator(f'.landmark-row[data-landmark="{identity}"]').inner_text()
+        assert 'Not located on this skull' in page.locator('#anatomy-placement').text_content()
+        for control in ['anatomy-focus', 'anatomy-isolate', 'anatomy-hide']:
+            assert page.locator(f'#{control}').is_disabled()
+        geometry = page.evaluate('id=>window.skullAtlas.regionGeometry(id)', identity)
+        assert not geometry['parts'] and geometry['area'] == 0, 'A named variable opening acquired an invented boundary'
+        assert 'FIPAT-TA2-Part-2.pdf' in page.locator('#anatomy-source').get_attribute('href')
+        if 'cranio-orbital' in identity:
+            capture(page, f'location-{identity}')
+    page.locator('#landmark-search').fill('')
+    page.locator('#landmark-pins').check()
+    page.locator('#landmark-markers').check()
+    page.locator('#landmark-labels').check()
+    settle(page)
+    current = snapshot(page)
+    assert not unlocated.intersection(current['anatomy']['enabledRegions'])
+    assert all(not entry['visible'] for entry in current['anatomy']['landmarks'] if entry['id'] in unlocated)
+    assert current['anatomy']['locationAid'] is None
+    page.locator('#landmark-search').fill('cranio-orbital')
+    page.locator('#landmark-estimates').uncheck()
+    settle(page)
+    assert page.locator('.landmark-row:not([hidden])').count() == 0
+    assert snapshot(page)['anatomy']['selected'] is None
+    assert page.locator('#landmark-location-aid').is_hidden()
+    checks.append('All 12 orbital-foramen names remain searchable with source links; unlocated entries have null coordinates, no targets/pins/paint, disabled spatial actions and no camera/bone changes, including Show all with Pins and Names enabled')
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--mutant', choices=['broad-hover', 'xray-depth'], help='Deliberately faulty isolated module response; the regression must fail')
+    parser.add_argument('--mutant', choices=['broad-hover', 'xray-depth', 'orbital-guesses'], help='Deliberately faulty isolated response; the regression must fail')
     args = parser.parse_args()
     report = {'result': 'failed', 'checks': [], 'page_errors': []}
     report['mutant'] = args.mutant
@@ -151,7 +210,7 @@ def main():
                 args=['--enable-webgl', '--ignore-gpu-blocklist', '--disable-software-rasterizer', '--enable-features=Vulkan', '--use-angle=vulkan'])
             try:
                 page = browser.new_page(viewport={'width': 1500, 'height': 1000})
-                if args.mutant:
+                if args.mutant in ['broad-hover', 'xray-depth']:
                     name = 'anatomy-details.js' if args.mutant == 'broad-hover' else 'surface-regions.js'
                     module = (ROOT / 'src' / name).read_text()
                     before, after = (('const candidates = this.hoverLandmarks.filter((entry) => entry.owners.includes(owner) && this.hasSurface(entry));',
@@ -160,9 +219,19 @@ def main():
                     assert module.count(before) == 1
                     module = module.replace(before, after)
                     page.route(f'**/src/{name}*', lambda route: route.fulfill(body=module, content_type='text/javascript'))
+                elif args.mutant == 'orbital-guesses':
+                    catalogue = json.loads((ROOT / 'assets/landmarks/catalogue.json').read_text())
+                    for entry in catalogue['landmarks']:
+                        for dataset, placement in entry['positions'].items():
+                            if placement.get('location_status') == 'unlocated':
+                                restored = {**placement, **placement['rejected_location']}
+                                restored.pop('location_status')
+                                entry['positions'][dataset] = restored
+                    page.route('**/assets/landmarks/catalogue.json*', lambda route: route.fulfill(body=json.dumps(catalogue), content_type='application/json'))
                 page.on('pageerror', lambda error: report['page_errors'].append(str(error)))
                 for dataset in ['ct']:
                     check(page, url, dataset, report['checks'])
+                orbital_foramina_check(page, url, report['checks'])
                 page.set_viewport_size({'width': 390, 'height': 844})
                 page.emulate_media(reduced_motion='reduce')
                 load(page, url, '?dataset=ct')

@@ -11,6 +11,30 @@ from __future__ import annotations
 TERMINOLOGY_URL = "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-2.pdf"
 OVERVIEW_URL = "https://openstax.org/books/anatomy-and-physiology-2e/pages/7-2-the-skull"
 
+# Definition sources establish the named feature, not its presence or exact
+# coordinates on either skull. This seed is near the posterolateral orbital
+# roof, lateral to the superior orbital fissure at the frontosphenoidal region.
+CURATED_METADATA = {
+    "Cranio-orbital foramen": {
+        "aliases": ["Cranio-orbital foramen", "Cranioorbital foramen", "Meningo-orbital foramen",
+                    "Meningoorbital foramen", "Sphenofrontal foramen", "Foramen cranioorbitale"],
+        "terminology": {"system": "FIPAT TA2", "id": 482, "latin": "Foramen cranioorbitale",
+                        "url": TERMINOLOGY_URL + "#page=5"},
+        "anatomical_sources": [TERMINOLOGY_URL + "#page=5", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12551468/"],
+        "specimen_presence": "unconfirmed",
+    },
+}
+
+# These names identify real anatomical features, but neither skull currently has
+# a named native opening fit for them. A bone-surface projection cannot locate a
+# foramen: retain the definition while withholding its spatial target.
+ORBITAL_OPENINGS = {
+    "Cranio-orbital foramen", "Zygomaticoorbital foramen", "Zygomaticofacial foramen",
+    "Zygomaticotemporal foramen", "Anterior ethmoidal foramen", "Posterior ethmoidal foramen",
+}
+for _name in ORBITAL_OPENINGS:
+    CURATED_METADATA.setdefault(_name, {}).update(location_policy="require-native-opening")
+
 CATEGORIES = [
     {"id": "sutures", "name": "Sutures"},
     {"id": "foramina", "name": "Foramina and openings"},
@@ -393,6 +417,7 @@ Maxillary process of zygomatic bone|processes|zygomatic-bone|36,-30,65|anterior|
 Zygomaticofacial foramen|foramina|zygomatic-bone|47,-23,66|anterior|1|Small variable opening on the facial cheekbone surface.
 Zygomaticotemporal foramen|foramina|zygomatic-bone|49,-12,46|left|1|Small opening on the temporal surface of the zygomatic bone.
 Zygomaticoorbital foramen|foramina|zygomatic-bone|40,-15,56|anterior|1|Small opening on the orbital surface of the zygomatic bone leading into its internal canal system.
+Cranio-orbital foramen|foramina|sphenoid-bone,frontal-bone|32,4,46|anterior|1|Variable small passage in the upper posterior lateral orbital wall, in the sphenoid, frontal bone or their suture; it may carry a meningolacrimal vessel. Its presence and location have not been established in this specimen.
 Orbital surface of zygomatic bone|parts|zygomatic-bone|39,-18,62|anterior|1|Smooth cheekbone surface forming the anterolateral orbital wall and a portion of the orbital floor.
 Temporal surface of zygomatic bone|parts|zygomatic-bone|49,-23,43|left|1|Posteromedial zygomatic surface contributing to the temporal and infratemporal boundaries.
 Lateral surface of zygomatic bone|parts|zygomatic-bone|51,-27,66|anterior|1|Convex external cheekbone surface bearing the zygomaticofacial opening.
@@ -555,5 +580,6 @@ def curated_details() -> list[dict]:
     records = []
     for line in CURATED.strip().splitlines():
         name, category, owners, point, view, paired, description = line.split("|", 6)
-        records.append({"name": name, "category": category, "owners": owners.split(","), "point": [float(v) for v in point.split(",")], "view": view, "paired": paired == "1", "description": description})
+        records.append({"name": name, "category": category, "owners": owners.split(","), "point": [float(v) for v in point.split(",")], "view": view, "paired": paired == "1", "description": description,
+                        "metadata": CURATED_METADATA.get(name, {})})
     return records

@@ -101,7 +101,7 @@ def settle(page) -> None:
     page.evaluate("() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))")
     # Highlights are prepared off-thread. Wait for real completion rather than
     # assuming that a fixed pair of animation frames also finishes geometry.
-    page.wait_for_function("!window.skullAtlas?.snapshot().anatomy.preparingRegions", polling=100)
+    page.wait_for_function("() => { const anatomy=window.skullAtlas?.snapshot().anatomy; return anatomy && !anatomy.preparingRegions && !anatomy.preparingPins; }", polling=100)
     page.evaluate("() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))")
 
 

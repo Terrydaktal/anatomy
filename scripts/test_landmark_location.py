@@ -3,14 +3,121 @@
 
 import argparse
 import json
+import math
 import os
 import shutil
+import struct
 
 from playwright.sync_api import sync_playwright
 
 from test_anatomy import load
 from test_regions import SourceTriangles, assert_on_triangle, audit_geometry, changed_pixels, select_feature, visible_point
 from test_viewer import ARTIFACTS, ROOT, canvas_image, capture, local_server, settle, snapshot
+
+
+PIN_HOOK = '''const pinUpdate = details.update.bind(details), pinRender=composer.render.bind(composer), pinTimes=[],pinFrames=[];
+let pinRecording=false,pinReleasedAt=null,pinRenderCount=0,pinReleaseRender=0;
+composer.render=(...args)=>{pinRenderCount++;return pinRender(...args);};
+canvas.addEventListener('pointerup',()=>{if(pinRecording){pinReleasedAt=performance.now();pinFrames.length=0;pinReleaseRender=pinRenderCount;}});
+window.pinVerification = {
+  visible: () => [...details.rows].filter(([id, row]) => !row.pin.hidden).map(([id, row]) => {
+    const box = row.pin.getBoundingClientRect(), hit = pickHit({x:box.x+box.width/2,y:box.y+box.height/2});
+    return {id, target:details.visibleProjections.get(id)?.world.toArray(),
+      hit:hit ? {owner:hit.object.userData.entryId, face:hit.faceIndex,
+        point:hit.object.worldToLocal(hit.point.clone()).toArray(), world:hit.point.toArray()} : null};
+  }),
+  timings: () => {const times=[]; for(let i=0;i<5;i++) {const start=performance.now();details.update();times.push(performance.now()-start);}return times;},
+  startTiming: () => {pinTimes.length=0;pinFrames.length=0;pinReleasedAt=null;pinRecording=true;details.update=(...args)=>{
+    const start=performance.now();pinUpdate(...args);pinTimes.push(performance.now()-start);
+    if(pinReleasedAt!==null)pinFrames.push({ms:performance.now()-pinReleasedAt,ids:[...details.visiblePins],pending:details.preparingPins});
+  };},
+  stopTiming: () => {details.update=pinUpdate;pinRecording=false;return pinTimes;},
+  latency: () => ({samples:pinFrames,renders:pinRenderCount-pinReleaseRender})
+};'''
+
+
+def assert_pins_on_visible_surfaces(page, identities=None):
+    metadata = json.loads((ROOT / 'assets/landmark-highlights/manifest.json').read_text())
+    regions = {entry['id']: entry for entry in metadata['regions']}
+    catalogue = json.loads((ROOT / 'assets/landmarks/catalogue.json').read_text())
+    native_points = {entry['id']: entry['positions']['ct']['point'] for entry in catalogue['landmarks']
+                     if (entry.get('positions', {}).get('ct') or {}).get('native_point_fit')}
+    binary = (ROOT / metadata['binary']['url']).read_bytes()
+    pins = page.evaluate('window.pinVerification.visible()')
+    camera = snapshot(page)['camera']
+    if identities is not None:
+        assert {pin['id'] for pin in pins} == set(identities)
+    for pin in pins:
+        region = regions[pin['id']]
+        # A fitted point can sit in a joint gap. Its painted cue is not an
+        # anatomical boundary; preserve the canonical point and its sightline.
+        if not region['parts'] or pin['id'] in native_points:
+            if pin['id'] in native_points:
+                assert math.dist(pin['target'], native_points[pin['id']]) < 1e-5, 'A fitted point was moved onto an arbitrary part of its display cue'
+            if pin['hit']:
+                assert math.dist(camera, pin['target']) <= math.dist(camera, pin['hit']['world']) + 0.03, f'{pin["id"]}: a guide pin is behind bone'
+            continue
+        assert pin['hit'], f'{pin["id"]}: region pin points outside the skull'
+        inside = False
+        for part in region['parts']:
+            if part['ownerId'] != pin['hit']['owner']:
+                continue
+            faces = part['sourceFaces']
+            values = memoryview(binary)[faces['byte_offset']:faces['byte_offset'] + faces['count'] * 4].cast('I')
+            for triangle, face in enumerate(values):
+                if face != pin['hit']['face']:
+                    continue
+                corners = struct.unpack_from('<9f', binary, part['positions']['byte_offset'] + triangle * 36)
+                try:
+                    assert_on_triangle(pin['hit']['point'], [corners[i:i + 3] for i in [0, 3, 6]])
+                    inside = True
+                    break
+                except AssertionError:
+                    pass
+            if inside:
+                break
+        assert inside, f'{pin["id"]}: pin is covered by another surface rather than on the visible highlight'
+    return len(pins)
+
+
+def pin_latency_metrics(page):
+    result = page.evaluate('window.pinVerification.latency()')
+    samples = result['samples']
+    assert samples, 'No pin updates were measured after releasing the real drag'
+    final = set(samples[-1]['ids'])
+    assert final and not samples[-1]['pending']
+    last_change = max((i for i, sample in enumerate(samples) if set(sample['ids']) != final), default=-1) + 1
+    last_missing = max((i for i, sample in enumerate(samples) if len(set(sample['ids']) & final) < len(final) * 0.95), default=-1) + 1
+    metrics = {'visible': len(final), '95_percent_ms': samples[last_missing]['ms'],
+               'last_pin_ms': samples[last_change]['ms'], 'complete_ms': samples[-1]['ms'], 'scene_renders': result['renders']}
+    assert metrics['95_percent_ms'] < 150 and metrics['last_pin_ms'] < 250, f'Visible pins still trickle in after rotation: {metrics}'
+    assert metrics['scene_renders'] <= 3, f'Background pin batches redraw the skull: {metrics}'
+    return metrics
+
+
+def large_pin_latency_check(page, url, checks):
+    page.set_viewport_size({'width': 3840, 'height': 2160})
+    load(page, url, '?dataset=ct')
+    page.locator('#landmark-pins').check()
+    page.locator('#landmark-markers').check()
+    page.mouse.move(0, 0)
+    settle(page)
+    box = page.locator('#skull-canvas').bounding_box()
+    x, y = box['x'] + box['width'] - 40, box['y'] + box['height'] * 0.5
+    page.mouse.move(x, y)
+    page.evaluate('window.pinVerification.startTiming()')
+    page.mouse.down()
+    for step in range(1, 17):
+        page.mouse.move(x - step * 7, y + step * 4)
+        page.evaluate('() => new Promise(resolve=>requestAnimationFrame(resolve))')
+    page.mouse.up()
+    settle(page)
+    timings = sorted(page.evaluate('window.pinVerification.stopTiming()'))
+    metrics = pin_latency_metrics(page)
+    p95 = timings[min(len(timings) - 1, int(len(timings) * 0.95))]
+    assert p95 < 20, f'4K pin visibility makes rotation lag: {p95:.1f} ms'
+    assert_pins_on_visible_surfaces(page)
+    checks.append(f'4K Show all: 95% of visible pins settle in {metrics["95_percent_ms"]:.0f} ms, the last pin in {metrics["last_pin_ms"]:.0f} ms; {metrics["scene_renders"]} scene redraw(s), pin update p95 {p95:.1f} ms, all pins retain independent surface/sightline checks')
 
 
 def check(page, url, dataset, checks):
@@ -137,6 +244,111 @@ def check(page, url, dataset, checks):
     assert not any(r['xrayRendered'] for r in snapshot(page)['anatomy']['regions'])
 
 
+def pin_visibility_check(page, url, checks):
+    load(page, url, '?dataset=ct')
+    page.locator('#landmark-panel').evaluate('e=>e.open=true')
+    page.locator('[data-view="anterior"]').click()
+    page.locator('#landmark-markers').check()
+    original = snapshot(page)
+    previous_pin = None
+    for name in ['Intermaxillary suture', 'Right ramus of mandible']:
+        identity = name.lower().replace(' ', '-')
+        pin = page.locator(f'.anatomy-pin[data-landmark="{identity}"]')
+        page.locator('#landmark-search').fill(name)
+        button = page.get_by_role('button', name=name, exact=True)
+        button.hover()
+        settle(page)
+        assert pin.is_visible(), f'{identity}: a visible region has no hover pin'
+        if previous_pin:
+            assert previous_pin.is_visible(), 'Hovering another landmark lost the selected pin'
+        button.click()
+        page.mouse.move(0, 0)
+        settle(page)
+        assert pin.is_visible(), f'{identity}: a visible region has no selected pin'
+        if previous_pin:
+            assert previous_pin.is_hidden(), 'A replaced temporary selection left a stale pin'
+        state = snapshot(page)
+        assert not state['anatomy']['enabledRegions'], 'A temporary pin enabled a persistent highlight'
+        assert state['camera'] == original['camera'] and state['structures'] == original['structures']
+        assert_pins_on_visible_surfaces(page, [identity])
+        previous_pin = pin
+
+    page.locator('#anatomy-close').click()
+    page.mouse.move(0, 0)
+    settle(page)
+    assert previous_pin.is_hidden(), 'Closing the selection left its temporary pin'
+    names = ['Intermaxillary suture', 'Right ramus of mandible']
+    identities = {name.lower().replace(' ', '-') for name in names}
+    for name in names:
+        identity = name.lower().replace(' ', '-')
+        page.locator('#landmark-search').fill(name)
+        page.locator(f'.landmark-row[data-landmark="{identity}"] input').check()
+    page.mouse.move(0, 0)
+    settle(page)
+    assert set(snapshot(page)['anatomy']['enabledRegions']) == identities
+    for identity in identities:
+        pin = page.locator(f'.anatomy-pin[data-landmark="{identity}"]')
+        assert pin.is_visible(), f'{identity}: a visible region lost its checked pin'
+        assert 'is-occluded' not in pin.get_attribute('class'), 'A visible pin is incorrectly treated as hidden'
+    assert_pins_on_visible_surfaces(page, identities)
+    capture(page, 'location-visible-region-pins')
+    page.locator('.anatomy-pin[data-landmark="intermaxillary-suture"]').click()
+    settle(page)
+    assert snapshot(page)['anatomy']['selected'] == {'id': 'intermaxillary-suture', 'kind': 'landmark'}, 'A visible pin cannot be selected'
+    page.locator('#anatomy-close').click()
+    page.mouse.move(0, 0)
+
+    page.locator('#landmark-search').fill('no-matching-landmark')
+    page.locator('#landmark-markers').uncheck()
+    page.locator('#landmark-labels').check()
+    settle(page)
+    for identity in identities:
+        pin = page.locator(f'.anatomy-pin[data-landmark="{identity}"]')
+        assert not pin.evaluate('e=>e.hidden') and pin.locator('span').is_visible(), 'Names-only mode lost a located label'
+    page.locator('#landmark-markers').check()
+    page.locator('#landmark-xray').uncheck()
+    settle(page)
+    assert_pins_on_visible_surfaces(page, identities)
+    page.locator('#landmark-xray').check()
+    for view in ['right', 'left', 'posterior', 'anterior']:
+        page.locator(f'[data-view="{view}"]').click()
+        page.mouse.move(0, 0)
+        settle(page)
+        assert_pins_on_visible_surfaces(page)
+        if view == 'right':
+            assert page.locator('.anatomy-pin[data-landmark="right-ramus-of-mandible"]').is_visible()
+        if view == 'anterior':
+            assert_pins_on_visible_surfaces(page, identities)
+    for name in ['Sella turcica', 'Left pterygoid fossa']:
+        identity = name.lower().replace(' ', '-')
+        page.locator('#landmark-search').fill(name)
+        button = page.get_by_role('button', name=name, exact=True)
+        button.hover()
+        settle(page)
+        assert page.locator(f'.anatomy-pin[data-landmark="{identity}"]').is_hidden(), 'Hovering a covered landmark created an occluded pin'
+        button.click()
+        page.mouse.move(0, 0)
+        settle(page)
+        assert page.locator(f'.anatomy-pin[data-landmark="{identity}"]').is_hidden(), 'Selecting a covered landmark created an occluded pin'
+        assert page.locator('#landmark-location-aid').is_visible(), 'The separate hidden-landmark locator was lost'
+    page.locator('#anatomy-close').click()
+    page.mouse.move(0, 0)
+    page.locator('.bone-row[data-id="mandible"] input[type="checkbox"]').evaluate(
+        'e=>{e.checked=false;e.dispatchEvent(new Event("change",{bubbles:true}));}')
+    settle(page)
+    assert page.locator('.anatomy-pin[data-landmark="right-ramus-of-mandible"]').is_hidden(), 'A hidden bone retained its pin'
+    assert page.locator('.anatomy-pin[data-landmark="intermaxillary-suture"]').is_visible()
+    page.locator('.more-controls > summary').click()
+    page.locator('#section').select_option('sagittal')
+    page.locator('#section-position').fill('100')
+    settle(page)
+    assert all(page.locator(f'.anatomy-pin[data-landmark="{identity}"]').is_hidden() for identity in identities), 'Clipped pins remain visible'
+    page.locator('#reset').click()
+    settle(page)
+    assert not any(entry['visible'] for entry in snapshot(page)['anatomy']['landmarks'])
+    checks.append('Intermaxillary suture and right ramus pins attach to independently checked visible highlight triangles, including view changes; hover/selection stays temporary, covered regions/guides get no pins even with See through bone, and Names, hidden bones, sections and reset work')
+
+
 def orbital_foramina_check(page, url, checks):
     load(page, url, '?dataset=ct')
     page.locator('#landmark-panel').evaluate('e=>e.open=true')
@@ -187,7 +399,36 @@ def orbital_foramina_check(page, url, checks):
     current = snapshot(page)
     assert not unlocated.intersection(current['anatomy']['enabledRegions'])
     assert all(not entry['visible'] for entry in current['anatomy']['landmarks'] if entry['id'] in unlocated)
+    actual_pins = {entry['id'] for entry in current['anatomy']['landmarks'] if entry['visible']}
+    assert {'intermaxillary-suture', 'right-ramus-of-mandible'} <= actual_pins
+    assert 'sella-turcica' not in actual_pins, 'Show all exposed a covered region pin'
+    assert len(actual_pins) < len(current['anatomy']['enabledRegions']) / 2, 'Show all produced a cloud of hidden pins'
+    checked_pins = assert_pins_on_visible_surfaces(page, actual_pins)
+    page.locator('#landmark-labels').uncheck()
+    settle(page)
+    capture(page, 'location-show-all-visible-pins')
+    page.locator('#landmark-labels').check()
+    settle(page)
     assert current['anatomy']['locationAid'] is None
+    cached_times = page.evaluate('window.pinVerification.timings()')
+    assert max(cached_times) < 8, f'Static pin visibility was recomputed on every hover: {cached_times}'
+    box = page.locator('#skull-canvas').bounding_box()
+    start_x, start_y = box['x'] + box['width'] - 45, box['y'] + box['height'] * 0.45
+    page.mouse.move(start_x, start_y)
+    camera = snapshot(page)['camera']
+    page.evaluate('window.pinVerification.startTiming()')
+    page.mouse.down()
+    for step in range(1, 17):
+        page.mouse.move(start_x - step * 5, start_y + step)
+        page.evaluate('() => new Promise(resolve=>requestAnimationFrame(resolve))')
+    page.mouse.up()
+    settle(page)
+    timings = sorted(page.evaluate('window.pinVerification.stopTiming()'))
+    assert math.dist(camera, snapshot(page)['camera']) > 1, 'Pin performance check did not rotate the skull'
+    p95 = timings[min(len(timings) - 1, int(len(timings) * 0.95))]
+    assert p95 < 20, f'Pin visibility makes rotation lag: p95 {p95:.1f} ms, samples {timings}'
+    latency = pin_latency_metrics(page)
+    assert_pins_on_visible_surfaces(page)
     page.locator('#landmark-search').fill('cranio-orbital')
     page.locator('#landmark-estimates').uncheck()
     settle(page)
@@ -195,6 +436,10 @@ def orbital_foramina_check(page, url, checks):
     assert snapshot(page)['anatomy']['selected'] is None
     assert page.locator('#landmark-location-aid').is_hidden()
     checks.append('All 12 orbital-foramen names remain searchable with source links; unlocated entries have null coordinates, no targets/pins/paint, disabled spatial actions and no camera/bone changes, including Show all with Pins and Names enabled')
+    checks.append(f'Show all displays {checked_pins} surface-visible pins; every region pin is independently checked against the first native bone hit and the saved clipped highlight triangles')
+    checks.append(f'Visibility reuses the static view cache (max {max(cached_times):.1f} ms per update), budgets background surface searches and keeps real rotation pin updates at p95 {p95:.1f} ms')
+    checks.append(f'Desktop Show all: 95% of visible pins settle in {latency["95_percent_ms"]:.0f} ms, the last pin in {latency["last_pin_ms"]:.0f} ms; {latency["scene_renders"]} scene redraw(s)')
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -210,6 +455,9 @@ def main():
                 args=['--enable-webgl', '--ignore-gpu-blocklist', '--disable-software-rasterizer', '--enable-features=Vulkan', '--use-angle=vulkan'])
             try:
                 page = browser.new_page(viewport={'width': 1500, 'height': 1000})
+                app = (ROOT / 'src/app.js').read_text()
+                page.route('**/src/app.js*', lambda route: route.fulfill(content_type='text/javascript',
+                    body=app.replace('  window.skullAtlas = Object.freeze({', PIN_HOOK + '\n  window.skullAtlas = Object.freeze({')))
                 if args.mutant in ['broad-hover', 'xray-depth']:
                     name = 'anatomy-details.js' if args.mutant == 'broad-hover' else 'surface-regions.js'
                     module = (ROOT / 'src' / name).read_text()
@@ -231,7 +479,9 @@ def main():
                 page.on('pageerror', lambda error: report['page_errors'].append(str(error)))
                 for dataset in ['ct']:
                     check(page, url, dataset, report['checks'])
+                pin_visibility_check(page, url, report['checks'])
                 orbital_foramina_check(page, url, report['checks'])
+                large_pin_latency_check(page, url, report['checks'])
                 page.set_viewport_size({'width': 390, 'height': 844})
                 page.emulate_media(reduced_motion='reduce')
                 load(page, url, '?dataset=ct')

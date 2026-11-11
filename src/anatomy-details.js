@@ -16,6 +16,19 @@ export class AnatomyDetails {
     this.searchText = new Map();
     this.enabled = new Set();
     this.visiblePins = new Set();
+    this.pinAnchors = new Map();
+    this.pinSamples = new WeakMap();
+    this.visibleProjections = new Map();
+    this.pinSearches = new Map();
+    this.pinRayHits = new Map();
+    this.pinHitHints = new Map();
+    this.pinPartsByOwner = new Map();
+    this.pinFaceRegions = new Map();
+    this.pinOccluders = [];
+    this.pinRegionCount = -1;
+    this.pinPose = null;
+    this.preparingPins = false;
+    this.pinProbeCursor = 0;
     this.selected = null;
     this.categoryNames = new Map();
     this.raycaster = new THREE.Raycaster();
@@ -656,13 +669,154 @@ export class AnatomyDetails {
     return { x: (point.x + 1) * rect.width / 2, y: (1 - point.y) * rect.height / 2, z: point.z, world };
   }
 
-  isOccluded(world, meshes) {
+  isOccluded(world, meshes, screen = null, rect = null) {
     const direction = world.clone().sub(this.context.camera.position);
     const distance = direction.length();
-    this.raycaster.set(this.context.camera.position, direction.normalize());
+    if (screen) this.raycaster.setFromCamera(new THREE.Vector2(screen.x / rect.width * 2 - 1, 1 - screen.y / rect.height * 2), this.context.camera);
+    else this.raycaster.set(this.context.camera.position, direction.normalize());
     this.raycaster.firstHitOnly = !this.context.sectionEnabled();
     this.raycaster.far = Math.max(0, distance - Math.max(0.002, distance * 1e-5));
     return this.raycaster.intersectObjects(meshes, false).some((hit) => !this.context.sectionEnabled() || this.context.sectionPlane.distanceToPoint(hit.point) >= 0);
+  }
+
+  pinHit(screen, meshes, rect, project) {
+    const key = `${screen.x},${screen.y}`;
+    if (!this.pinRayHits.has(key)) {
+      this.raycaster.setFromCamera(new THREE.Vector2(screen.x / rect.width * 2 - 1, 1 - screen.y / rect.height * 2), this.context.camera);
+      this.raycaster.firstHitOnly = !this.context.sectionEnabled(); this.raycaster.far = Infinity;
+      const candidates = [], point = new THREE.Vector3(), ray = this.raycaster.ray;
+      for (const record of this.pinOccluders) {
+        const inside = record.box.containsPoint(ray.origin);
+        if (inside || ray.intersectBox(record.box, point)) candidates.push({ mesh: record.mesh,
+          near: inside ? 0 : point.distanceToSquared(ray.origin) });
+      }
+      candidates.sort((a, b) => a.near - b.near);
+      let hit = null;
+      for (const candidate of candidates) {
+        if (hit && candidate.near > hit.distance * hit.distance) break;
+        this.raycaster.far = hit?.distance ?? Infinity;
+        const nearest = this.raycaster.intersectObject(candidate.mesh, false).find((item) => !this.context.sectionEnabled() || this.context.sectionPlane.distanceToPoint(item.point) >= 0);
+        if (nearest && (!hit || nearest.distance < hit.distance)) hit = nearest;
+      }
+      this.pinRayHits.set(key, hit ?? null);
+    }
+    const hit = this.pinRayHits.get(key);
+    if (!hit) return null;
+    const ownerId = hit.object.userData.entryId, faceKey = `${ownerId}:${hit.faceIndex}`;
+    if (!this.pinFaceRegions.has(faceKey)) this.pinFaceRegions.set(faceKey, (this.pinPartsByOwner.get(ownerId) ?? []).filter(({ part }) => {
+      if (!part.faceIndex) return part.faceTriangles.has(hit.faceIndex);
+      const ids = part.faceIndex.ids;
+      let lo = 0, hi = ids.length;
+      while (lo < hi) { const mid = (lo + hi) >>> 1; if (ids[mid] < hit.faceIndex) lo = mid + 1; else hi = mid; }
+      return ids[lo] === hit.faceIndex;
+    }));
+    for (const { region } of this.pinFaceRegions.get(faceKey)) {
+      if (!this.activePinIds.has(region.id) || this.visibleProjections.has(region.id) || this.pinHitHints.has(region.id)) continue;
+      if (this.regions.contains(region, hit)) this.pinHitHints.set(region.id, {
+        projection: project(hit.point), anchor: { ownerId, point: hit.object.worldToLocal(hit.point.clone()) },
+      });
+    }
+    return hit;
+  }
+
+  visibleProjection(entry, meshes, rect, sampleLimit = Infinity) {
+    if (this.visibleProjections.has(entry.id)) return this.visibleProjections.get(entry.id);
+    if (performance.now() >= this.pinSearchDeadline) { this.preparingPins = true; return null; }
+    const { entries, camera, sectionPlane } = this.context;
+    const retained = (world) => !this.context.sectionEnabled() || sectionPlane.distanceToPoint(world) >= 0;
+    const project = (world) => {
+      const point = world.clone().project(camera);
+      // Match CSS layout's subpixel grid before testing a very narrow suture.
+      return { x: Math.round((point.x + 1) * rect.width * 32) / 64, y: Math.round((1 - point.y) * rect.height * 32) / 64, z: point.z, world };
+    };
+    const onscreen = (point) => point.z > -1 && point.z < 1 && point.x >= 10 && point.x < rect.width - 10 && point.y >= 10 && point.y < rect.height - 10;
+    const finish = (point) => { this.visibleProjections.set(entry.id, point); return point; };
+    if (!this.hasLocation(entry) || !entry.owners.some((id) => entries.get(id).mesh.visible)) return finish(null);
+    const region = this.regions.cache.get(entry.id);
+    const parts = region?.parts.filter((part) => entries.get(part.ownerId).mesh.visible) ?? [];
+    if (region?.parts.length && !parts.length) return finish(null);
+    // Fitted points and unpainted guides keep their precise original location.
+    if (entry.pointFit || !parts.length) {
+      const point = project(this.project(entry, null, rect).world);
+      if (!onscreen(point) || !retained(point.world)) return finish(null);
+      const hit = this.pinHit(point, meshes, rect, project), distance = point.world.distanceTo(camera.position);
+      return finish(!hit || hit.distance >= distance - Math.max(0.002, distance * 1e-5) ? point : null);
+    }
+    const probe = (world, ownerId = null) => {
+      const point = project(world);
+      if (!onscreen(point)) return null;
+      const hit = this.pinHit(point, meshes, rect, project);
+      // A nearer surface is useful only when it belongs to this exact region.
+      // Other bones and other parts of the same bone still block the pin.
+      if (hit) {
+        if (this.regions.contains(region, hit)) {
+          const ownerId = hit.object.userData.entryId;
+          this.pinAnchors.set(entry.id, { ownerId, point: hit.object.worldToLocal(hit.point.clone()) });
+          return project(hit.point);
+        }
+      }
+      const transparent = ownerId && entries.get(ownerId).mesh.material.opacity <= 0.7;
+      return transparent && retained(world) && (!hit || hit.distance >= world.distanceTo(camera.position) - 0.002) ? point : null;
+    };
+    let point;
+    if (!this.pinSearches.has(entry.id)) {
+      const previous = this.pinAnchors.get(entry.id);
+      if (previous && entries.get(previous.ownerId).mesh.visible) {
+        point = probe(previous.point.clone().applyMatrix4(entries.get(previous.ownerId).mesh.matrixWorld), previous.ownerId);
+        if (point) return finish(point);
+      }
+      point = probe(this.worldPoint(entry));
+      if (point) return finish(point);
+      for (const part of parts) {
+        const matrix = entries.get(part.ownerId).mesh.matrixWorld;
+        point = probe(part.anchor.clone().applyMatrix4(matrix), part.ownerId);
+        if (point) return finish(point);
+      }
+      this.pinSearches.set(entry.id, { probes: null, next: 0 });
+    }
+    if (!sampleLimit) { this.preparingPins = true; return null; }
+    const hint = this.pinHitHints.get(entry.id);
+    if (hint) { this.pinAnchors.set(entry.id, hint.anchor); return finish(hint.projection); }
+    let tested = 0;
+    // A broad or concave region may be visible away from its fixed anchor.
+    // Cache a bounded set of actual triangle centres rather than testing every
+    // triangle or displaying a pin through the overlying skull.
+    const search = this.pinSearches.get(entry.id);
+    if (!search.probes) {
+      search.probes = [];
+      const direction = new THREE.Vector3();
+      for (const part of parts) {
+        if (!this.pinSamples.has(part)) {
+          const positions = part.geometry.attributes.position.array, normals = part.geometry.attributes.normal.array;
+          const count = positions.length / 9, samples = [];
+          for (let i = 0; i < Math.min(64, count); i++) {
+            const offset = Math.floor(i * count / Math.min(64, count)) * 9;
+            samples.push({ point: new THREE.Vector3(
+              (positions[offset] + positions[offset + 3] + positions[offset + 6]) / 3,
+              (positions[offset + 1] + positions[offset + 4] + positions[offset + 7]) / 3,
+              (positions[offset + 2] + positions[offset + 5] + positions[offset + 8]) / 3),
+            normal: new THREE.Vector3(normals[offset] + normals[offset + 3] + normals[offset + 6],
+              normals[offset + 1] + normals[offset + 4] + normals[offset + 7],
+              normals[offset + 2] + normals[offset + 5] + normals[offset + 8]).normalize() });
+          }
+          this.pinSamples.set(part, samples);
+        }
+        const localCamera = entries.get(part.ownerId).mesh.worldToLocal(camera.position.clone());
+        for (const sample of this.pinSamples.get(part)) search.probes.push({ point: sample.point, ownerId: part.ownerId,
+          score: sample.normal.dot(direction.subVectors(localCamera, sample.point).normalize()) });
+      }
+      // Try camera-facing samples across all owning bones first. Hidden contact
+      // walls must not delay a visible outer surface on another part.
+      search.probes.sort((a, b) => b.score - a.score);
+    }
+    while (search.next < search.probes.length) {
+      if (tested >= sampleLimit || performance.now() >= this.pinSearchDeadline) { this.preparingPins = true; return null; }
+      tested++;
+      const sample = search.probes[search.next++];
+      point = probe(sample.point.clone().applyMatrix4(entries.get(sample.ownerId).mesh.matrixWorld), sample.ownerId);
+      if (point) return finish(point);
+    }
+    return finish(null);
   }
 
   locationStatus(entry) {
@@ -684,7 +838,8 @@ export class AnatomyDetails {
     aid.hidden = !$('landmark-locate').checked || $('bone-studies').hidden || !this.hasLocation(entry) || !this.canHighlight(id);
     if (aid.hidden) return;
     const { canvas, entries } = this.context;
-    const projected = this.project(entry, null, rect);
+    const visibleProjection = this.visibleProjection(entry, opaqueMeshes, rect);
+    const projected = visibleProjection ?? this.project(entry, null, rect);
     const top = Math.min(rect.height * 0.45, document.querySelector('.view-presets').getBoundingClientRect().bottom - rect.top + 12);
     const card = $('anatomy-selection').hidden ? null : $('anatomy-selection').getBoundingClientRect();
     const supported = Boolean(this.regions.cache.get(id)?.parts.length);
@@ -693,7 +848,7 @@ export class AnatomyDetails {
     const ownerRendered = owners.some((owner) => entries.get(owner).mesh.visible);
     const clipped = this.context.sectionEnabled() && this.context.sectionPlane.distanceToPoint(projected.world) < 0;
     const onscreen = projected.z > -1 && projected.z < 1 && projected.x >= 0 && projected.x <= rect.width && projected.y >= 0 && projected.y <= rect.height;
-    const occluded = ownerRendered && !clipped && this.isOccluded(projected.world, opaqueMeshes);
+    const occluded = !visibleProjection && ownerRendered && !clipped && this.isOccluded(projected.world, opaqueMeshes);
     let status = this.locationStatus(entry);
     if (!ownerVisible) status += ' · Bone hidden';
     else if (clipped) status += ' · Location outside section';
@@ -730,25 +885,60 @@ export class AnatomyDetails {
     this.context.scene.updateMatrixWorld(true);
     const rect = canvas.getBoundingClientRect();
     const opaqueMeshes = [...entries.values()].filter((entry) => entry.mesh.visible && entry.mesh.material.opacity > 0.7).map((entry) => entry.mesh);
+    const pose = [rect.width, rect.height, ...this.context.camera.matrixWorld.elements, ...this.context.camera.projectionMatrix.elements,
+      this.context.sectionEnabled(), ...this.context.sectionPlane.normal.toArray(), this.context.sectionPlane.constant, this.regions.cache.size,
+      ...[...entries.values()].flatMap((entry) => [entry.mesh.visible, entry.mesh.material.opacity > 0.7, ...entry.mesh.matrixWorld.elements])].join(',');
+    if (pose !== this.pinPose) {
+      this.pinPose = pose; this.visibleProjections.clear(); this.pinSearches.clear(); this.pinProbeCursor = 0;
+      this.pinRayHits.clear(); this.pinHitHints.clear();
+      this.pinOccluders = opaqueMeshes.map((mesh) => ({ mesh, box: mesh.geometry.boundingBox.clone().applyMatrix4(mesh.matrixWorld) }));
+      if (this.pinFaceRegions.size > 16384) this.pinFaceRegions.clear();
+    }
+    if (this.pinRegionCount !== this.regions.cache.size) {
+      this.pinRegionCount = this.regions.cache.size; this.pinPartsByOwner.clear(); this.pinFaceRegions.clear();
+      for (const region of this.regions.cache.values()) if (!region.entry.pointFit) for (const part of region.parts) {
+        if (!this.pinPartsByOwner.has(part.ownerId)) this.pinPartsByOwner.set(part.ownerId, []);
+        this.pinPartsByOwner.get(part.ownerId).push({ region, part });
+      }
+    }
+    this.preparingPins = false;
+    this.pinSearchDeadline = performance.now() + (this.context.isInteracting() ? 4 : 8);
     const nextVisible = new Set();
     const showPins = $('landmark-markers').checked || $('landmark-labels').checked;
-    for (const id of showPins ? this.enabled : []) {
+    const selected = this.selected?.kind === 'landmark' ? this.selected.id : null;
+    // A temporary preview needs its pin without becoming a persistent highlight.
+    const active = new Set([...this.enabled, selected, this.hovered]);
+    this.activePinIds = active;
+    const candidates = showPins ? [...new Set([selected, this.hovered, ...[...this.visiblePins].filter((id) => active.has(id)), ...this.enabled])]
+      .filter((id) => this.hasLocation(this.landmarks.get(id)) && this.canHighlight(id)) : [];
+    // Check every simple anchor before spending time on hidden surface samples.
+    // Otherwise an early hidden region can hold up hundreds of visible guides.
+    for (const id of candidates) this.visibleProjection(this.landmarks.get(id), opaqueMeshes, rect, 0);
+    if (candidates.every((id) => this.visibleProjections.has(id) || this.pinSearches.has(id))) {
+      const pending = candidates.filter((id) => !this.visibleProjections.has(id));
+      let remaining = pending.length;
+      // Share the remaining budget between regions rather than exhausting all
+      // 64 samples of one hidden region before trying the next visible region.
+      while (remaining && performance.now() < this.pinSearchDeadline) {
+        const id = pending[this.pinProbeCursor++ % pending.length];
+        if (this.visibleProjections.has(id)) continue;
+        this.visibleProjection(this.landmarks.get(id), opaqueMeshes, rect, 1);
+        if (this.visibleProjections.has(id)) remaining--;
+      }
+    }
+    for (const id of candidates) {
       const entry = this.landmarks.get(id);
       const { pin, path } = this.rows.get(entry.id);
-      const projected = this.project(entry, null, rect);
-      const ownerVisible = entry.owners.some((id) => entries.get(id).mesh.visible);
-      const retained = !this.context.sectionEnabled() || this.context.sectionPlane.distanceToPoint(projected.world) >= 0;
-      const onscreen = projected.z > -1 && projected.z < 1 && projected.x >= 10 && projected.x < rect.width - 10 && projected.y >= 10 && projected.y < rect.height - 10;
-      let shown = this.enabled.has(entry.id) && ownerVisible && retained && onscreen;
-      const occluded = shown && this.isOccluded(projected.world, opaqueMeshes);
-      if (occluded && this.selected?.id !== entry.id) shown = false;
+      const projected = this.visibleProjections.get(id);
+      const shown = Boolean(projected);
       pin.hidden = !shown;
       if (shown) nextVisible.add(entry.id);
-      pin.classList.toggle('is-occluded', occluded);
+      pin.classList.remove('is-occluded');
+      if (!shown) continue;
       pin.style.left = `${projected.x}px`; pin.style.top = `${projected.y}px`;
       pin.style.setProperty('--pin-color', regionColour(entry.id));
       if (path) {
-        path.style.display = shown && !occluded ? '' : 'none';
+        path.style.display = '';
         path.setAttribute('stroke', entries.get(entry.owners[0]).color);
         path.setAttribute('points', entry.placement.path.map((point) => { const p = this.project(entry, point, rect); return `${p.x},${p.y}`; }).join(' '));
       }
@@ -760,10 +950,15 @@ export class AnatomyDetails {
     }
     this.visiblePins = nextVisible;
     this.updateLocationAid(opaqueMeshes, rect);
+    const aidId = this.hovered ?? selected;
+    this.preparingPins = candidates.some((id) => !this.visibleProjections.has(id))
+      || (!$('landmark-location-aid').hidden && !this.visibleProjections.has(aidId));
+    if (this.preparingPins) this.context.invalidatePins();
   }
 
   reset() {
     this.enabled.clear();
+    this.pinAnchors.clear();
     this.previewQueue.clear(); this.setRegionHover(null);
     this.cavities.forEach((entry) => { entry.visible = false; entry.checkbox.checked = false; });
     this.context.cavityContext(false);
@@ -787,7 +982,7 @@ export class AnatomyDetails {
       mappedOnly: $('landmark-mapped-only').checked,
       categories: [...new Set([...this.landmarks.values()].map((entry) => entry.category))],
       markers: [...this.enabled],
-      enabledRegions: [...this.enabled], hoveredRegion: this.hovered, preparingRegions: this.preparing,
+      enabledRegions: [...this.enabled], hoveredRegion: this.hovered, preparingRegions: this.preparing, preparingPins: this.preparingPins,
       locationAid: this.locationState,
       regions: this.regions.snapshot(),
       landmarks: [...this.landmarks.values()].map((entry) => ({ id: entry.id, name: entry.name, category: entry.category, owners: entry.owners, point: this.worldPoint(entry)?.toArray() ?? null, located: this.hasLocation(entry), placementMethod: entry.placement.method, placementStatus: entry.placement.label_fit?.status ?? 'approximate', visible: !this.rows.get(entry.id).pin.hidden })),

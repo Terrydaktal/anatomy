@@ -61,6 +61,7 @@ let cavityOpacity = null;
 let skullBounds;
 let restorePoint = null;
 let dirty = true;
+let pinsDirty = false;
 let pointerDirty = false;
 let pointerInside = false;
 let interacting = false;
@@ -657,7 +658,7 @@ function render() {
     const radius = Math.max(0.05, Math.min(6, Math.max(size.x, size.y, size.z) * 0.025));
     ambientOcclusion.updateGtaoMaterial({ radius, thickness: radius * 0.4 });
   }
-  renderer.info.reset(); composer.render(); details?.update(); dirty = false;
+  renderer.info.reset(); composer.render(); pinsDirty = false; details?.update(); dirty = false;
 }
 
 const lightRig = new THREE.Group();
@@ -785,6 +786,8 @@ async function init() {
     dataset, manifest, scene, camera, canvas, entries, sectionPlane,
     catalogueChanged: filterCatalogue,
     invalidate: (repick = false) => { dirty = true; if (repick) pointerDirty = true; },
+    invalidatePins: () => { pinsDirty = true; },
+    isInteracting: () => interacting,
     sectionEnabled: () => state.section !== 'none',
     clearBoneSelection: () => select(null),
     hover: (id, name) => { setHover(id); if (id && name) $('hover-name').textContent = name; },
@@ -891,6 +894,7 @@ async function init() {
       pointerDirty = false;
     }
     if (dirty) render();
+    else if (pinsDirty) { pinsDirty = false; details?.update(); }
   });
   render();
 }
